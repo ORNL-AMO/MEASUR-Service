@@ -8,7 +8,7 @@ var express = require('express');
 
 var app = express();
 var port = process.env.port || 8080;
-var psat = require("./third_party/ORNL_AMO_TOOL_SUITE/Release/psat.node");
+var psat = require("./node_modules/amo-tools-suite/build/Release/psat.node");
 
 var pumpheadtool = require('./src/pump/pumpheadtool.js');
 var pump = require('./src/pump/pump.js');

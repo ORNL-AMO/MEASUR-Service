@@ -1,2 +1,0 @@
-For the project to run we expect compiled node bindings from the ORNL AMO Tool Suite project on the local machine.
-For installation it requires the .node bindings to be placed in this folder under the Release file structure which is a build configuration for the AMO Tool Suite project.

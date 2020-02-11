@@ -2,7 +2,7 @@ const NUMBER_OF_PUMP_STYLES = 12;
 const NUMBER_OF_DRIVES = 5;
 const NUMBER_OF_EFFICIENCY_CLASS = 4;
 const NUMBER_OF_LOAD_ESTIMATION_METHODS = 2;
-var psat = require("../../third_party/ORNL_AMO_TOOL_SUITE/Release/psat.node");
+var psat = require("../../node_modules/amo-tools-suite/build/Release/psat.node");
 var express = require('express');
 /*
 		Notes about Values

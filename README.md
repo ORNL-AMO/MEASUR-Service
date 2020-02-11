@@ -11,3 +11,6 @@ For initial setup to run the project, make sure to call "npm install" so that th
 Afterwards, run "openssl genrsa -out key.pem" and "openssl req -new -key key.pem -out csr.pem" and "openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem" and " rm csr.pem"
 finally type in the terminal "node main.js" and that will run the server.
 
+To run the unit tests run "node main.js" and while the node server is running in another terminal run "npm test". 
+
+At the current moment with a self-signed certificate this will fail due to not accepting self-signed certificates. The code that needs to be added to the top of the unit tests.js file to prevent this is listed below but has not been committed due to not being as secure as the development team would like. The code is: "process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;"

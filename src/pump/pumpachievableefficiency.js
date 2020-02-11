@@ -1,4 +1,4 @@
-var psat = require("../../third_party/ORNL_AMO_TOOL_SUITE/Release/psat.node");
+var psat = require("../../node_modules/amo-tools-suite/build/Release/psat.node");
 var express = require('express');
 exports.CalculatePumpEfficiency =function(req, res)
 {
