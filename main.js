@@ -15,6 +15,31 @@ var pump = require('./src/pump/pump.js');
 var pumpachievableefficiency = require("./src/pump/pumpachievableefficiency.js");
 var router = express.Router();
 
+var motor = require('./src/motor/motorPerformance.js');
+var motorNEMA = require('./src/motor/motorNEMA.js')
+var motorEstFLA = require('./src/motor/motorEstFLA.js');
+
+
+router.get('/motor/motorEstFLA', function(req, res)
+{
+	motorEstFLA.CalculateMotorEstFLA(req, res);
+});
+
+
+
+
+router.get('/motor/motorNEMA', function(req, res)
+{
+	motorNEMA.CalculateMotorNEMA(req, res);
+});
+
+
+
+
+router.get('/motor/motorPerformance', function(req, res)
+{
+	motor.CalculateMotorPerformance(req, res);
+});
 
 
 
