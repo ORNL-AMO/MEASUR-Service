@@ -91,9 +91,9 @@ var setUpPump = function(req, res)
 	{
 		errorMessage +=" Pump Style was not found as a parameter using default value. ";
 	}
-	if(req.query.pumpEfficiency && parseFloat(req.query.Efficiency) >= 0)
+	if(req.query.pumpEfficiency && parseFloat(req.query.pumpEfficiency) >= 0)
 	{
-		pump.pump_specified = parseFloat(req.query.pumpSpecified);
+		pump.pump_specified = parseFloat(req.query.pumpEfficiency);
 	}
 	else
 	{
