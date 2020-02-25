@@ -38,7 +38,7 @@ var setUpPump = function(req, res)
 {
 	var pump = {
 		pump_style: 0,
-		pump_specified: 1,
+		pump_specified: 100,
 		pump_rated_speed: 1780,
 		drive: 0,
 		kinematic_viscosity: 1.107,
@@ -91,7 +91,7 @@ var setUpPump = function(req, res)
 	{
 		errorMessage +=" Pump Style was not found as a parameter using default value. ";
 	}
-	if(req.query.pumpSpecified && parseFloat(req.query.pumpSpecified) >= 0)
+	if(req.query.pumpEfficiency && parseFloat(req.query.Efficiency) >= 0)
 	{
 		pump.pump_specified = parseFloat(req.query.pumpSpecified);
 	}
@@ -334,6 +334,14 @@ var setUpPump = function(req, res)
 	{
 		errorMessage += " Efficiency was not included as a parameter using default value.";
 	}
+	if(req.query.margin && parseInt(req.query.margin) >= 0)
+	{
+		pump.marign = parseInt(req.query.margin);
+	}
+	if(req.query.fixedSpeed && parseInt(req.query.fixedSpeed) >= 0)
+	{
+		pump.fixed_speed = parseInt(req.query.fixedSpeed);
+	}
 	return [pump, errorMessage];
 }
 
@@ -394,6 +402,10 @@ exports.CalculateModifiedPumpEfficiency =function(req, res)
 	else if(pumpResultOriginal.pump_efficiency != null)
 	{
 		modPump.pump_specified = parseInt(pumpResultOriginal.pump_efficiency*100)/100.0;
+	}
+	if(req.query.pumpSpecified && parseInt(req.query.pumpSpecified) >= 0)
+	{
+		modPump.pump_specified = parseInt(req.query.pumpSpecified);
 	}
 	if(req.query.modifiedPumpRatedSpeed && parseFloat(req.query.modifiedPumpRatedSpeed) >= 0)
 	{
@@ -525,7 +537,7 @@ exports.CalculateModifiedPumpEfficiency =function(req, res)
 	{
 		modPump.motor_rated_fla = parseFloat(req.query.modifiedMotorRatedFla);
 	}
-	else
+	else if(req.query.estimateModifiedFullLoadAmperes == 'true')
 	{
 		var value = psat.estFLA(pump);
 		modPump.motor_rated_fla = parseFloat(value);

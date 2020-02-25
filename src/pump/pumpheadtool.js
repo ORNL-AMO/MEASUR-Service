@@ -17,7 +17,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 	var message = "Errors Found: ";
 	
 	var testingAPI = (req.query.testingAPI == 'true');
-	if(req.query.specificGravity && parseFloat(req.query.specificGravity))
+	if(req.query.specificGravity && parseFloat(req.query.specificGravity) >= 0)
 	{
 		suctionGaugeElevation.specificGravity = req.query.specificGravity;
 	}
@@ -25,7 +25,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 	{
 		message += "Specific Gravity Parameter not found using default. ";
 	}
-	if(req.query.flowRate && parseFloat(req.query.flowRate))
+	if(req.query.flowRate && parseFloat(req.query.flowRate) >= 0)
 	{
 		suctionGaugeElevation.flowRate = req.query.flowRate;
 	}
@@ -34,7 +34,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 		message += "Flow Rate Parameter not found using default. ";
 
 	}
-	if(req.query.suctionPipeDiameter && parseFloat(req.query.suctionPipeDiameter))
+	if(req.query.suctionPipeDiameter && parseFloat(req.query.suctionPipeDiameter) >= 0)
 	{
 		suctionGaugeElevation.suctionPipeDiameter = req.query.suctionPipeDiameter;
 	}
@@ -42,7 +42,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 	{
 		message += "Suction Pipe Diameter parameter not found using default. ";
 	}
-	if(req.query.suctionGaugePressure && parseFloat(req.query.suctionGaugePressure))
+	if(req.query.suctionGaugePressure && parseFloat(req.query.suctionGaugePressure) >= 0)
 	{
 		suctionGaugeElevation.suctionGaugePressure = req.query.suctionGaugePressure;
 	}
@@ -50,7 +50,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 	{
 		message += "Suction Gauge Pressure parameter not found using default. ";
 	}
-	if(req.query.suctionGaugeElevation && parseFloat(req.query.suctionGaugeElevation))
+	if(req.query.suctionGaugeElevation && parseFloat(req.query.suctionGaugeElevation) >= 0)
 	{
 		suctionGaugeElevation.suctionGaugeElevation = req.query.suctionGaugeElevation;
 	}
@@ -58,7 +58,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 	{
 		message +=  "Suction Gauge Elevation parameter not found using default. ";
 	}
-	if(req.query.suctionLineLossCoefficients && parseFloat(req.query.suctionLineLossCoefficients))
+	if(req.query.suctionLineLossCoefficients && parseFloat(req.query.suctionLineLossCoefficients) >= 0)
 	{
 		suctionGaugeElevation.suctionLineLossCoefficients = req.query.suctionLineLossCoefficients;
 	}
@@ -66,7 +66,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 	{
 		message += "Suction Line Loss Coefficients parameter not found using default. ";
 	}
-	if(req.query.dischargePipeDiameter && parseFloat(req.query.dischargePipeDiameter))
+	if(req.query.dischargePipeDiameter && parseFloat(req.query.dischargePipeDiameter) >= 0)
 	{
 		suctionGaugeElevation.dischargePipeDiameter = req.query.dischargePipeDiameter;
 	}
@@ -74,7 +74,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 	{
 		message += "Discharge Pipe Diameter parameter not found using default. ";
 	}
-	if(req.query.dischargeGaugePressure && parseFloat(req.query.dischargeGaugePressure))
+	if(req.query.dischargeGaugePressure && parseFloat(req.query.dischargeGaugePressure) >= 0)
 	{
 		suctionGaugeElevation.dischargeGaugePressure = req.query.dischargeGaugePressure;
 	}
@@ -82,7 +82,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 	{
 		message += "Discharge Gauge Pressure parameter not found using default.";
 	}
-	if(req.query.dischargeGaugeElevation && parseFloat(req.query.dischargeGaugeElevation))
+	if(req.query.dischargeGaugeElevation && parseFloat(req.query.dischargeGaugeElevation) >= 0)
 	{
 		suctionGaugeElevation.dischargeGaugeElevation = req.query.dischargeGaugeElevation;
 	}
@@ -90,7 +90,7 @@ exports.CalculateSuctionGaugeElevation =function(req, res)
 	{
 		message += "Discharge Gauge Elevation parameter not found using default. ";
 	}
-	if(req.query.dischargeLineLossCoefficients &&parseFloat(req.query.dischargeLineLossCoefficients))
+	if(req.query.dischargeLineLossCoefficients &&parseFloat(req.query.dischargeLineLossCoefficients) >= 0)
 	{
 		suctionGaugeElevation.dischargeLineLossCoefficients = req.query.dischargeLineLossCoefficients;
 	}
@@ -135,7 +135,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 		testingAPI = (req.query.testingAPI == 'true');
 	}
 	var message = '';
-	if(req.query.specificGravity && parseFloat(req.query.specificGravity))
+	if(req.query.specificGravity && parseFloat(req.query.specificGravity) >= 0)
 	{
 		suctionTankElevation.specificGravity = req.query.specificGravity;
 	}
@@ -143,7 +143,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 	{
 		message += "Specific Gravity Parameter not found. ";
 	}
-	if(req.query.flowRate && parseFloat(req.query.flowRate))
+	if(req.query.flowRate && parseFloat(req.query.flowRate) >= 0)
 	{
 		suctionTankElevation.flowRate = req.query.flowRate;
 	}
@@ -152,7 +152,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 		message += "Flow Rate parameter not found. ";
 	}
 
-	if(req.query.suctionPipeDiameter && parseFloat(req.query.suctionPipeDiameter))
+	if(req.query.suctionPipeDiameter && parseFloat(req.query.suctionPipeDiameter) >= 0)
 	{
 		suctionTankElevation.suctionPipeDiameter = req.query.suctionPipeDiameter;
 	}
@@ -160,7 +160,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 	{
 		message += "Suction Pipe Diameter parameter not found. ";
 	}	
-	if(req.query.suctionTankGasOverPressure && parseFloat(req.query.suctionTankGasOverPressure))
+	if(req.query.suctionTankGasOverPressure && parseFloat(req.query.suctionTankGasOverPressure) >= 0)
 	{
 		suctionTankElevation.suctionTankGasOverPressure = req.query.suctionTankGasOverPressure;
 	}
@@ -168,7 +168,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 	{
 		message += "Suction Tank Gas Over Pressure parameter not found. ";
 	}
-	if(req.query.suctionTankFluidSurfaceElevation && parseFloat(req.query.suctionTankFluidSurfaceElevation))
+	if(req.query.suctionTankFluidSurfaceElevation && parseFloat(req.query.suctionTankFluidSurfaceElevation) >= 0)
 	{
 		suctionTankElevation.suctionTankFluidSurfaceElevation = req.query.suctionTankFluidSurfaceElevation;
 	}
@@ -176,7 +176,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 	{
 		message += "Suction Tank Fluid Surface Elevation parameter not found. ";
 	}
-	if(req.query.suctionLineLossCoefficients && parseFloat(req.query.suctionLineLossCoefficients))
+	if(req.query.suctionLineLossCoefficients && parseFloat(req.query.suctionLineLossCoefficients) >= 0)
 	{
 		suctionTankElevation.suctionLineLossCoefficients = req.query.suctionLineLossCoefficients;
 	}
@@ -184,7 +184,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 	{
 		message += "Suction Line Loss Coefficients parameter not found. ";
 	}
-	if(req.query.dischargePipeDiameter && parseFloat(req.query.dischargePipeDiameter))
+	if(req.query.dischargePipeDiameter && parseFloat(req.query.dischargePipeDiameter) >= 0)
 	{
 		suctionTankElevation.dischargePipeDiameter = req.query.dischargePipeDiameter;
 	}
@@ -192,7 +192,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 	{
 		message += "Discharge Pipe Diameter parameter not found.";
 	}
-	if(req.query.dischargeGaugePressure && parseFloat(req.query.dischargeGaugePressure))
+	if(req.query.dischargeGaugePressure && parseFloat(req.query.dischargeGaugePressure) >= 0)
 	{
 		suctionTankElevation.dischargeGaugePressure = req.query.dischargeGaugePressure;
 	}
@@ -200,7 +200,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 	{
 		message += "Discharge Gauge Pressure parameter not found. ";
 	}
-	if(req.query.dischargeGaugeElevation && parseFloat(req.query.dischargeGaugeElevation))
+	if(req.query.dischargeGaugeElevation && parseFloat(req.query.dischargeGaugeElevation) >= 0)
 	{
 		suctionTankElevation.dischargeGaugeElevation = req.query.dischargeGaugeElevation;
 	}
@@ -208,7 +208,7 @@ exports.CalculateSuctionTankElevation = function(req, res)
 	{
 		message += "Discharge Gauge Elevation parameter not found. ";
 	}
-	if(req.query.dischargeLineLossCoefficients && parseFloat(req.query.dischargeLineLossCoefficients))
+	if(req.query.dischargeLineLossCoefficients && parseFloat(req.query.dischargeLineLossCoefficients) >= 0)
 	{
 		suctionTankElevation.dischargeLineLossCoefficients = req.query.dischargeLineLossCoefficients;
 	}
