@@ -2,115 +2,174 @@ var expect = require('chai').expect;
 var request = require('request');
 
 
-it('Pump Head Tool Suction Tank Elevation Calculator Default', function(done){
-	request('https://localhost:8080/pumpheadtool/suctionTankElevation', function(error, response, body)	{
-	expect(body).to.equal('[{"differentialElevationHead":0,"differentialPressureHead":286.53957183930777,"differentialVelocityHead":0.5002408542117751,"estimatedSuctionFrictionHead":0.25012042710588756,"estimatedDischargeFrictionHead":0.5002408542117751,"pumpHead":287.7901739748372}]');
-	done();
-	});
-});
-
-it('Pump Head Tool Suction Tank Elevation Calculator Modified', function(done){
-	request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2200&specificGravity=2&suctionPipeDiameter=14&suctionTankGasOverPressure=1&suctionTankFluidSurfaceElevation=11&suctionLineLossCoefficients=.6&dischargePipeDiameter=14&dischargeGaugePressure=140&dischargeGaugeElevation=11&dischargeLineLossCoefficients=2',
-function(error, response, body){
-	expect(body).to.equal('[{"differentialElevationHead":0,"differentialPressureHead":160.6008084099346,"differentialVelocityHead":0.32672124029185207,"estimatedSuctionFrictionHead":0.19603274417511124,"estimatedDischargeFrictionHead":0.6534424805837041,"pumpHead":161.77700487498524}]');
-	done();
-	});
-});
-
-
-it('Pump Head Tool Gauge Tank Elevation Calculator Default', function(done){
-	request('https://localhost:8080/pumpheadtool/suctionGaugeElevation', function(error, response, body){
-	expect(body).to.equal('[{"differentialElevationHead":0,"differentialPressureHead":274.9855568457873,"differentialVelocityHead":0,"estimatedSuctionFrictionHead":0.25012042710588756,"estimatedDischargeFrictionHead":0.5002408542117751,"pumpHead":275.735918127105}]');
-	done();
-	});
-});
-
-it('Pump Head Tool Gauge Tank Elevation Calculator Modified', function(done){
-	request('https://localhost:8080/pumpheadtool/suctionGaugeElevation?specificGravity=.8&flowRate=1900&suctionPipeDiameter=11&suctionGaugePressure=6&suctionGaugeElevation=9&suctionLineLossCoefficients=.4&dischargePipeDiameter=14&dischargeGaugePressure=132&dischargeGaugeElevation=11&dischargeLineLossCoefficients=.8', function(error, response, body){
-	expect(body).to.equal('[{"differentialElevationHead":2,"differentialPressureHead":363.95147229589486,"differentialVelocityHead":-0.3957209056230499,"estimatedSuctionFrictionHead":0.2557646992288552,"estimatedDischargeFrictionHead":0.19495267395927046,"pumpHead":366.00646876345996}]');
-	done();
-	});
-});
-
-it('Pump Achievable Efficiency Calculator Default', function(done){
-	request('https://localhost:8080/pumpachievableefficiency/pumpefficiency', function(error, response, body)	{
-	expect(body).to.equal('[{"average":72.99786733498414,"max":75.6275702046979},"Errors Found: Pump style Parameter not found using  0Flow Rate Parameter not found using default. "]');
-	done();
-	});
-});
-
-it('Pump Achievable Efficiency Calculator Modified', function(done){
-	request('https://localhost:8080/pumpachievableefficiency/pumpefficiency?pumpStyle=7&flowRate=3000',
-function(error, response, body){
-	expect(body).to.equal('[{"average":86.2582381586152,"max":88.97084634992157},"Errors Found: "]');
-	done();
-	});
-});
-
-
-
-
-	
-it('Pump Assessment Default Values', function(done)
-{
-	request('https://localhost:8080/pump/assessment', function (error, response, body){
-		expect(body).to.equal('[{"annual_savings_potential":0,"annual_cost":0,"annual_energy":0,"load_factor":0,"motor_power":0,"motor_current":null,"motor_power_factor":0,"motor_efficiency":0,"drive_efficiency":100,"pump_shaft_power":0,"optimization_rating":0,"motor_shaft_power":0,"motor_rated_power":200,"pump_efficiency":null}]');
+describe('Pump Head Suction Tank Elevation Unit Tests', function()
+{	
+	it('Pump Head Tool Suction Tank Elevation Calculator Default', function(done){
+		request('https://localhost:8080/pumpheadtool/suctionTankElevation', function(error, response, body)	{
+		var value = JSON.parse(body)[0];
+		expect(value.pumpHead).to.equal(287.7901739748372);
+		expect(value.differentialElevationHead).to.equal(0);
+		expect(value.differentialPressureHead).to.equal(286.53957183930777);
+		expect(value.differentialVelocityHead.toFixed(16)).to.equal('0.5002408542117751');
+		expect(value.estimatedDischargeFrictionHead.toFixed(16)).to.equal('0.5002408542117751');
+		expect(value.estimatedSuctionFrictionHead).to.equal(0.25012042710588756);
 		done();
+		});
 	});
-});
 
-it('Pump Assessment With Checking Different Parameters', function(done)
-{
-	request('https://localhost:8080/pump/assessment?pumpStyle=9&pumpRatedSpeed=1900&drive=4&stages=2&kinematicViscosity=1.2&specificGravity=2&specifiedDriveEfficiency=96&lineFrequency=1&motorRatedPower=150&motorRatedSpeed=1300&efficiencyClass=2&efficiency=95&motorRatedVoltage=300&motorRatedFla=250&flowRate=300&head=290&loadEstimationMethod=1&motorFieldCurrent=45&motorFieldVoltage=500&costKwHour=.007&operatingHours=5000', function (error, response, body){
-		expect(body).to.equal('[{"annual_savings_potential":0,"annual_cost":3180.010394157789,"annual_energy":454.2871991653984,"load_factor":1.6201884155731876,"motor_power":90.85743983307968,"motor_current":45,"motor_power_factor":233.1402993133724,"motor_efficiency":33787.75332140182,"drive_efficiency":96,"pump_shaft_power":39505.01359134632,"optimization_rating":0,"motor_shaft_power":41151.05582431908,"motor_rated_power":150,"pump_efficiency":0.11118610795818455}]');
+	it('Pump Head Tool Suction Tank Elevation Unit Test 1', function(done){
+		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=115&suctionTankFluidSurfaceElevation=0&suctionLineLossCoefficients=1&dischargePipeDiameter=10&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1&testingAPI=true', function(error, response, body){
+		var value = JSON.parse(body)[0];
+		expect(value.pumpHead).to.equal(22.972865551821844);
+		expect(value.differentialElevationHead).to.equal(0.0);
+		expect(value.differentialPressureHead).to.equal(20.797226988336853);
+		expect(value.differentialVelocityHead).to.equal(1.0372994352935365);
+		expect(value.estimatedDischargeFrictionHead).to.equal(1.0372994352935365);
+		expect(value.estimatedSuctionFrictionHead).to.equal(0.10103969289791588);
 		done();
+		});
+	});
+
+	it('Pump Head Tool Suction Tank Elevation Unit Test 2', function(done){
+		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=105&suctionTankFluidSurfaceElevation=5&suctionLineLossCoefficients=1&dischargePipeDiameter=15&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1&testingAPI=true', function(error, response, body){
+		var value = JSON.parse(body)[0];
+		expect(value.pumpHead).to.equal(39.41609397604601);
+		expect(value.differentialElevationHead).to.equal(-5);
+		expect(value.differentialPressureHead).to.equal(43.9052569753778);
+		expect(value.differentialVelocityHead).to.equal(0.20489865388514306);
+		expect(value.estimatedDischargeFrictionHead).to.equal(0.20489865388514306);
+		expect(value.estimatedSuctionFrictionHead).to.equal(0.10103969289791588);
+		done();
+		});
+	});
+});
+
+describe('Pump Head Gauge Elevation Unit Tests', function()
+{
+	it('Pump Head Tool Gauge Tank Elevation Calculator Default', function(done){
+		request('https://localhost:8080/pumpheadtool/suctionGaugeElevation', function(error, response, body){
+		var value = JSON.parse(body)[0];
+		expect(value.pumpHead).to.equal(275.735918127105);
+		expect(value.differentialElevationHead).to.equal(0);
+		expect(value.differentialPressureHead).to.equal(274.9855568457873);
+		expect(value.differentialVelocityHead).to.equal(0);
+		expect(value.estimatedDischargeFrictionHead).to.equal(0.5002408542117751);
+		expect(value.estimatedSuctionFrictionHead).to.equal(0.25012042710588756);
+		done();
+		});
+	});
+
+	it('Pump Head Tool Gauge Elevation Calculator Unit Test 1', function(done){
+		request('https://localhost:8080/pumpheadtool/suctionGaugeElevation?specificGravity=1.0&flowRate=2000&suctionPipeDiameter=17.9&suctionGaugePressure=5&suctionGaugeElevation=5&suctionLineLossCoefficients=1&dischargePipeDiameter=15&dischargeGaugePressure=50&dischargeGaugeElevation=1&dischargeLineLossCoefficients=1', function(error, response, body){
+		var value = JSON.parse(body)[0];
+		expect(value.pumpHead).to.equal(100.39593224945455);
+		expect(value.differentialElevationHead).to.equal(-4);
+		expect(value.differentialPressureHead).to.equal(103.98613494168427);
+		expect(value.differentialVelocityHead).to.equal(0.10385896098722718);
+		expect(value.estimatedDischargeFrictionHead).to.equal(0.20489865388514306);
+		expect(value.estimatedSuctionFrictionHead).to.equal(0.10103969289791588);
+		done();
+		});
+	});
+
+	it('Pump Head Tool Gauge Elevation Calculator Unit Test 2', function(done){
+		request('https://localhost:8080/pumpheadtool/suctionGaugeElevation?specificGravity=1.0&flowRate=2000&suctionPipeDiameter=17.9&suctionGaugePressure=10&suctionGaugeElevation=15&suctionLineLossCoefficients=.1&dischargePipeDiameter=60&dischargeGaugePressure=20&dischargeGaugeElevation=10&dischargeLineLossCoefficients=.9', function(error, response, body){
+		var value = JSON.parse(body)[0];
+		expect(value.pumpHead).to.equal(18.018614995629626);
+		expect(value.differentialElevationHead).to.equal(-5);
+		expect(value.differentialPressureHead).to.equal(23.108029987040947);
+		expect(value.differentialVelocityHead).to.equal(-0.10023930753117705);
+		expect(value.estimatedDischargeFrictionHead).to.equal(0.0007203468300649561);
+		expect(value.estimatedSuctionFrictionHead).to.equal(0.01010396928979159);
+		done();
+		});
+	});
+});
+
+describe("Pump Achievable Efficiency Unit Tests", function()
+{
+	it('Pump Achievable Efficiency Calculator Default', function(done){
+		request('https://localhost:8080/pumpachievableefficiency/pumpefficiency', function(error, response, body)	{
+		var value = JSON.parse(body)[0];
+		expect(value.average).to.equal(72.99786733498414);
+		expect(value.max).to.equal(75.6275702046979);
+		done();
+		});
+	});
+
+	it('Pump Achievable Efficiency Calculator Modified', function(done){
+		request('https://localhost:8080/pumpachievableefficiency/pumpefficiency?pumpStyle=6&flowRate=2000', function(error, response, body){
+		var value = JSON.parse(body)[0];
+		expect(value.average).to.equal(83.97084437955112);
+		expect(value.max).to.equal(86.99584193768345);
+		done();
+		});
 	});
 });
 
 
-it('Pump Modified Assessment 1', function(done)
+describe('Pump Assessment Unit Tests', function()
 {
-	request('https://localhost:8080/pump/modifiedAssessment?pumpStyle=9&pumpRatedSpeed=1900&drive=4&stages=2&kinematicViscosity=1.2&specificGravity=2&specifiedDriveEfficiency=96&lineFrequency=1&motorRatedPower=150&motorRatedSpeed=1300&efficiencyClass=2&efficiency=95&motorRatedVoltage=300&motorRatedFla=250&flowRate=300&head=290&loadEstimationMethod=1&motorFieldCurrent=45&motorFieldVoltage=500&costKwHour=.007&operatingHours=5000', function(error, response, body)
+	it('Pump Assessment Default Values', function(done)
 	{
-		expect(body).to.equal('[{"Name":"BaseLine","Results":{"annual_savings_potential":0,"annual_cost":3180.010394157789,"annual_energy":454.2871991653984,"load_factor":1.6201884155731876,"motor_power":90.85743983307968,"motor_current":45,"motor_power_factor":233.1402993133724,"motor_efficiency":33787.75332140182,"drive_efficiency":96,"pump_shaft_power":39505.01359134632,"optimization_rating":0,"motor_shaft_power":41151.05582431908,"motor_rated_power":150,"pump_efficiency":0.11118610795818455}},{"Name":"Scenario 1","Results":{"annual_savings_potential":-1282718,"annual_cost":1285898.0680203005,"annual_energy":183699.72400290007,"load_factor":277.2985294227822,"motor_power":36739.944800580015,"motor_current":-170023.2653523746,"motor_power_factor":-24.95166408745909,"motor_efficiency":-1750.5573063175361,"drive_efficiency":96,"pump_shaft_power":39930.98823688163,"optimization_rating":0,"motor_shaft_power":41594.77941341837,"motor_rated_power":150,"pump_efficiency":0.11,"annual_energy_savings":-183245}}]');
-		done();
+		request('https://localhost:8080/pump/assessment', function (error, response, body){
+			var value = JSON.parse(body)[0];
+			expect(value.pump_efficiency).to.equal(null);
+			expect(value.motor_shaft_power).to.equal(0);
+			expect(value.pump_shaft_power).to.equal(0);
+			expect(value.motor_efficiency).to.equal(0);
+			done();
+		});
 	});
-});
 
-
-it('Pump Modified Assessment 2', function(done)
-{
-	request('https://localhost:8080/pump/modifiedAssessment?pumpStyle=9&pumpRatedSpeed=1900&drive=4&stages=2&kinematicViscosity=1.2&specificGravity=2&specifiedDriveEfficiency=96&lineFrequency=1&motorRatedPower=150&motorRatedSpeed=1300&efficiencyClass=2&efficiency=95&motorRatedVoltage=300&motorRatedFla=250&flowRate=300&head=290&loadEstimationMethod=1&motorFieldCurrent=45&motorFieldVoltage=500&costKwHour=.007&operatingHours=5000&modifiedPumpStyle=9', function(error, response, body)
+	it('Pump Assessment Results Existing', function(done)
 	{
-		expect(body).to.equal('[{"Name":"BaseLine","Results":{"annual_savings_potential":0,"annual_cost":3180.010394157789,"annual_energy":454.2871991653984,"load_factor":1.6201884155731876,"motor_power":90.85743983307968,"motor_current":45,"motor_power_factor":233.1402993133724,"motor_efficiency":33787.75332140182,"drive_efficiency":96,"pump_shaft_power":39505.01359134632,"optimization_rating":0,"motor_shaft_power":41151.05582431908,"motor_rated_power":150,"pump_efficiency":0.11118610795818455}},{"Name":"Scenario 1","Results":{"annual_savings_potential":1651,"annual_cost":1528.967561840838,"annual_energy":218.423937405834,"load_factor":0.37118399177148503,"motor_power":43.6847874811668,"motor_current":138.46546056829868,"motor_power_factor":36.42991358022122,"motor_efficiency":95.0796763264815,"drive_efficiency":96,"pump_shaft_power":53.45049481509383,"optimization_rating":0,"motor_shaft_power":55.67759876572274,"motor_rated_power":150,"pump_efficiency":82.17713832682072,"annual_energy_savings":236}}]');
-		done();
+		request('https://localhost:8080/pump/assessment?pumpStyle=2&pumpSpecified=90&pumpRatedSpeed=1780&drive=4&stages=1&kinematicViscosity=1.0&specificGravity=1.0&specifiedDriveEfficiency=95&lineFrequency=1&motorRatedPower=300&motorRatedSpeed=1780&efficiencyClass=0&efficiency=95&motorRatedVoltage=460&motorRatedFla=337.3&flowRate=1840&head=277&loadEstimationMethod=0&motorFieldCurrent=80.5&motorFieldVoltage=460&costKwHour=.006&motorFieldPower=150&operatingHours=8760&margin=0', function (error, response, body){
+			var value = JSON.parse(body)[0];
+			expect(value.pump_efficiency.toFixed(10)).to.equal('71.5541741283');
+			expect(value.motor_shaft_power.toFixed(10)).to.equal('189.2746748003');
+			expect(value.pump_shaft_power.toFixed(10)).to.equal('179.8109410603');
+			expect(value.motor_efficiency.toFixed(9)).to.equal('94.132604934');
+			done();
+		});
 	});
-});
 
-it('Pump Modified Assessment 3', function(done)
-{
-	request('https://localhost:8080/pump/modifiedAssessment?pumpStyle=9&pumpRatedSpeed=1900&drive=4&stages=2&kinematicViscosity=1.2&specificGravity=2&specifiedDriveEfficiency=96&lineFrequency=1&motorRatedPower=150&motorRatedSpeed=1300&efficiencyClass=2&efficiency=95&motorRatedVoltage=300&motorRatedFla=250&flowRate=300&head=290&loadEstimationMethod=1&motorFieldCurrent=45&motorFieldVoltage=500&costKwHour=.007&operatingHours=5000&modifiedPumpRatedSpeed=2500&modifiedDrive=0&modifiedSpecificGravity=3&modifiedKinematicViscosity=2&modifiedStages=3&modifiedLineFrequency=0&modifiedMotorRatedPower=400&modifiedMotorRatedSpeed=1500&modifiedMotorRatedFla=647&modifiedFlowRate=500', function(error, response, body)
+
+	it('Pump Modified Assessment 1', function(done)
 	{
-		expect(body).to.equal('[{"Name":"BaseLine","Results":{"annual_savings_potential":0,"annual_cost":3180.010394157789,"annual_energy":454.2871991653984,"load_factor":1.6201884155731876,"motor_power":90.85743983307968,"motor_current":45,"motor_power_factor":233.1402993133724,"motor_efficiency":33787.75332140182,"drive_efficiency":96,"pump_shaft_power":39505.01359134632,"optimization_rating":0,"motor_shaft_power":41151.05582431908,"motor_rated_power":150,"pump_efficiency":0.11118610795818455}},{"Name":"Scenario 1","Results":{"annual_savings_potential":-3081018,"annual_cost":3084198.4596278453,"annual_energy":440599.779946835,"load_factor":249.5686764805024,"motor_power":88119.95598936701,"motor_current":-401161.3198286945,"motor_power_factor":-25.36439970491887,"motor_efficiency":-1587.0053129744385,"drive_efficiency":100,"pump_shaft_power":99827.47059220409,"optimization_rating":0,"motor_shaft_power":99827.47059220409,"motor_rated_power":400,"pump_efficiency":0.11,"annual_energy_savings":-440145}}]');
-		done();
+		request('https://localhost:8080/pump/modifiedAssessment?pumpStyle=6&pumpSpecified=80&pumpRatedSpeed=1780&drive=0&stages=2&kinematicViscosity=1&specificGravity=1&lineFrequency=0&motorRatedPower=100&motorRatedSpeed=1780&efficiencyClass=3&efficiency=95&motorRatedVoltage=460&motorRatedFla=225.0&flowRate=1840&head=174.85&loadEstimationMethod=0&motorFieldCurrent=125.857&motorFieldVoltage=480&motorFieldPower=80&costKwHour=.05&operatingHours=8760&pumpEfficiency=80', function(error, response, body)
+		{
+			var value = JSON.parse(body)[1].Results;
+			expect(value.pump_efficiency).to.equal(80);
+			expect(value.motor_rated_power).to.equal(100);
+			expect(value.motor_shaft_power).to.equal(101.51891512553706);
+			expect(value.pump_shaft_power).to.equal(101.51891512553706);
+			expect(value.motor_efficiency.toFixed(6)).to.equal('94.973283');
+			expect(value.motor_power_factor.toFixed(6)).to.equal('86.926875');
+			expect(value.motor_current.toFixed(6)).to.equal('110.338892');
+			expect(value.motor_power.toFixed(6)).to.equal('79.741528');
+			expect(value.annual_energy.toFixed(6)).to.equal('698.535785');
+			expect(value.annual_cost.toFixed(6)).to.equal('34926.789251');
+			done();
+		});
 	});
-});
 
-
-it('Pump Modified Assessment 4', function(done)
-{
-	request('https://localhost:8080/pump/modifiedAssessment?pumpStyle=9&pumpRatedSpeed=1900&drive=4&stages=2&kinematicViscosity=1.2&specificGravity=2&specifiedDriveEfficiency=96&lineFrequency=1&motorRatedPower=150&motorRatedSpeed=1300&efficiencyClass=2&efficiency=95&motorRatedVoltage=300&motorRatedFla=250&flowRate=300&head=290&loadEstimationMethod=1&motorFieldCurrent=45&motorFieldVoltage=500&costKwHour=.007&operatingHours=5000&modifiedPumpRatedSpeed=2500&modifiedDrive=0&modifiedSpecificGravity=3&modifiedKinematicViscosity=2&modifiedStages=3&modifiedLineFrequency=0&modifiedMotorRatedPower=400&modifiedMotorRatedSpeed=1500&modifiedMotorRatedFla=647&modifiedFlowRate=500&modifiedPumpStyle=9', function(error, response, body)
+	it('Pump Modified Assessment 2', function(done)
 	{
-		expect(body).to.equal('[{"Name":"BaseLine","Results":{"annual_savings_potential":0,"annual_cost":3180.010394157789,"annual_energy":454.2871991653984,"load_factor":1.6201884155731876,"motor_power":90.85743983307968,"motor_current":45,"motor_power_factor":233.1402993133724,"motor_efficiency":33787.75332140182,"drive_efficiency":96,"pump_shaft_power":39505.01359134632,"optimization_rating":0,"motor_shaft_power":41151.05582431908,"motor_rated_power":150,"pump_efficiency":0.11118610795818455}},{"Name":"Scenario 1","Results":{"annual_savings_potential":-489,"annual_cost":3669.0478804288678,"annual_energy":524.149697204124,"load_factor":0.3340655925943366,"motor_power":104.82993944082479,"motor_current":346.2088513206717,"motor_power_factor":34.96363164859302,"motor_efficiency":95.09155332764526,"drive_efficiency":100,"pump_shaft_power":133.6262370377346,"optimization_rating":0,"motor_shaft_power":133.6262370377346,"motor_rated_power":400,"pump_efficiency":82.17713832682072,"annual_energy_savings":-70}}]');
-		done();
-	});
-});
-
-it('Pump Modifeid Assessment 5', function(done)
-{
-	request('https://localhost:8080/pump/modifiedAssessment?pumpStyle=9&pumpRatedSpeed=1900&drive=4&stages=2&kinematicViscosity=1.2&specificGravity=2&specifiedDriveEfficiency=96&lineFrequency=1&motorRatedPower=150&motorRatedSpeed=1300&efficiencyClass=2&efficiency=95&motorRatedVoltage=300&motorRatedFla=250&flowRate=300&head=290&loadEstimationMethod=1&motorFieldCurrent=45&motorFieldVoltage=500&costKwHour=.007&operatingHours=5000&modifiedPumpStyle=5', function(error, response, body)
-	{
-		expect(body).to.equal('[{"Name":"BaseLine","Results":{"annual_savings_potential":0,"annual_cost":3180.010394157789,"annual_energy":454.2871991653984,"load_factor":1.6201884155731876,"motor_power":90.85743983307968,"motor_current":45,"motor_power_factor":233.1402993133724,"motor_efficiency":33787.75332140182,"drive_efficiency":96,"pump_shaft_power":39505.01359134632,"optimization_rating":0,"motor_shaft_power":41151.05582431908,"motor_rated_power":150,"pump_efficiency":0.11118610795818455}},{"Name":"Scenario 1","Results":{"annual_savings_potential":1479,"annual_cost":1700.7801431643322,"annual_energy":242.96859188061887,"load_factor":0.41483017129870764,"motor_power":48.593718376123775,"motor_current":141.20797140167954,"motor_power_factor":39.73656176332016,"motor_efficiency":95.52520448191555,"drive_efficiency":96,"pump_shaft_power":59.73554466701389,"optimization_rating":0,"motor_shaft_power":62.22452569480614,"motor_rated_power":150,"pump_efficiency":73.5309057704546,"annual_energy_savings":211}}]');
-		done();
+		request('https://localhost:8080/pump/modifiedAssessment?pumpStyle=11&pumpSpecified=90&pumpRatedSpeed=1780&drive=0&kinematicViscosity=1.0&specificGravity=1.0&stages=2.0&fixedSpeed=1&lineFrequency=0&motorRatedPower=100&motorRatedSpeed=1780&efficiencyClass=3&efficiency=95&motorRatedVoltage=460&motrRatedFla=225&margin=0&operatingHours=8760&costKwHour=.05&flowRate=1840&head=174.85&loadEstimationMethod=0&motorFieldPower=80&motorFieldCurrent=125.857&motorFieldVoltage=480&efficiency=80', function(error, response, body)
+		{
+			var value = JSON.parse(body)[1].Results;
+			expect(value.pump_efficiency).to.equal(90);
+			expect(value.motor_rated_power).to.equal(100);
+			expect(value.motor_shaft_power).to.equal(90.23903566714407);
+			expect(value.pump_shaft_power).to.equal(90.23903566714407);
+			expect(value.motor_efficiency.toFixed(6)).to.equal('95.118454');
+			expect(value.motor_power_factor.toFixed(5)).to.equal('85.44077');
+			expect(value.motor_current.toFixed(5)).to.equal('99.63262');
+			expect(value.motor_power.toFixed(6)).to.equal('70.773157');
+			expect(value.annual_energy.toFixed(6)).to.equal('619.972854');
+			expect(value.annual_cost.toFixed(6)).to.equal('30998.642708');
+			done();
+		});
 	});
 });
