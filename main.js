@@ -10,12 +10,26 @@ var app = express();
 var port = process.env.port || 8080;
 var psat = require("./node_modules/amo-tools-suite/build/Release/psat.node");
 
+var phast = require("./node_modules/amo-tools-suite/build/Release/phast.node");
+
 var pumpheadtool = require('./src/pump/pumpheadtool.js');
 var pump = require('./src/pump/pump.js');
+var flowAndEnergyUsed = require('./src/furnace/flowAndEnergyUsed.js');
+
+var o2Enrichment = require('./src/furnace/O2Enrichment.js');
+
 var pumpachievableefficiency = require("./src/pump/pumpachievableefficiency.js");
 var router = express.Router();
 
+router.get('/furnace/flowAndEnergyUsed', function(req, res)
+{
+	flowAndEnergyUsed.CalculateFlowAndEnergyUsed(req, res);
+});
 
+router.get('/furnace/o2Enrichment', function(req, res)
+{
+	o2Enrichment.Calculateo2Enrichment(req, res);
+});
 
 
 router.get('/pumpheadtool/suctionGaugeElevation', function(req, res)
