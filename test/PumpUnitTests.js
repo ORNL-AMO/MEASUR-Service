@@ -4,21 +4,8 @@ var request = require('request');
 
 describe('Pump Head Suction Tank Elevation Unit Tests', function()
 {	
-	it('Pump Head Tool Suction Tank Elevation Calculator Default', function(done){
-		request('https://localhost:8080/pumpheadtool/suctionTankElevation', function(error, response, body)	{
-		var value = JSON.parse(body)[0];
-		expect(value.pumpHead).to.equal(287.7901739748372);
-		expect(value.differentialElevationHead).to.equal(0);
-		expect(value.differentialPressureHead).to.equal(286.53957183930777);
-		expect(value.differentialVelocityHead.toFixed(16)).to.equal('0.5002408542117751');
-		expect(value.estimatedDischargeFrictionHead.toFixed(16)).to.equal('0.5002408542117751');
-		expect(value.estimatedSuctionFrictionHead).to.equal(0.25012042710588756);
-		done();
-		});
-	});
-
 	it('Pump Head Tool Suction Tank Elevation Unit Test 1', function(done){
-		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=115&suctionTankFluidSurfaceElevation=0&suctionLineLossCoefficients=1&dischargePipeDiameter=10&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1&testingAPI=true', function(error, response, body){
+		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=115&suctionTankFluidSurfaceElevation=0&suctionLineLossCoefficients=1&dischargePipeDiameter=10&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1', function(error, response, body){
 		var value = JSON.parse(body)[0];
 		expect(value.pumpHead).to.equal(22.972865551821844);
 		expect(value.differentialElevationHead).to.equal(0.0);
@@ -31,7 +18,7 @@ describe('Pump Head Suction Tank Elevation Unit Tests', function()
 	});
 
 	it('Pump Head Tool Suction Tank Elevation Unit Test 2', function(done){
-		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=105&suctionTankFluidSurfaceElevation=5&suctionLineLossCoefficients=1&dischargePipeDiameter=15&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1&testingAPI=true', function(error, response, body){
+		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=105&suctionTankFluidSurfaceElevation=5&suctionLineLossCoefficients=1&dischargePipeDiameter=15&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1', function(error, response, body){
 		var value = JSON.parse(body)[0];
 		expect(value.pumpHead).to.equal(39.41609397604601);
 		expect(value.differentialElevationHead).to.equal(-5);
@@ -46,19 +33,6 @@ describe('Pump Head Suction Tank Elevation Unit Tests', function()
 
 describe('Pump Head Gauge Elevation Unit Tests', function()
 {
-	it('Pump Head Tool Gauge Tank Elevation Calculator Default', function(done){
-		request('https://localhost:8080/pumpheadtool/suctionGaugeElevation', function(error, response, body){
-		var value = JSON.parse(body)[0];
-		expect(value.pumpHead).to.equal(275.735918127105);
-		expect(value.differentialElevationHead).to.equal(0);
-		expect(value.differentialPressureHead).to.equal(274.9855568457873);
-		expect(value.differentialVelocityHead).to.equal(0);
-		expect(value.estimatedDischargeFrictionHead).to.equal(0.5002408542117751);
-		expect(value.estimatedSuctionFrictionHead).to.equal(0.25012042710588756);
-		done();
-		});
-	});
-
 	it('Pump Head Tool Gauge Elevation Calculator Unit Test 1', function(done){
 		request('https://localhost:8080/pumpheadtool/suctionGaugeElevation?specificGravity=1.0&flowRate=2000&suctionPipeDiameter=17.9&suctionGaugePressure=5&suctionGaugeElevation=5&suctionLineLossCoefficients=1&dischargePipeDiameter=15&dischargeGaugePressure=50&dischargeGaugeElevation=1&dischargeLineLossCoefficients=1', function(error, response, body){
 		var value = JSON.parse(body)[0];
@@ -88,16 +62,7 @@ describe('Pump Head Gauge Elevation Unit Tests', function()
 
 describe("Pump Achievable Efficiency Unit Tests", function()
 {
-	it('Pump Achievable Efficiency Calculator Default', function(done){
-		request('https://localhost:8080/pumpachievableefficiency/pumpefficiency', function(error, response, body)	{
-		var value = JSON.parse(body)[0];
-		expect(value.average).to.equal(72.99786733498414);
-		expect(value.max).to.equal(75.6275702046979);
-		done();
-		});
-	});
-
-	it('Pump Achievable Efficiency Calculator Modified', function(done){
+	it('Pump Achievable Efficiency Calculator unit Test', function(done){
 		request('https://localhost:8080/pumpachievableefficiency/pumpefficiency?pumpStyle=6&flowRate=2000', function(error, response, body){
 		var value = JSON.parse(body)[0];
 		expect(value.average).to.equal(83.97084437955112);

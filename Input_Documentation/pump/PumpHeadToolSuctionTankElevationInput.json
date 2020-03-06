@@ -1,0 +1,118 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Pump Head Tool Suction Tank Elevation",
+  "description": "MEASUR Service Pump Head Tool Suction Tank Elevation Input Data",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "specificGravity",
+    "flowRate",
+	"suctionPipeDiameter",
+	"suctionTankGasOverPressure",
+	"suctionTankFluidSurfaceElevation",
+	"suctionLineLossCoefficients",
+	"dischargePipeDiameter",
+	"dischargeGaugePressure",
+	"dischargeGaugeElevation",
+	"dischargeLineLossCoefficients"
+  ],
+
+
+  "properties": {
+		"specificGravity": {
+		  "$ref": "#/definitions/specificGravity"
+		},
+		"flowRate":{
+			"$ref": "#/definitions/flowRate"
+		}, 
+		"suctionPipeDiameter": {
+		  "$ref": "#/definitions/suctionPipeDiameter"
+		},
+		"suctionTankGasOverPressure": {
+		  "$ref": "#/definitions/suctionTankGasOverPressure"
+		},
+		"suctionTankFluidSurfaceElevation": {
+		  "$ref": "#/definitions/suctionTankFluidSurfaceElevation"
+		},
+		"suctionLineLossCoeffictients": {
+		  "$ref": "#/definitions/suctionLineLossCoefficients"
+		},
+		"dischargePipeDiameter": {
+		  "$ref": "#/definitions/dischargePipeDiameter"
+		},
+		"dischargeGaugeElevation": {
+		  "$ref": "#/definitions/dischargeGaugeElevation"
+		},
+		"dischargeGaugePressure": {
+		  "$ref": "#/definitions/dischargeGaugePressure"
+		},
+		"dischargeLineLossCoeffictients": {
+		  "$ref": "#/definitions/dischargeLineLossCoefficients"
+		}
+    },
+	"definitions":
+	{
+		"specificGravity": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Specific Gravity",
+			  "examples": [1, 1.5, 2.0]
+		},
+		"flowRate": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Flow Rate",
+			"examples": [2100, 2150.3, 4]
+		},
+		"suctionPipeDiameter": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Suction Pipe Diameter",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"suctionTankGasOverPressure": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Suction Tank Gas Over Pressure",
+			  "examples": [1, 1.5, 2.0]
+		},
+		"suctionTankFluidSurfaceElevation": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Suction Tank Fluid Surface Elevation",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"suctionLineLossCoefficients": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Suction Line Loss Coefficients",
+			"examples": [1, 0.6, 0.998, 2]
+		},
+		"dischargePipeDiameter": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Discharge Pipe Diameter",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"dischargeGaugePressure": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Discharge Gauge Pressure",
+			  "examples": [1, 1.5, 2.0]
+		},
+		"dischargeGaugeElevation": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Discharge Gauge Elevation",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"dischargeLineLossCoefficients": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Discharge Line Loss Coefficients",
+			"examples": [1, 0.6, 0.998, 2]
+		}
+	}
+}
