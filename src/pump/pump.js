@@ -9,6 +9,17 @@ var express = require('express');
 var inputDirectory = './Input_Documentation/pump';
 var Validator = require('jsonschema').Validator;
 
+const drive_enum = ["DIRECT_DRIVE","V_BELT_DRIVE","N_V_BELT_DRIVE","S_BELT_DRIVE","SPECIFIED"];
+const lineFrequencyEnum = ["FREQ60", "FREQ50"];
+const efficiency_class_enum = ["Standard", "ENERGY_EFFICIENT", "PREMIUM","SPECIFIED"];
+const loadEstimationMethods = ["Power", "Current"];
+const pumpStyleEnum = ["END_SUCTION_SLURRY","END_SUCTION_SEWAGE", "END_SUCTION_STOCK",
+				 "END_SUCTION_SUBMERSIBLE_SEWAGE", "API_DOUBLE_SUCTION", "MULTISTAGE_BOILER_FEED",
+				"END_SUCTION_ANSI_API","AXIAL_FLOW","DOUBLE_SUCTION",
+				"VERTICAL_TURBINE","LARGE_END_SUCTION","SPECIFIED_OPTIMAL_EFFICIENCY"];
+
+
+
 var setUpPump = function(req, res)
 {
 	var pump = {
@@ -35,13 +46,23 @@ var setUpPump = function(req, res)
 		operating_hours: parseFloat(req.query.operating_hours),
 		cost_kw_hour: parseFloat(req.query.cost_kw_hour),
 		efficiency: parseFloat(req.query.efficiency),
-		margin: parseFloat(req.query.margin) || 0,
-		fixed_speed: parseFloat(req.query.fixed_speed) || 0
+		margin: parseFloat(req.query.margin),
+		fixed_speed: parseFloat(req.query.fixed_speed)
 		};
-		if(pump.fixed_speed == null)
+		if(isNaN(pump.fixed_speed))
 			pump.fixed_speed = 0;
-		if(pump.margin == null)
+		if(isNaN(pump.margin))
 			pump.margin = 0;
+		if(isNaN(pump.pump_style))
+			pump.pump_style = pumpStyleEnum.indexOf(req.query.pump_style);
+		if(isNaN(pump.drive))
+			pump.drive = drive_enum.indexOf(req.query.drive);
+		if(isNaN(pump.line_frequency))
+			pump.line_frequency = lineFrequencyEnum.indexOf(req.query.line_frequency);
+		if(isNaN(pump.efficiency_class))
+			pump.efficiency_class = efficiency_class_enum.indexOf(req.query.efficiency_class);
+		if(isNaN(pump.load_estimation_method))
+			pump.load_estimation_method = loadEstimationMethods.indexOf(req.query.load_estimation_method);
 		if(pump.pump_style != 3 && isNaN(pump.specifiedDriveEfficiency))
 			pump.specifiedDriveEfficiency = 100;
 		return pump;
