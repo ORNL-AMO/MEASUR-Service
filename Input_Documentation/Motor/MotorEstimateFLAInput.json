@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Estimate Full Load Amperes",
+  "description": "MEASUR Service Estimate Full Load Amperes Inputs",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+  	"motor_rated_power",
+  	"motor_rated_speed",
+  	"line_frequency",
+  	"efficiency_class",
+  	"efficiency",
+  	"motor_rated_voltage"
+  ],
+
+
+  "properties": {
+		"motor_rated_voltage": {
+			"$ref": "#/definitions/motor_rated_voltage"
+		},
+		"motor_rated_speed": {
+			"$ref": "#/definitions/motor_rated_speed"
+		},
+		"line_frequency": {
+			"$ref": "#/definitions/line_frequency"
+		},
+		"efficiency_class": {
+			"$ref": "#/definitions/efficiency_class"
+		},
+		"motor_rated_voltage": {
+			"$ref": "#/definitions/motor_rated_voltage"
+		}
+    },
+	"definitions":
+	{
+		"line_frequency": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "FREQ60",
+				1, "FREQ50"
+			],
+			"title": "Line Frequency of the motor either 60Hz or 50Hz"
+		},
+		"motor_rated_power": {
+			"type": "number",
+			"minimum": 0
+		},
+		"motor_rated_speed": {
+			"type": "number",
+			"minimum": 0
+		},
+		"efficiency_class": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "Standard",
+				1, "ENERGY_EFFICIENT",
+				2, "PREMIUM",
+				3, "SPECIFIED"
+			]
+		},
+		"motor_rated_voltage": {
+			"type": "number",
+			"minimum": 0
+		}
+	}
+}

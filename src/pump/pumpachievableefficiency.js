@@ -9,13 +9,9 @@ exports.CalculatePumpEfficiency =function(req, res)
 	var v = new Validator();
 	var schema = JSON.parse(fs.readFileSync(inputDirectory+"/PumpAchievableEfficiencyInput.json"));
 	var pumpefficiency = {
-	pump_style: req.query.pumpStyle,
-	flow_rate: parseFloat(req.query.flowRate)
+	pump_style: parseInt(req.query.pump_style),
+	flow_rate: parseFloat(req.query.flow_rate)
 	}; 
-	if(parseFloat(pumpefficiency.pump_style) >= 0)
-	{
-		pumpefficiency.pump_style = parseFloat(pumpefficiency.pump_style);
-	}
 	var value = v.validate(pumpefficiency, schema);
 	if(value.errors != "")
 	{
