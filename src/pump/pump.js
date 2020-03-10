@@ -74,6 +74,19 @@ exports.CalculateCurrentPumpEfficiency =function(req, res)
 	var v = new Validator();
 	var schema = JSON.parse(fs.readFileSync(inputDirectory+"/PumpAssessmentInput.json"));
 	var pump = setUpPump(req, res);
+	
+	if(isNaN(pump.motor_rated_fla))
+	{
+		var estimateSchema = JSON.parse(fs.readFileSync("./Input_Documentation/Motor/MotorEstimateFLAInput.json"));
+		var value = v.validate(pump, estimateSchema);
+		if(value.errors != "")
+		{
+			res.json([value.errors]);
+			return;
+		}
+		pump.motor_rated_fla = psat.estFLA(pump);
+	}
+
 	var value = v.validate(pump, schema);
 	if(value.errors != "")
 	{
