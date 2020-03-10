@@ -1,24 +1,10 @@
 var expect = require('chai').expect;
 var request = require('request');
 
-
 describe('Pump Head Suction Tank Elevation Unit Tests', function()
 {	
-	it('Pump Head Tool Suction Tank Elevation Calculator Default', function(done){
-		request('https://localhost:8080/pumpheadtool/suctionTankElevation', function(error, response, body)	{
-		var value = JSON.parse(body)[0];
-		expect(value.pumpHead).to.equal(287.7901739748372);
-		expect(value.differentialElevationHead).to.equal(0);
-		expect(value.differentialPressureHead).to.equal(286.53957183930777);
-		expect(value.differentialVelocityHead.toFixed(16)).to.equal('0.5002408542117751');
-		expect(value.estimatedDischargeFrictionHead.toFixed(16)).to.equal('0.5002408542117751');
-		expect(value.estimatedSuctionFrictionHead).to.equal(0.25012042710588756);
-		done();
-		});
-	});
-
 	it('Pump Head Tool Suction Tank Elevation Unit Test 1', function(done){
-		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=115&suctionTankFluidSurfaceElevation=0&suctionLineLossCoefficients=1&dischargePipeDiameter=10&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1&testingAPI=true', function(error, response, body){
+		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=115&suctionTankFluidSurfaceElevation=0&suctionLineLossCoefficients=1&dischargePipeDiameter=10&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1', function(error, response, body){
 		var value = JSON.parse(body)[0];
 		expect(value.pumpHead).to.equal(22.972865551821844);
 		expect(value.differentialElevationHead).to.equal(0.0);
@@ -31,7 +17,7 @@ describe('Pump Head Suction Tank Elevation Unit Tests', function()
 	});
 
 	it('Pump Head Tool Suction Tank Elevation Unit Test 2', function(done){
-		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=105&suctionTankFluidSurfaceElevation=5&suctionLineLossCoefficients=1&dischargePipeDiameter=15&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1&testingAPI=true', function(error, response, body){
+		request('https://localhost:8080/pumpheadtool/suctionTankElevation?flowRate=2000&specificGravity=1&suctionPipeDiameter=17.9&suctionTankGasOverPressure=105&suctionTankFluidSurfaceElevation=5&suctionLineLossCoefficients=1&dischargePipeDiameter=15&dischargeGaugePressure=124&dischargeGaugeElevation=0&dischargeLineLossCoefficients=1', function(error, response, body){
 		var value = JSON.parse(body)[0];
 		expect(value.pumpHead).to.equal(39.41609397604601);
 		expect(value.differentialElevationHead).to.equal(-5);
@@ -46,19 +32,6 @@ describe('Pump Head Suction Tank Elevation Unit Tests', function()
 
 describe('Pump Head Gauge Elevation Unit Tests', function()
 {
-	it('Pump Head Tool Gauge Tank Elevation Calculator Default', function(done){
-		request('https://localhost:8080/pumpheadtool/suctionGaugeElevation', function(error, response, body){
-		var value = JSON.parse(body)[0];
-		expect(value.pumpHead).to.equal(275.735918127105);
-		expect(value.differentialElevationHead).to.equal(0);
-		expect(value.differentialPressureHead).to.equal(274.9855568457873);
-		expect(value.differentialVelocityHead).to.equal(0);
-		expect(value.estimatedDischargeFrictionHead).to.equal(0.5002408542117751);
-		expect(value.estimatedSuctionFrictionHead).to.equal(0.25012042710588756);
-		done();
-		});
-	});
-
 	it('Pump Head Tool Gauge Elevation Calculator Unit Test 1', function(done){
 		request('https://localhost:8080/pumpheadtool/suctionGaugeElevation?specificGravity=1.0&flowRate=2000&suctionPipeDiameter=17.9&suctionGaugePressure=5&suctionGaugeElevation=5&suctionLineLossCoefficients=1&dischargePipeDiameter=15&dischargeGaugePressure=50&dischargeGaugeElevation=1&dischargeLineLossCoefficients=1', function(error, response, body){
 		var value = JSON.parse(body)[0];
@@ -88,17 +61,8 @@ describe('Pump Head Gauge Elevation Unit Tests', function()
 
 describe("Pump Achievable Efficiency Unit Tests", function()
 {
-	it('Pump Achievable Efficiency Calculator Default', function(done){
-		request('https://localhost:8080/pumpachievableefficiency/pumpefficiency', function(error, response, body)	{
-		var value = JSON.parse(body)[0];
-		expect(value.average).to.equal(72.99786733498414);
-		expect(value.max).to.equal(75.6275702046979);
-		done();
-		});
-	});
-
-	it('Pump Achievable Efficiency Calculator Modified', function(done){
-		request('https://localhost:8080/pumpachievableefficiency/pumpefficiency?pumpStyle=6&flowRate=2000', function(error, response, body){
+	it('Pump Achievable Efficiency Calculator unit Test', function(done){
+		request('https://localhost:8080/pumpachievableefficiency/pumpefficiency?pump_style=6&flow_rate=2000', function(error, response, body){
 		var value = JSON.parse(body)[0];
 		expect(value.average).to.equal(83.97084437955112);
 		expect(value.max).to.equal(86.99584193768345);
@@ -110,21 +74,9 @@ describe("Pump Achievable Efficiency Unit Tests", function()
 
 describe('Pump Assessment Unit Tests', function()
 {
-	it('Pump Assessment Default Values', function(done)
-	{
-		request('https://localhost:8080/pump/assessment', function (error, response, body){
-			var value = JSON.parse(body)[0];
-			expect(value.pump_efficiency).to.equal(null);
-			expect(value.motor_shaft_power).to.equal(0);
-			expect(value.pump_shaft_power).to.equal(0);
-			expect(value.motor_efficiency).to.equal(0);
-			done();
-		});
-	});
-
 	it('Pump Assessment Results Existing', function(done)
 	{
-		request('https://localhost:8080/pump/assessment?pumpStyle=2&pumpSpecified=90&pumpRatedSpeed=1780&drive=4&stages=1&kinematicViscosity=1.0&specificGravity=1.0&specifiedDriveEfficiency=95&lineFrequency=1&motorRatedPower=300&motorRatedSpeed=1780&efficiencyClass=0&efficiency=95&motorRatedVoltage=460&motorRatedFla=337.3&flowRate=1840&head=277&loadEstimationMethod=0&motorFieldCurrent=80.5&motorFieldVoltage=460&costKwHour=.006&motorFieldPower=150&operatingHours=8760&margin=0', function (error, response, body){
+		request('https://localhost:8080/pump/assessment?pump_style=2&pump_specified=90&pump_rated_speed=1780&drive=4&stages=1&kinematic_viscosity=1.0&specific_gravity=1.0&specifiedDriveEfficiency=95&line_frequency=1&motor_rated_power=300&motor_rated_speed=1780&efficiency_class=0&efficiency=95&motor_rated_voltage=460&motor_rated_fla=337.3&flow_rate=1840&head=277&load_estimation_method=0&motor_field_current=80.5&motor_field_voltage=460&cost_kw_hour=.006&motor_field_power=150&operating_hours=8760&margin=0', function (error, response, body){
 			var value = JSON.parse(body)[0];
 			expect(value.pump_efficiency.toFixed(10)).to.equal('71.5541741283');
 			expect(value.motor_shaft_power.toFixed(10)).to.equal('189.2746748003');
@@ -137,7 +89,7 @@ describe('Pump Assessment Unit Tests', function()
 
 	it('Pump Modified Assessment 1', function(done)
 	{
-		request('https://localhost:8080/pump/modifiedAssessment?pumpStyle=6&pumpSpecified=80&pumpRatedSpeed=1780&drive=0&stages=2&kinematicViscosity=1&specificGravity=1&lineFrequency=0&motorRatedPower=100&motorRatedSpeed=1780&efficiencyClass=3&efficiency=95&motorRatedVoltage=460&motorRatedFla=225.0&flowRate=1840&head=174.85&loadEstimationMethod=0&motorFieldCurrent=125.857&motorFieldVoltage=480&motorFieldPower=80&costKwHour=.05&operatingHours=8760&pumpEfficiency=80', function(error, response, body)
+		request('https://localhost:8080/pump/modifiedAssessment?pump_style=6&pump_specified=80&pump_rated_speed=1780&drive=0&stages=2&kinematic_viscosity=1&specific_gravity=1&line_frequency=0&motor_rated_power=100&motor_rated_speed=1780&efficiency_class=3&efficiency=95&motor_rated_voltage=460&motor_rated_fla=225.0&flow_rate=1840&head=174.85&load_estimation_method=0&motor_field_current=125.857&motor_field_voltage=480&motor_field_power=80&cost_kw_hour=.05&operating_hours=8760', function(error, response, body)
 		{
 			var value = JSON.parse(body)[1].Results;
 			expect(value.pump_efficiency).to.equal(80);
@@ -156,7 +108,7 @@ describe('Pump Assessment Unit Tests', function()
 
 	it('Pump Modified Assessment 2', function(done)
 	{
-		request('https://localhost:8080/pump/modifiedAssessment?pumpStyle=11&pumpSpecified=90&pumpRatedSpeed=1780&drive=0&kinematicViscosity=1.0&specificGravity=1.0&stages=2.0&fixedSpeed=1&lineFrequency=0&motorRatedPower=100&motorRatedSpeed=1780&efficiencyClass=3&efficiency=95&motorRatedVoltage=460&motrRatedFla=225&margin=0&operatingHours=8760&costKwHour=.05&flowRate=1840&head=174.85&loadEstimationMethod=0&motorFieldPower=80&motorFieldCurrent=125.857&motorFieldVoltage=480&efficiency=80', function(error, response, body)
+		request('https://localhost:8080/pump/modifiedAssessment?pump_style=11&pump_specified=90&pump_rated_speed=1780&drive=0&kinematic_viscosity=1.0&specific_gravity=1.0&stages=2.0&fixed_speed=1&line_frequency=0&motor_rated_power=100&motor_rated_speed=1780&efficiency_class=3&efficiency=95&motor_rated_voltage=460&motrRatedFla=225&margin=0&operating_hours=8760&cost_kw_hour=.05&flow_rate=1840&head=174.85&load_estimation_method=0&motor_field_power=80&motor_field_current=125.857&motor_field_voltage=480&efficiency=80', function(error, response, body)
 		{
 			var value = JSON.parse(body)[1].Results;
 			expect(value.pump_efficiency).to.equal(90);

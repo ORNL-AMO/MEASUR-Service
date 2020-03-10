@@ -2,13 +2,14 @@
 	"name": "node-api",
 	"main": "pumpheadtool.js",
 	"dependencies": {
+		"amo-tools-suite": "^0.6.2",
 		"express": "^4.17.1",
-		"amo-tools-suite": ""
+		"jsonschema": ""
 	},
 	"devDependencies": {
 		"chai": "^4.2.0",
-		"mocha": "^7.0.0",
-		"request": "^2.88.0"
+		"mocha": "^7.1.0",
+		"request": "^2.88.2"
 	},
 	"scripts": {
 		"test": "mocha"
