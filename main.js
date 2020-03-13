@@ -9,11 +9,17 @@ var express = require('express');
 var app = express();
 var port = process.env.port || 8080;
 var psat = require("./node_modules/amo-tools-suite/build/Release/psat.node");
-
+var phast = require("./node_modules/amo-tools-suite/build/Release/phast.node");
 var pumpheadtool = require('./src/pump/pumpheadtool.js');
 var pump = require('./src/pump/pump.js');
 var pumpachievableefficiency = require("./src/pump/pumpachievableefficiency.js");
+var processHeating = require('./src/processHeating/energyEquivalencyElectric.js');
 var router = express.Router();
+
+router.get('/energyEquivalencyElectric/energyEquivalencyElectric', function(req, res)
+{
+	processHeating.CalculateEnergyEquivalencyElectric(req, res);
+});
 
 
 
