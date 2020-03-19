@@ -21,7 +21,7 @@ exports.CalculateEnergyEquivalencyElectric =function(req, res)
 		res.json([value.errors]);
 		return;
 	}
-	var energyElectric = phast.energyEquivalencyElectricInput(energyEquivalencyElectric);
+	var energyElectric = phast.energyEquivalencyElectric(energyEquivalencyElectric);
 	res.json([energyElectric]);
 }
 
