@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Energy Equivalency Electric ",
+  "description": "MEASUR Service Humitity Ratio Input Data",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "atmosphericPressure",
+    "dryBulbTemp",
+	"relativeHumidity",
+	"wetBulbTemp"
+  ],
+
+
+  "properties": {
+		"atmosphericPressure": {
+		  "$ref": "#/definitions/atmosphericPressure"
+		},
+		"dryBulbTemp":{
+			"$ref": "#/definitions/dryBulbTemp"
+		}, 
+		"relativeHumidity": {
+		  "$ref": "#/definitions/relativeHumidity"
+		},
+		"wetBulbTemp": {
+		  "$ref": "#/definitions/wetBulbTemp"
+		}
+		
+    },
+	"definitions":
+	{
+		"atmosphericPressure": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Atmospheric Pressure",
+			  "examples": [1, 1.5, 2.0]
+		},
+		"dryBulbTemp": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Dry Bulb Tempature",
+			"examples": [2100, 2150.3, 4]
+		},
+		"relativeHumidity": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Relative Humidity",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"wetBulbTemp": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Wet Bulb Tempature",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		}
+		
+	}
+}

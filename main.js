@@ -13,12 +13,21 @@ var phast = require("./node_modules/amo-tools-suite/build/Release/phast.node");
 var pumpheadtool = require('./src/pump/pumpheadtool.js');
 var pump = require('./src/pump/pump.js');
 var pumpachievableefficiency = require("./src/pump/pumpachievableefficiency.js");
-var processHeating = require('./src/processHeating/energyEquivalencyElectric.js');
+var energyElectric = require('./src/processHeating/energyEquivalencyElectric.js');
+var humidityRatio = require('./src/processHeating/humidityRatio.js');
 var router = express.Router();
+
+
+
+router.get('/humidityRatio/humidityRatio', function(req, res)
+{
+	humidityRatio.CalculateHumidityRatio(req, res);
+});
+
 
 router.get('/energyEquivalencyElectric/energyEquivalencyElectric', function(req, res)
 {
-	processHeating.CalculateEnergyEquivalencyElectric(req, res);
+	energyElectric.CalculateEnergyEquivalencyElectric(req, res);
 });
 
 
