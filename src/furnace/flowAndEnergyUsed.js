@@ -1,124 +1,44 @@
 var phast = require("../../node_modules/amo-tools-suite/build/Release/phast.node");
 var express = require('express');
+
+var inputDirectory = './Input_Documentation/furnace';
+var Validator = require('jsonschema').Validator;
+var fs = require('fs');
+
+const gasTypeEnum = ["AIR", "AMMONNIA_DISSOCIATED", "ARGON", "BUTANE", 
+				"ENDOTHERMIC_AMMONIA","EXOTHERMIC_CRACKED_LEAN", "EXOTHERMIC_CRACKED_RICH",
+				"HELIUM", "HYDROGEN", "NATURAL_GAS", "NITROGEN", "OXYGEN", "PROPANE", "OTHER"];
+const sectionTypeEnum = ["SQUARE_EDGE", "SHARP_EDGE", "VENTURI"];
+
 exports.CalculateFlowAndEnergyUsed =function(req, res)
 {
+
+	var v = new Validator();
+	var schema = JSON.parse(fs.readFileSync(inputDirectory+"/FlowCalculationsInput.json"));
+
 	var flowAndEnergy = {
-	gasType:0,
-	specificGravity: 0.657,
-	orificeDiameter: 3.5,
-	insidePipeDiameter: 8.0,
-	sectionType:0,
-	dischargeCoefficient: 0.6,
-	gasHeatingValue: 1032.44,
-	gasTemperature: 85.0,
-	gasPressure: 85.0,
-	orificePressureDrop: 10.0,
-	operatingTime: 10.0,
-	dischargeLineLossCoefficients: 1.0
+	gasType: parseInt(req.query.gasType),
+	specificGravity: parseFloat(req.query.specificGravity),
+	orificeDiameter: parseFloat(req.query.orificeDiameter),
+	insidePipeDiameter: parseFloat(req.query.insidePipeDiameter),
+	sectionType: parseInt(req.query.sectionType),
+	dischargeCoefficient: parseFloat(req.query.dischargeCoefficient),
+	gasHeatingValue: parseFloat(req.query.gasHeatingValue),
+	gasTemperature: parseFloat(req.query.gasTemperature),
+	gasPressure: parseFloat(req.query.gasPressure),
+	orificePressureDrop: parseFloat(req.query.orificePressureDrop),
+	operatingTime: parseFloat(req.query.operatingTime)
 	};
-	var message = "Errors Found: ";
-
-if(req.query.specificGravity && parseFloat(req.query.specificGravity))
+	if(isNaN(flowAndEnergy.gasType))
+			flowAndEnergy.gasType = gasTypeEnum.indexOf(req.query.gasType);
+	if(isNaN(flowAndEnergy.sectionType))
+		flowAndEnergy.sectionType = sectionTypeEnum.indexOf(req.query.sectionType);
+	var value = v.validate(flowAndEnergy, schema);
+	if(value.errors != "")
 	{
-		flowAndEnergy.specificGravity = req.query.specificGravity;
+		res.json([value.errors]);
+		return;
 	}
-	else
-	{
-		message += "Specific Gravity Parameter not found. ";
-	}
-	if(req.query.orificeDiameter && parseFloat(req.query.orificeDiameter))
-	{
-		flowAndEnergy.orificeDiameter= req.query.orificeDiameter;
-	}
-	else
-	{
-		message += "Orifice Diameter parameter not found. ";
-	}
-
-	if(req.query.insidePipeDiameter && parseFloat(req.query.insidePipeDiameter))
-	{
-		flowAndEnergy.insidePipeDiameter = req.query.insidePipeDiameter;
-	}
-	else
-	{
-		message += "Inside PipeDiameter Diameter parameter not found. ";
-	}	
-	if(req.query.dischargeCoefficient && parseFloat(req.query.dischargeCoefficient))
-	{
-		flowAndEnergy.dischargeCoefficient = req.query.dischargeCoefficient;
-	}
-	else
-	{
-		message += "Discharge Coefficient parameter not found. ";
-	}
-if(req.query.gasHeatingValue && parseFloat(req.query.gasHeatingValue))
-	{
-		flowAndEnergy.gasHeatingValue = req.query.gasHeatingValue;
-	}
-	else
-	{
-		message += "Gas Heating Value parameter not found. ";
-	}
-if(req.query.gasTemperature && parseFloat(req.query.gasTemperature))
-	{
-		flowAndEnergy.gasTemperature = req.query.gasTemperature;
-	}
-	else
-	{
-		message += "Gas Temperature  parameter not found. ";
-	}
-if(req.query.gasPressure && parseFloat(req.query.gasPressure))
-	{
-		flowAndEnergy.gasPressure = req.query.gasPressure;
-	}
-	else
-	{
-		message += "Gas Pressure parameter not found. ";
-	}
-if(req.query.orificePressureDrop && parseFloat(req.query.orificePressureDrop))
-	{
-		flowAndEnergy.orificePressureDrop = req.query.orificePressureDrop;
-	}
-	else
-	{
-		message += "Orifice Pressure Drop parameter not found. ";
-	}
-
-
-if(req.query.operatingTime && parseFloat(req.query.operatingTime))
-	{
-		flowAndEnergy.operatingTime = req.query.operatingTime;
-	}
-	else
-	{
-		message += "Operating Time parameter not found. ";
-	}
-if(req.query.dischargeLineLossCoefficients && parseFloat(req.query.dischargeLineLossCoefficients))
-	{
-		flowAndEnergy.dischargeLineLossCoefficients = req.query.dischargeLineLossCoefficients;
-	}
-	else
-	{
-		message += "Discharge Line Loss Coefficients parameter not found. ";
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
 	var FAE=phast.flowCalculations(flowAndEnergy);
 	res.json([FAE]);
 	

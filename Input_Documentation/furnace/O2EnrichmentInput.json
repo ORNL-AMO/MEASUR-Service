@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "MEASUR Service O2 Enrichment Calcualtions Inputs",
+  "description": "MEASUR Service O2 Enrichment Inputs",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+  	"o2CombAir",
+  	"o2CombAirEnriched",
+  	"flueGasTemp",
+  	"flueGasTempEnriched",
+  	"o2FlueGas",
+  	"o2FlueGasEnriched",
+  	"combAirTemp",
+  	"combAirTempEnriched",
+  	"fuelConsumption"
+  ],
+
+
+  "properties": {
+	"o2CombAir": {
+		"$ref": "#/definitions/o2CombAir"
+	},
+	"o2CombAirEnriched": {
+		"$ref": "#/definitions/o2CombAirEnriched"
+	},
+	"flueGasTemp": {
+		"$ref": "#/definitions/flueGasTemp"
+	},
+	"flueGasTempEnriched": {
+		"$ref": "#/definitions/flueGasTempEnriched"
+	},
+	"o2FlueGas": {
+		"$ref": "#/definitions/o2FlueGas"
+	},
+	"o2FlueGasEnriched": {
+		"$ref": "#/definitions/o2FlueGasEnriched"
+	},
+	"combAirTemp": {
+		"$ref": "#/definitions/combAirTemp"
+	},
+	"combAirTempEnriched": {
+		"$ref": "#/definitions/combAirTempEnriched"
+	},
+	"fuelConsumption": {
+		"$ref": "#/definitions/fuelConsumption"
+	}
+   },
+	
+	"definitions": {
+		"o2CombAir": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"o2CombAirEnriched": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"flueGasTemp": {
+			"type": "number"
+		},
+		"flueGasTempEnriched": {
+			"type": "number"
+		},
+		"o2FlueGas": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"o2FlueGasEnriched": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"combAirTemp": {
+			"type": "number"
+		},
+		"combAirTempEnriched": {
+			"type": "number"
+		},
+		"fuelConsumption": {
+			"type": "number"
+		}
+	}
+}
