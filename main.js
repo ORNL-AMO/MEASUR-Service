@@ -15,9 +15,14 @@ var pump = require('./src/pump/pump.js');
 var pumpachievableefficiency = require("./src/pump/pumpachievableefficiency.js");
 var energyElectric = require('./src/processHeating/energyEquivalencyElectric.js');
 var humidityRatio = require('./src/processHeating/humidityRatio.js');
+var efficiencyImprovement = require('./src/processHeating/efficiencyImprovement.js');
 var router = express.Router();
 
 
+router.get('/processHeating/efficiencyImprovement', function(req, res)
+{
+	efficiencyImprovement.CalculateEfficiencyImprovement(req, res);
+});
 
 router.get('/humidityRatio/humidityRatio', function(req, res)
 {
