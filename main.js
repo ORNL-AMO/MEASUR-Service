@@ -31,7 +31,6 @@ router.get('/furnace/o2Enrichment', function(req, res)
 	o2Enrichment.Calculateo2Enrichment(req, res);
 });
 
-
 router.get('/pumpheadtool/suctionGaugeElevation', function(req, res)
 {
 	pumpheadtool.CalculateSuctionGaugeElevation(req, res);

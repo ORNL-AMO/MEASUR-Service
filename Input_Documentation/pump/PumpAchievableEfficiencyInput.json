@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Pump Achievable Efficiency Calculator",
+  "description": "MEASUR Service Pump Achievable Efficiency Calculator Inputs",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+  	"pump_style",
+  	"flow_rate"
+  ],
+
+
+  "properties": {
+		"pump_style": {
+		  "$ref": "#/definitions/pump_style"
+		},    
+		"flow_rate": {
+		  "$ref": "#/definitions/flow_rate"
+		}
+    },
+	"definitions":
+	{
+		"pump_style": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "END_SUCTION_SLURRY",
+				1, "END_SUCTION_SEWAGE",
+				2, "END_SUCTION_STOCK",
+				3, "END_SUCTION_SUBMERSIBLE_SEWAGE",
+				4, "API_DOUBLE_SUCTION",
+				5, "MULTISTAGE_BOILER_FEED",
+				6, "END_SUCTION_ANSI_API",
+				7, "AXIAL_FLOW",
+				8, "DOUBLE_SUCTION",
+				9, "VERTICAL_TURBINE",
+				10, "LARGE_END_SUCTION",
+				11, "SPECIFIED_OPTIMAL_EFFICIENCY"
+			],
+			"title": "Pump Style for the Pump"
+		},
+		"flow_rate": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Flow Rate of the Pump"
+		}
+	}
+}
