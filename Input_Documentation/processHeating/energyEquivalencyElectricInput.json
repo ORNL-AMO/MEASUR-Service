@@ -36,12 +36,14 @@
 		"electricallyHeatedEfficiency": {
 			"type": "number",
 			"minimum": 0,
+			"maximum":100,
 			"title": "Electrically Heated Efficiency",
 			"examples": [2100, 2150.3, 4]
 		},
 		"fuelFiredHeatInput": {
 			  "type": "number",
 			  "minimum": 0,
+			  "maximum":100,
 			  "title": "Fuel Fired Heat Input",
 			  "examples": [1, 1.5, 2.0, 14.3]
 		}
