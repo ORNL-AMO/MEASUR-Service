@@ -1,0 +1,220 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Pump Assessment Baseline",
+  "description": "MEASUR Service Pump Assessment Baseline Inputs",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+  	"fanSpeed",
+  	"airDensity",
+  	"drive",
+  	//"specifiedDriveEfficiency",
+  	"lineFrequency",
+  	"motorRatedPower",
+  	"motorRpm",
+  	"efficiencyClass",
+  	//"specifiedEfficiency",
+  	"motorRatedVoltage",
+  	"fullLoadAmps",
+  	"sizeMargin",
+  	"measuredPower",
+  	"measuredVoltage",
+  	"measuredAmps",
+  	"flowRate",
+  	"inletPressure",
+  	"outletPressure",
+  	"compressibilityFactor",
+  	"operatingHours",
+  	"unitCost",
+  	"loadEstimationMethod"
+  ],
+
+
+  "properties": {
+		"fanSpeed": {
+		  "$ref": "#/definitions/fanSpeed"
+		},   
+		"airDensity": {
+			"$ref": "#/definitions/airDensity"
+		},
+		"drive": {
+			"$ref": "#/definitions/drive"
+		},
+		"specifiedDriveEfficiency":
+		{
+			"$ref": "#/definitions/specifiedDriveEfficiency"		
+		},
+		"lineFrequency": {
+			"$ref": "#/definitions/lineFrequency"
+		},
+		"motorRatedPower": {
+			"$ref": "#/definitions/motorRatedPower"
+		},
+		"motorRpm": {
+			"$ref": "#/definitions/motorRpm"
+		},
+  		"efficiencyClass": {
+  			"$ref": "#/definitions/efficiencyClass"
+  		},
+  		"specifiedEfficiency": {
+  			"$ref": "#/definitions/specifiedEfficiency"
+  		},
+  		"motorRatedVoltage": {
+  			"$ref": "#/definitions/motorRatedVoltage"
+  		},
+  		"fullLoadAmps": {
+  			"$ref": "#/definitions/fullLoadAmps"
+  		},
+  		"sizeMargin": {
+  			"$ref": "#/definitions/sizeMargin"
+  		},
+  		"measuredPower": {
+  			"$ref": "#/definitions/measuredPower"
+  		},
+  		"measuredVoltage": {
+  			"$ref": "#/definitions/motor_rated_fla"
+  		},
+  		"measuredAmps": {
+  			"$ref": "#/definitions/measuredAmps"
+  		},
+  		"flowRate": {
+  			"$ref": "#/definitions/flowRate"
+  		},
+  		"inletPressure": {
+  			"$ref": "#/definitions/inletPressure"
+  		},
+  		"outletPressure": {
+  			"$ref": "#/definitions/outletPressure"
+  		},
+  		"compressibilityFactor": {
+  			"$ref": "#/definitions/compressibilityFactor"
+  		},
+  		"operatingHours": {
+  			"$ref": "#/definitions/operatingHours"
+  		},
+  		"unitCost": {
+  			"$ref": "#/definitions/unitCost"
+  		},
+  		"loadEstimationMethod": {
+  			"$ref": "#/definitions/loadEstimationMethod"
+  		},
+  		"fanEfficiency": {
+  			"$ref": "#/definitions/fanEfficiency"
+  		}
+    },
+	"definitions": {
+		"fanSpeed": {
+			"type": "number",
+			"minimum":0,
+			"title": "Fan Speed for the Fan"
+		},
+		"airDensity": {
+			"type": "number",
+			"minimum": 0,
+			"title": "air Density for the Fan"
+		},
+		"measuredVoltage": {
+			"type": "number",
+			"minimum": 1,
+				},
+		"drive": {
+			"type": ["number", "string"],
+			"enum": [
+				0, "DIRECT_DRIVE",
+				1, "V_BELT_DRIVE",
+				2, "N_V_BELT_DRIVE",
+				3, "S_BELT_DRIVE",
+				4, "SPECIFIED"
+			]
+		},
+		"measuredAmps": {
+			"type": "number",
+			"minimum": 0
+		},
+		"outletPressure": {
+			"type": "number"
+			
+		},
+		"inletPressure": {
+			"type": "number",
+			"minimum": 1.0
+		},
+		"specifiedDriveEfficiency": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"lineFrequency": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "FREQ60",
+				1, "FREQ50"
+			],
+			"title": "Line Frequency of the motor either 60Hz or 50Hz"
+		},
+		"motorRatedPower": {
+			"type": "number",
+			"minimum": 0
+		},
+		"motorRpm": {
+			"type": "number",
+			"minimum": 0
+		},
+		"efficiencyClass": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "STANDARD",
+				1, "ENERGY_EFFICIENT",
+				2, "PREMIUM",
+				3, "SPECIFIED"
+			]
+		},
+		"measuredPower": {
+			"type": "number"
+		},
+		"fullLoadAmps": {
+			"type": "number",
+			"minimum": 0
+		},
+		"flowRate": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Flow Rate of the Pump"
+		},
+		"compressibilityFactor": {
+			"type": "number",
+			"minimum": 0
+		},
+		"loadEstimationMethod": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "POWER",
+				1, "CURRENT"
+			]
+		},
+		"sizeMargin": {
+			"type": "number",
+			"minimum": 0
+		},
+		"specifiedEfficiency": {
+			"type": "number",
+			
+		},
+		"operatingHours": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 8760
+		},
+		"unitCost": {
+			"type": "number",
+			"minimum": 0
+		},
+		"fanEfficiency": {
+			"type": "number",
+			"minimum": 0,
+			}
+		
+	}
+}

@@ -1,0 +1,193 @@
+\hypertarget{struct_p_s_a_t_result_1_1_result}{}\section{P\+S\+A\+T\+Result\+:\+:Result Struct Reference}
+\label{struct_p_s_a_t_result_1_1_result}\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+
+
+{\ttfamily \#include $<$Results.\+h$>$}
+
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_a6b194eedbd6d31390928e1b4feab922b}{pump\+Efficiency}
+\begin{DoxyCompactList}\small\item\em Optimal\+: Optimal pump efficiency is estimated based on the efficiency estimating algorithms contained in Hydraulic Institute Standard HI 1.\+3-\/2000, Centrifugal Pump Design and Application. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_ae487ec5d7eed6f287f18b4ed15e1b639}{motor\+Rated\+Power}
+\begin{DoxyCompactList}\small\item\em Optimal\+: This is the nameplate motor rated power for an optimally sized pump. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_a75bfbaf59bbc736b53936069bcaf622a}{motor\+Shaft\+Power}
+\begin{DoxyCompactList}\small\item\em Optimal\+: This is the motor shaft power requirements for the optimal pump, based on the specified flow rate, head, and specific gravity values, along with the HI 1.\+3 achievable efficiency algorithms. If a belt drive is specified, associated losses are added to the pump shaft power to determine required motor power. For direct-\/driven pumps, the pump and motor shaft powers are the same. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_a6787157a580ee3755910e18e792a4dbf}{pump\+Shaft\+Power}
+\begin{DoxyCompactList}\small\item\em Optimal\+: This is the shaft power requirements for the optimal pump, based on the specified flow rate, head, and specific gravity values, along with the HI 1.\+3 achievable efficiency algorithms. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_ad995bfd4c4d8372c99721d3fb43f1919}{motor\+Efficiency}
+\begin{DoxyCompactList}\small\item\em Optimal\+: This is the estimated efficiency for an energy-\/efficient motor of the size indicated in the optimal motor rated power entry above when operating at the optimal motor shaft power. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_a19ac96991a81b7c4e69b5b37bf05c460}{motor\+Power\+Factor}
+\begin{DoxyCompactList}\small\item\em Optimal\+: This is the estimated power factor for an energy-\/efficient motor of the size indicated in the optimal motor rated power entry above when operating at the optimal motor shaft power (also indicated above). \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_a49d9fcc148cd66e507b918dea7435f1d}{motor\+Current}
+\begin{DoxyCompactList}\small\item\em Optimal\+: This is the estimated current for an energy-\/efficient motor of the size indicated in the optimal motor rated power entry above when operating at the optimal motor shaft power. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_ad51cbcc62a9515f5ffe119acbb4a4232}{motor\+Power}
+\begin{DoxyCompactList}\small\item\em Optimal\+: The estimated electric power for an energy-\/efficient motor of the size indicated in the optimal motor rated power entry above when operating at the optimal motor shaft power. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_aadbf128fb74140ef7117fbac7d3f16e5}{annual\+Energy}
+\begin{DoxyCompactList}\small\item\em Optimal\+: The annual energy consumption for an optimized pump driven by an energy-\/efficient motor, based on the estimated motor power and on the fraction of time the pump is operated indicated by the operating fraction. \end{DoxyCompactList}\item 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_a48964ead4e8849f21c2015e226d046cc}{annual\+Cost}
+\begin{DoxyCompactList}\small\item\em Optimal\+: This is the annual energy cost based on the product of the optimal annual energy consumption and the unit operating cost (cents/kwhr) input. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_ac606acff40adbc7e4b456e37fc0cc2a1}\label{struct_p_s_a_t_result_1_1_result_ac606acff40adbc7e4b456e37fc0cc2a1}} 
+double \hyperlink{struct_p_s_a_t_result_1_1_result_ac606acff40adbc7e4b456e37fc0cc2a1}{estimated\+F\+LA}
+\begin{DoxyCompactList}\small\item\em Existing\+: The full load amps are either specified (known) or estimated. This field will hold either one. The estimated full load amps are calculated from the motor voltage, hp, and speed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_a1d75b6f47ebf7c7ed3e1288fa28aa121}\label{struct_p_s_a_t_result_1_1_result_a1d75b6f47ebf7c7ed3e1288fa28aa121}} 
+double {\bfseries load\+Factor}
+\item 
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_a1af0a7c1d2068a4bbaa3c495a5ebc085}\label{struct_p_s_a_t_result_1_1_result_a1af0a7c1d2068a4bbaa3c495a5ebc085}} 
+double {\bfseries drive\+Efficiency}
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\hyperlink{struct_p_s_a_t_result_1_1_result}{Result} (output) structure captures the same fields for the existing as well as the optimal condition. 
+
+Definition at line 98 of file Results.\+h.
+
+
+
+\subsection{Member Data Documentation}
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_a48964ead4e8849f21c2015e226d046cc}\label{struct_p_s_a_t_result_1_1_result_a48964ead4e8849f21c2015e226d046cc}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!annual\+Cost@{annual\+Cost}}
+\index{annual\+Cost@{annual\+Cost}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{annual\+Cost}{annualCost}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::annual\+Cost}
+
+
+
+Optimal\+: This is the annual energy cost based on the product of the optimal annual energy consumption and the unit operating cost (cents/kwhr) input. 
+
+Existing\+: This is the existing annual energy cost based on the product of the existing annual energy consumption and the unit operating cost (cents/kwhr) input. 
+
+Definition at line 117 of file Results.\+h.
+
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_aadbf128fb74140ef7117fbac7d3f16e5}\label{struct_p_s_a_t_result_1_1_result_aadbf128fb74140ef7117fbac7d3f16e5}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!annual\+Energy@{annual\+Energy}}
+\index{annual\+Energy@{annual\+Energy}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{annual\+Energy}{annualEnergy}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::annual\+Energy}
+
+
+
+Optimal\+: The annual energy consumption for an optimized pump driven by an energy-\/efficient motor, based on the estimated motor power and on the fraction of time the pump is operated indicated by the operating fraction. 
+
+Existing\+: This is the annual energy consumption at the measured/estimated power level for the existing equipment when operated for the fraction of time indicated by the operating fraction. 
+
+Definition at line 115 of file Results.\+h.
+
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_a49d9fcc148cd66e507b918dea7435f1d}\label{struct_p_s_a_t_result_1_1_result_a49d9fcc148cd66e507b918dea7435f1d}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!motor\+Current@{motor\+Current}}
+\index{motor\+Current@{motor\+Current}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{motor\+Current}{motorCurrent}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::motor\+Current}
+
+
+
+Optimal\+: This is the estimated current for an energy-\/efficient motor of the size indicated in the optimal motor rated power entry above when operating at the optimal motor shaft power. 
+
+Existing\+: This is the estimated or measured current for the existing motor at the existing load. 
+
+Definition at line 111 of file Results.\+h.
+
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_ad995bfd4c4d8372c99721d3fb43f1919}\label{struct_p_s_a_t_result_1_1_result_ad995bfd4c4d8372c99721d3fb43f1919}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!motor\+Efficiency@{motor\+Efficiency}}
+\index{motor\+Efficiency@{motor\+Efficiency}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{motor\+Efficiency}{motorEfficiency}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::motor\+Efficiency}
+
+
+
+Optimal\+: This is the estimated efficiency for an energy-\/efficient motor of the size indicated in the optimal motor rated power entry above when operating at the optimal motor shaft power. 
+
+Existing\+: This is the estimated efficiency of the existing motor at the existing load. 
+
+Definition at line 107 of file Results.\+h.
+
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_ad51cbcc62a9515f5ffe119acbb4a4232}\label{struct_p_s_a_t_result_1_1_result_ad51cbcc62a9515f5ffe119acbb4a4232}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!motor\+Power@{motor\+Power}}
+\index{motor\+Power@{motor\+Power}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{motor\+Power}{motorPower}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::motor\+Power}
+
+
+
+Optimal\+: The estimated electric power for an energy-\/efficient motor of the size indicated in the optimal motor rated power entry above when operating at the optimal motor shaft power. 
+
+Existing\+: This is the estimated or measured electric power for the existing motor at the existing load. 
+
+Definition at line 113 of file Results.\+h.
+
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_a19ac96991a81b7c4e69b5b37bf05c460}\label{struct_p_s_a_t_result_1_1_result_a19ac96991a81b7c4e69b5b37bf05c460}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!motor\+Power\+Factor@{motor\+Power\+Factor}}
+\index{motor\+Power\+Factor@{motor\+Power\+Factor}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{motor\+Power\+Factor}{motorPowerFactor}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::motor\+Power\+Factor}
+
+
+
+Optimal\+: This is the estimated power factor for an energy-\/efficient motor of the size indicated in the optimal motor rated power entry above when operating at the optimal motor shaft power (also indicated above). 
+
+Existing\+: This is the estimated power factor for the existing motor at the existing load. It is based on the measured electrical data and the motor performance characteristic curves for the specified motor. 
+
+Definition at line 109 of file Results.\+h.
+
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_ae487ec5d7eed6f287f18b4ed15e1b639}\label{struct_p_s_a_t_result_1_1_result_ae487ec5d7eed6f287f18b4ed15e1b639}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!motor\+Rated\+Power@{motor\+Rated\+Power}}
+\index{motor\+Rated\+Power@{motor\+Rated\+Power}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{motor\+Rated\+Power}{motorRatedPower}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::motor\+Rated\+Power}
+
+
+
+Optimal\+: This is the nameplate motor rated power for an optimally sized pump. 
+
+Existing\+: Existing motor nameplate power (same as Rated power in the \hyperlink{struct_motor}{Motor} input section). 
+
+Definition at line 101 of file Results.\+h.
+
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_a75bfbaf59bbc736b53936069bcaf622a}\label{struct_p_s_a_t_result_1_1_result_a75bfbaf59bbc736b53936069bcaf622a}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!motor\+Shaft\+Power@{motor\+Shaft\+Power}}
+\index{motor\+Shaft\+Power@{motor\+Shaft\+Power}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{motor\+Shaft\+Power}{motorShaftPower}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::motor\+Shaft\+Power}
+
+
+
+Optimal\+: This is the motor shaft power requirements for the optimal pump, based on the specified flow rate, head, and specific gravity values, along with the HI 1.\+3 achievable efficiency algorithms. If a belt drive is specified, associated losses are added to the pump shaft power to determine required motor power. For direct-\/driven pumps, the pump and motor shaft powers are the same. 
+
+Existing\+: This is the estimated motor shaft power for the existing motor. The estimate is based on measured electrical data and P\+S\+AT\textquotesingle{}s efficiency estimate for the specified motor size, speed, and class. 
+
+Definition at line 103 of file Results.\+h.
+
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_a6b194eedbd6d31390928e1b4feab922b}\label{struct_p_s_a_t_result_1_1_result_a6b194eedbd6d31390928e1b4feab922b}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!pump\+Efficiency@{pump\+Efficiency}}
+\index{pump\+Efficiency@{pump\+Efficiency}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{pump\+Efficiency}{pumpEfficiency}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::pump\+Efficiency}
+
+
+
+Optimal\+: Optimal pump efficiency is estimated based on the efficiency estimating algorithms contained in Hydraulic Institute Standard HI 1.\+3-\/2000, Centrifugal Pump Design and Application. 
+
+Existing\+: Existing pump efficiency is fluid power added by the pump divided by pump input shaft power. 
+
+Definition at line 99 of file Results.\+h.
+
+\mbox{\Hypertarget{struct_p_s_a_t_result_1_1_result_a6787157a580ee3755910e18e792a4dbf}\label{struct_p_s_a_t_result_1_1_result_a6787157a580ee3755910e18e792a4dbf}} 
+\index{P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}!pump\+Shaft\+Power@{pump\+Shaft\+Power}}
+\index{pump\+Shaft\+Power@{pump\+Shaft\+Power}!P\+S\+A\+T\+Result\+::\+Result@{P\+S\+A\+T\+Result\+::\+Result}}
+\subsubsection{\texorpdfstring{pump\+Shaft\+Power}{pumpShaftPower}}
+{\footnotesize\ttfamily double P\+S\+A\+T\+Result\+::\+Result\+::pump\+Shaft\+Power}
+
+
+
+Optimal\+: This is the shaft power requirements for the optimal pump, based on the specified flow rate, head, and specific gravity values, along with the HI 1.\+3 achievable efficiency algorithms. 
+
+Existing\+: This is the estimated pump shaft power for the existing motor. The estimate is the same as the motor shaft power (above) for direct-\/driven applications. For belt-\/driven applications, belt losses are deducted from the motor shaft power to determine pump shaft power. 
+
+Definition at line 105 of file Results.\+h.
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\+\_\+\+C\+Pack\+\_\+\+Packages/\+Darwin/\+S\+T\+G\+Z/amo\+\_\+tools\+\_\+suite-\/-\/\+Darwin-\/x86\+\_\+64/amo\+\_\+tools\+\_\+suite/include/results/\hyperlink{___c_pack___packages_2_darwin_2_s_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2include_2results_2_results_8h}{Results.\+h}\end{DoxyCompactItemize}
