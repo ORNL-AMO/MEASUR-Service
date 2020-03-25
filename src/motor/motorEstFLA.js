@@ -1,80 +1,40 @@
 var psat = require("../../node_modules/amo-tools-suite/build/Release/psat.node");
 var express = require('express');
+
+var inputDirectory = './Input_Documentation/Motor';
+var Validator = require('jsonschema').Validator;
+var fs = require('fs');
+
+const efficiency_class_enum = ["Standard", "ENERGY_EFFICIENT", "PREMIUM","SPECIFIED"];
+const lineFrequencyEnum = ["FREQ60", "FREQ50"];
+
 exports.CalculateMotorEstFLA = function(req,res)
 {
+	var v = new Validator();
+	var schema = JSON.parse(fs.readFileSync(inputDirectory+"/MotorEstimateFLAInput.json"));
 	var motorEstFLA =
-	{	load_factor: 1,
-		motor_rated_power: 1,
-		motor_rated_speed: 1,
-		efficiency_class:1,
-		efficiency: 1,
-		line_frequency: 1,
-		motor_rated_voltage: 1
+	{
+		motor_rated_power: parseFloat(req.query.motor_rated_power),
+		motor_rated_speed: parseFloat(req.query.motor_rated_speed),
+		efficiency_class: parseFloat(req.query.efficiency_class),
+		efficiency: parseFloat(req.query.efficiency),
+		line_frequency: parseInt(req.query.line_frequency),
+		motor_rated_voltage: parseFloat(req.query.motor_rated_voltage)
 	};
 
-	var errorMessage = "";
-	
+	if(isNaN(motorEstFLA.efficiency_class))
+		motorEstFLA.efficiency_class = efficiency_class_enum.indexOf(req.query.efficiency_class);
+	if(isNaN(motorEstFLA.line_frequency))
+		motorEstFLA.line_frequency = lineFrequencyEnum.indexOf(req.query.line_frequency);
 
 
-
-	if(req.query.motorRatedPower && parseFloat(req.query.motorRatedPower) >= 0)
+	var value = v.validate(motorEstFLA, schema);
+	if(value.errors != "")
 	{
-		motorEstFLA.motor_rated_power = parseFloat(req.query.motorRatedPower);
-	}
-	else
-	{
-		errorMessage += "Motor Rated Power was sent an incorrect value.";
-	}
-	if(req.query.motorRatedSpeed && parseFloat(req.query.motorRatedSpeed) >= 0)
-	{
-		motorEstFLA.motor_rated_speed = parseFloat(req.query.motorRatedSpeed);
-	}
-	else
-	{
-		errorMessage += "Motor Rated Speed was sent an incorrect value.";
-	}
-
-if(req.query.efficiencyClass  && parseFloat(req.query.efficiencyClass) >= 0 &&parseFloat(req.query.efficiencyClass) <=3)
-	{
-		motorEstFLA.efficiency_class = parseFloat(req.query.efficiencyClass);
-		
-		if(parseFloat(motorEstFLA.efficiency_class)==3)
-		{
-			if(req.query.efficiency && parseFloat(req.query.efficiency) >= 0)
-			{
-				motorEstFLA.efficiency = parseFloat(req.query.efficiency);
-			}
-			else
-			{
-				errorMessage += "Efficiency was sent an incorrect value.";
-			}
-		}
-	}
-	else
-	{
-		errorMessage += "Efficiency class was sent an incorrect value.";
-	}
-	if(req.query.lineFrequency && parseFloat(req.query.lineFrequency) >= 0 && req.query.lineFrequency <=1)
-	{
-		motorEstFLA.line_frequency = parseFloat(req.query.lineFrequency);
-	}
-	else
-	{
-		errorMessage += "Line Frequency was sent an incorrect value. ";
-		
-	}
-	if(req.query.motorRatedVoltage && parseFloat(req.query.motorRatedVoltage) >= 0)
-	{
-		motorEstFLA.motor_rated_voltage = parseFloat(req.query.motorRatedVoltage);
-	}
-	else
-	{
-		errorMessage += "Motor Rated Voltage was sent an incorrect value.";
+		res.json([value.errors]);
+		return;
 	}
 	
-	
-	
-	
-var MotorPer = psat.nema(motorEstFLA);
-res.json([MotorPer,errorMessage]);
+	var MotorPer = psat.estFLA(motorEstFLA);
+	res.json([MotorPer]);
 }
