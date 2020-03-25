@@ -1,0 +1,253 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Pump Assessment Baseline",
+  "description": "MEASUR Service Pump Assessment Baseline Inputs",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+  	"pump_style",
+  	"pump_rated_speed",
+  	"drive",
+  	"kinematic_viscosity",
+  	"specific_gravity",
+  	"stages",
+  	"specifiedDriveEfficiency",
+  	"line_frequency",
+  	"motor_rated_power",
+  	"motor_rated_speed",
+  	"efficiency_class",
+  	"motor_rated_voltage",
+  	"motor_rated_fla",
+  	"flow_rate",
+  	"head",
+  	"load_estimation_method",
+  	"motor_field_power",
+  	"motor_field_current",
+  	"motor_field_voltage",
+  	"operating_hours",
+  	"cost_kw_hour",
+  	"efficiency"
+  ],
+
+
+  "properties": {
+		"pump_style": {
+		  "$ref": "#/definitions/pump_style"
+		},   
+		"pump_specified": {
+			"$ref": "#/definitions/pump_specified"
+		},
+		"pump_rated_speed": {
+			"$ref": "#/definitions/pump_rated_speed"
+		},
+		"drive": {
+			"$ref": "#/definitions/drive"
+		},
+		"kinematic_viscosity": {
+			"$ref": "#/definitions/kinematic_viscosity"
+		},
+		"specific_gravity": {
+			"$ref": "#/definitions/specific_gravity"
+		},
+		"stages": {
+			"$ref": "#/definitions/stages"
+		},
+  		"specifiedDriveEfficiency": {
+  			"$ref": "#/definitions/specifiedDriveEfficiency"
+  		},
+  		"line_frequency": {
+  			"$ref": "#/definitions/line_frequency"
+  		},
+  		"motor_rated_power": {
+  			"$ref": "#/definitions/motor_rated_power"
+  		},
+  		"motor_rated_speed": {
+  			"$ref": "#/definitions/motor_rated_speed"
+  		},
+  		"efficiency_class": {
+  			"$ref": "#/definitions/efficiency_class"
+  		},
+  		"motor_rated_voltage": {
+  			"$ref": "#/definitions/motor_rated_voltage"
+  		},
+  		"motor_rated_fla": {
+  			"$ref": "#/definitions/motor_rated_fla"
+  		},
+  		"flow_rate": {
+  			"$ref": "#/definitions/flow_rate"
+  		},
+  		"head": {
+  			"$ref": "#/definitions/head"
+  		},
+  		"load_estimation_method": {
+  			"$ref": "#/definitions/load_estimation_method"
+  		},
+  		"motor_field_power": {
+  			"$ref": "#/definitions/motor_field_power"
+  		},
+  		"motor_field_current": {
+  			"$ref": "#/definitions/motor_field_current"
+  		},
+  		"motor_field_voltage": {
+  			"$ref": "#/definitions/motor_field_voltage"
+  		},
+  		"operating_hours": {
+  			"$ref": "#/definitions/operating_hours"
+  		},
+  		"cost_kw_hour": {
+  			"$ref": "#/definitions/cost_kw_hour"
+  		},
+  		"efficiency": {
+  			"$ref": "#/definitions/efficiency"
+  		},
+  		"margin": {
+  			"$ref": "#/definitions/margin"
+  		},
+  		"fixed_speed": {
+  			"$ref": "#/definitions/margin"
+  		}
+    },
+	"definitions": {
+		"pump_style": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "END_SUCTION_SLURRY",
+				1, "END_SUCTION_SEWAGE",
+				2, "END_SUCTION_STOCK",
+				3, "END_SUCTION_SUBMERSIBLE_SEWAGE",
+				4, "API_DOUBLE_SUCTION",
+				5, "MULTISTAGE_BOILER_FEED",
+				6, "END_SUCTION_ANSI_API",
+				7, "AXIAL_FLOW",
+				8, "DOUBLE_SUCTION",
+				9, "VERTICAL_TURBINE",
+				10, "LARGE_END_SUCTION",
+				11, "SPECIFIED_OPTIMAL_EFFICIENCY"
+			],
+			"title": "Pump Style for the Pump"
+		},
+		"pump_specified": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100,
+			"title": "Known Pump Efficiency Required if Pump Style Specified Optimal Efficiency"
+		},
+		"pump_rated_speed": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Pump Rated Speed"
+		},
+		"drive": {
+			"type": ["number", "string"],
+			"enum": [
+				0, "DIRECT_DRIVE",
+				1, "V_BELT_DRIVE",
+				2, "N_V_BELT_DRIVE",
+				3, "S_BELT_DRIVE",
+				4, "SPECIFIED"
+			]
+		},
+		"kinematic_viscosity": {
+			"type": "number",
+			"minimum": 0
+		},
+		"specific_gravity": {
+			"type": "number",
+			"minimum": 0
+		},
+		"stages": {
+			"type": "number",
+			"minimum": 1.0
+		},
+		"specifiedDriveEfficiency": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"line_frequency": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "FREQ60",
+				1, "FREQ50"
+			],
+			"title": "Line Frequency of the motor either 60Hz or 50Hz"
+		},
+		"motor_rated_power": {
+			"type": "number",
+			"minimum": 0
+		},
+		"motor_rated_speed": {
+			"type": "number",
+			"minimum": 0
+		},
+		"efficiency_class": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "Standard",
+				1, "ENERGY_EFFICIENT",
+				2, "PREMIUM",
+				3, "SPECIFIED"
+			]
+		},
+		"motor_rated_voltage": {
+			"type": "number",
+			"minimum": 0
+		},
+		"motor_rated_fla": {
+			"type": "number",
+			"minimum": 0
+		},
+		"flow_rate": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Flow Rate of the Pump"
+		},
+		"head": {
+			"type": "number",
+			"minimum": 0.1
+		},
+		"load_estimation_method": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "Power",
+				1, "Current"
+			]
+		},
+		"motor_field_power": {
+			"type": "number",
+			"minimum": 0
+		},
+		"motor_field_current": {
+			"type": "number",
+			"minimum": 0
+		},
+		"motor_field_voltage": {
+			"type": "number",
+			"minimum": 0
+		},
+		"operating_hours": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 8760
+		},
+		"cost_kw_hour": {
+			"type": "number",
+			"minimum": 0
+		},
+		"efficiency": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"margin": {
+			"type": "number",
+			"minimum": 0
+		},
+		"fixed_speed": {
+			"type": "number",
+			"minimum": 0
+		}
+	}
+}

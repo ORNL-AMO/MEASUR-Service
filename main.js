@@ -42,7 +42,6 @@ router.get('/motor/motorPerformance', function(req, res)
 });
 
 
-
 router.get('/pumpheadtool/suctionGaugeElevation', function(req, res)
 {
 	pumpheadtool.CalculateSuctionGaugeElevation(req, res);
