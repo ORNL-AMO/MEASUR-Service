@@ -66,8 +66,7 @@
 		},
 		"load_factor": {
 			"type": "number",
-			"minimum": 0,
-			"description": "Default value of 1 if not given"
+			"minimum": 0
 		}
 	}
 }
