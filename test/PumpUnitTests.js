@@ -1,3 +1,4 @@
+process.env["NODE_TLS_REJECT_UNAUTHORIZED"]=0;
 var expect = require('chai').expect;
 var request = require('request');
 

@@ -10,16 +10,14 @@
   	"fanSpeed",
   	"airDensity",
   	"drive",
-  	//"specifiedDriveEfficiency",
   	"lineFrequency",
   	"motorRatedPower",
   	"motorRpm",
   	"efficiencyClass",
-  	//"specifiedEfficiency",
+  	"specifiedEfficiency",
   	"motorRatedVoltage",
   	"fullLoadAmps",
   	"sizeMargin",
-  	"measuredPower",
   	"measuredVoltage",
   	"measuredAmps",
   	"flowRate",
@@ -27,9 +25,8 @@
   	"outletPressure",
   	"compressibilityFactor",
   	"operatingHours",
-  	"unitCost",
-  	"loadEstimationMethod"
-  ],
+  	"unitCost"
+  	  ],
 
 
   "properties": {
@@ -74,7 +71,7 @@
   			"$ref": "#/definitions/measuredPower"
   		},
   		"measuredVoltage": {
-  			"$ref": "#/definitions/motor_rated_fla"
+  			"$ref": "#/definitions/measuredVoltage"
   		},
   		"measuredAmps": {
   			"$ref": "#/definitions/measuredAmps"
@@ -100,6 +97,9 @@
   		"loadEstimationMethod": {
   			"$ref": "#/definitions/loadEstimationMethod"
   		},
+		"isSpecified":{
+			"$ref":	"#/definitions/isSpecified"	
+		},
   		"fanEfficiency": {
   			"$ref": "#/definitions/fanEfficiency"
   		}
@@ -117,7 +117,7 @@
 		},
 		"measuredVoltage": {
 			"type": "number",
-			"minimum": 1,
+			"minimum": 1
 				},
 		"drive": {
 			"type": ["number", "string"],
@@ -138,8 +138,7 @@
 			
 		},
 		"inletPressure": {
-			"type": "number",
-			"minimum": 1.0
+			"type": "number"
 		},
 		"specifiedDriveEfficiency": {
 			"type": "number",
@@ -194,13 +193,19 @@
 				1, "CURRENT"
 			]
 		},
+		"isSpecified":{
+			"type":["integer","boolean"],
+			"enum":[
+				0,false,
+				1,true
+			]
+		},
 		"sizeMargin": {
 			"type": "number",
 			"minimum": 0
 		},
 		"specifiedEfficiency": {
-			"type": "number",
-			
+			"type": "number"
 		},
 		"operatingHours": {
 			"type": "number",
@@ -213,8 +218,14 @@
 		},
 		"fanEfficiency": {
 			"type": "number",
-			"minimum": 0,
-			}
+			"minimum": 0
+			},
+		"motorRatedVoltage":
+		{
+			"type":"number",
+			"minumum":0	
+		}
 		
 	}
 }
+

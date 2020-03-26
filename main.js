@@ -48,9 +48,9 @@ router.get('/fan/assessment',function(req,res)
 	fan.CalculateFanExisting(req,res);
 });
 
-router.get('fan/modifiedAssessment',function(req,res)
+router.get('/fan/modifiedAssessment',function(req,res)
 {
-	fan.CalculateModified(req,res);
+	fan.CalculateFanModified(req,res);
 });
 
 https.createServer(options, app).listen(port);

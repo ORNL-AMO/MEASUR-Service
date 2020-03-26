@@ -4,13 +4,13 @@ var fan_node = require("../../node_modules/amo-tools-suite/build/Release/fan.nod
 var psat = require("../../node_modules/amo-tools-suite/build/Release/psat.node");
 var fs = require("fs");
 var express = require("express");
-var inputDirectory = 'Input_Documentation/fan';
+var inputDirectory = 'Input_Documentation/Fan';
 var Validator = require('jsonschema').Validator;
 const drive_enum = ["DIRECT_DRIVE","V_BELT_DRIVE","N_V_BELT_DRIVE","S_BELT_DRIVE","SPECIFIED"];
 const lineFrequencyEnum = ["FREQ60","FREQ50"];
 const efficiency_class_enum = ["STANDARD","ENERGY_EFFICIENT","PREMIUM","SPECIFIED"];
 const loadEstimationMethods = ["POWER","CURRENT"];
-
+const isSpecified = [false,true];
 var setUpFan = function(req,res)
 {
 	var fan = 
@@ -18,7 +18,7 @@ var setUpFan = function(req,res)
 		fanSpeed: parseFloat(req.query.fanSpeed),
 		airDensity: parseFloat(req.query.airDensity),
 		drive: parseInt(req.query.drive),
-		specifiedDriveEfficiency: parseFloat(req.query.specifiedDriveEfficiency),
+		specifiedDriveEfficiency:parseFloat(req.query.specifiedDriveEfficiency),		
 		lineFrequency: parseInt(req.query.lineFrequency),
 		motorRatedPower:parseFloat(req.query.motorRatedPower),
 		motorRpm: parseFloat(req.query.motorRpm),
@@ -35,11 +35,17 @@ var setUpFan = function(req,res)
 		outletPressure:parseFloat(req.query.outletPressure),
 		compressibilityFactor:parseFloat(req.query.compressibilityFactor),
 		operatingHours:parseFloat(req.query.operatingHours),
+		fanEfficiency: parseFloat(req.query.fanEfficiency),
+		isSpecified: parseInt(req.query.isSpecified),		
 		unitCost: parseFloat(req.query.costKwHour),
 		loadEstimationMethod:parseInt(req.query.loadEstimationMethod)		
 	};
+	if(isNaN(fan.measuredPower))
+		fan.measuredPower =0;
 	if(isNaN(fan.fanEfficiency))
 		fan.fanEfficiency = 0;
+	if(fan.drive !=4 && isNaN(fan.specifiedDriveEfficiency))
+		fan.specifiedDriveEfficiency =0;	
 	if(isNaN(fan.drive))
 		fan.drive = drive_enum.indexOf(req.query.drive);
 	if(isNaN(fan.lineFrequency))
@@ -47,7 +53,10 @@ var setUpFan = function(req,res)
 	if(isNaN(fan.efficiencyClass))
 		fan.efficiencyClass = efficiency_class_enum.indexOf(req.query.efficiencyClass);
 	if(isNaN(fan.loadEstimationMethod))
-		fan.loadEstimationMethod = loadEstimationMethods.indexOf(req.query.loadEstimationMethod);
+		fan.loadEstimationMethod = 0;
+	if(isNaN(fan.isSpecified))
+		fan.isSpecified = false;
+
 	fan.unitCost = fan.unitCost*1000;	
 	return fan;
 }
@@ -55,7 +64,7 @@ var setUpFan = function(req,res)
 exports.CalculateFanExisting = function(req,res)
 {
 	var v = new Validator();
-	var schema = JSON.parse(fs.readFileSync(inputDirectory+"/FanAssessmentInput.json"));
+	var schema = JSON.parse(fs.readFileSync("./Input_Documentation/Fan/FanAssessmentInput.json"));
 	var fan = setUpFan(req,res);
 	if(isNaN(fan.fullLoadAmps))
 	{
@@ -101,12 +110,14 @@ exports.CalculateFanModified = function(req,res)
 		var estimateSchema = JSON.parse(fs.readFileSync('./Input_Documentation/Motor/MotorEstimateFLAInput.json'));
 		var required_motor_values =
 		{
+			
 			motor_rated_power : fan.motorRatedPower,
 			motor_rated_speed : fan.motorRpm,
 			motor_rated_voltage : fan.motorRatedVoltage,
 			line_frequency : fan.lineFrequency,
 			efficiency_class : fan.efficiencyClass,
-			efficiency : fan.specifiedEfficiency
+			efficiency : fan.specifiedEfficiency			
+
 		}
 		var value = v.validate(required_motor_values,estimateSchema);
 		if(value.errors != "")
@@ -126,8 +137,7 @@ exports.CalculateFanModified = function(req,res)
 	var fanResults = fan_node.fanResultsExisting(fan);
 	var fanResultsMod = fan_node.fanResultsModified(fan);
 	fanResultsMod.annual_energy_savings = Math.round(-1*parseFloat(fanResultsMod.annual_energy)+parseFloat(fanResults.annual_energy));
-	fanResultsMod.annual_savings_potential = Math.round(-1*parseFloat(fanResultsMod.annual_cost)+parseFloat(fanResult.annual_cost));	
-	res.json([fanResults]);
+	fanResultsMod.annual_savings_potential = Math.round(-1*parseFloat(fanResultsMod.annual_cost)+parseFloat(fanResults.annual_cost));	
 	var baseline = 
 	{
 		Name:"Baseline",
