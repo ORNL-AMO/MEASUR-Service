@@ -1,8 +1,0 @@
-var searchData=
-[
-  ['leakagelosses_2ecpp',['LeakageLosses.cpp',['../d5/d6c/_leakage_losses_8cpp.html',1,'']]],
-  ['leakagelosses_2eh',['LeakageLosses.h',['../d0/d16/___c_pack___packages_2_darwin_2_s_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2eff36906b0118b933544333840dbb6dd.html',1,'(Global Namespace)'],['../d2/dd8/___c_pack___packages_2_darwin_2_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2in632d2b018d2f0c9b9a93744fd29c6975.html',1,'(Global Namespace)'],['../df/dc1/include_2calculator_2losses_2_leakage_losses_8h.html',1,'(Global Namespace)']]],
-  ['liquidcoolinglosses_2ecpp',['LiquidCoolingLosses.cpp',['../d7/d95/_liquid_cooling_losses_8cpp.html',1,'']]],
-  ['liquidcoolinglosses_2eh',['LiquidCoolingLosses.h',['../df/dcb/___c_pack___packages_2_darwin_2_s_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2cdd1b9218cec46d428c4e8ed55a2f82a.html',1,'(Global Namespace)'],['../d0/d7d/___c_pack___packages_2_darwin_2_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2in2f26b30c7a12590cf79896a5deffdcab.html',1,'(Global Namespace)'],['../d7/de3/include_2calculator_2losses_2_liquid_cooling_losses_8h.html',1,'(Global Namespace)']]],
-  ['liquidloadchargematerial_2eh',['LiquidLoadChargeMaterial.h',['../d9/ddd/___c_pack___packages_2_darwin_2_s_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_22c7eb4395ab7cdaebdd8c8124e88f284.html',1,'(Global Namespace)'],['../d2/de2/___c_pack___packages_2_darwin_2_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2ina2aec4a96a46332af7f5f97e8168eb75.html',1,'(Global Namespace)'],['../d9/d1f/include_2calculator_2losses_2_liquid_load_charge_material_8h.html',1,'(Global Namespace)']]]
-];

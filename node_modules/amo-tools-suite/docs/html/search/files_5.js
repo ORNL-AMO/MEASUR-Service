@@ -1,8 +1,0 @@
-var searchData=
-[
-  ['gascoolinglosses_2ecpp',['GasCoolingLosses.cpp',['../db/dd6/_gas_cooling_losses_8cpp.html',1,'']]],
-  ['gascoolinglosses_2eh',['GasCoolingLosses.h',['../d3/ddc/___c_pack___packages_2_darwin_2_s_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2a205f1c3faea20d1b572055736aa9a09.html',1,'(Global Namespace)'],['../d5/d89/___c_pack___packages_2_darwin_2_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2in0e2d3d228ff92cead438fc23253ea2ce.html',1,'(Global Namespace)'],['../d7/d67/include_2calculator_2losses_2_gas_cooling_losses_8h.html',1,'(Global Namespace)']]],
-  ['gasfluegasmaterial_2ecpp',['GasFlueGasMaterial.cpp',['../d7/d4c/_gas_flue_gas_material_8cpp.html',1,'']]],
-  ['gasfluegasmaterial_2eh',['GasFlueGasMaterial.h',['../db/d5e/___c_pack___packages_2_darwin_2_s_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2004d7ef7737e3755a6d819de5baaee93.html',1,'(Global Namespace)'],['../dd/d94/___c_pack___packages_2_darwin_2_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2in462e8df374206efa57345d3e226c8a1a.html',1,'(Global Namespace)'],['../d7/db7/include_2calculator_2losses_2_gas_flue_gas_material_8h.html',1,'(Global Namespace)']]],
-  ['gasloadchargematerial_2eh',['GasLoadChargeMaterial.h',['../dc/db6/___c_pack___packages_2_darwin_2_s_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_26a031588b5d802b3ba6009030a7c132e.html',1,'(Global Namespace)'],['../d4/ddd/___c_pack___packages_2_darwin_2_t_g_z_2amo__tools__suite--_darwin-x86__64_2amo__tools__suite_2inf316d2310017365d4a271e54b3d39c0d.html',1,'(Global Namespace)'],['../d3/d14/include_2calculator_2losses_2_gas_load_charge_material_8h.html',1,'(Global Namespace)']]]
-];
