@@ -13,6 +13,7 @@ var psat = require("./node_modules/amo-tools-suite/build/Release/psat.node");
 var pumpheadtool = require('./src/pump/pumpheadtool.js');
 var pump = require('./src/pump/pump.js');
 var pumpachievableefficiency = require("./src/pump/pumpachievableefficiency.js");
+var fan = require("./src/fan/fan.js");
 var router = express.Router();
 
 
@@ -40,6 +41,16 @@ router.get('/pump/assessment', function(req, res)
 router.get('/pump/modifiedAssessment', function(req, res)
 {
 	pump.CalculateModifiedPumpEfficiency(req, res);
+});
+
+router.get('/fan/assessment',function(req,res)
+{
+	fan.CalculateFanExisting(req,res);
+});
+
+router.get('/fan/modifiedAssessment',function(req,res)
+{
+	fan.CalculateFanModified(req,res);
 });
 
 https.createServer(options, app).listen(port);
