@@ -1,0 +1,120 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "MEASUR Service Flow Calcualtions Inputs",
+  "description": "MEASUR Service Flow Calculations Inputs",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+  	"gasType",
+  	"specificGravity",
+  	"orificeDiameter",
+  	"insidePipeDiameter",
+  	"sectionType",
+  	"dischargeCoefficient",
+  	"gasHeatingValue",
+  	"gasTemperature",
+  	"gasPressure",
+  	"orificePressureDrop",
+  	"operatingTime"
+  ],
+
+
+  "properties": {
+	"gasType": {
+		"$ref": "#/definitions/gasType"
+	},
+	"specificGravity": {
+		"$ref": "#/definitions/specificGravity"
+	},
+	"orificeDiameter": {
+		"$ref": "#/definitions/orificeDiameter"
+	},
+	"insidePipeDiameter": {
+		"$ref": "#/definitions/insidePipeDiameter"
+	},
+	"sectionType": {
+		"$ref": "#/definitions/sectionType"
+	},
+	"dischargeCoefficient": {
+		"$ref": "#/definitions/dischargeCoefficient"
+	},
+	"gasHeatingValue": {
+		"$ref": "#/definitions/gasHeatingValue"
+	},
+	"gasTemperature": {
+		"$ref": "#/definitions/gasTemperature"
+	},
+	"orificePressureDrop": {
+		"$ref": "#/definitions/orificePressureDrop"
+	}
+   },
+	
+	"definitions": {
+		"gasType": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "AIR",
+				1, "AMMONIA_DISSOCIATED",
+				2, "ARGON",
+				3, "BUTANE",
+				4, "ENDOTHERMIC_AMMONIA",
+				5, "EXOTHERMIC_CRACKED_LEAN",
+				6, "EXOTHERMIC_CRACKED_RICH",
+				7, "HELIUM",
+				8 , "HYDROGEN",
+				9, "NATURAL_GAS",
+				10, "NITROGEN",
+				11, "OXYGEN",
+				12, "PROPANE",
+				13, "OTHER"
+			]
+		},
+		"specificGravity": {
+			"type": "number",
+			"minimum": 0
+		},
+		"orificeDiameter": {
+			"type": "number",
+			"minimum": 0
+		},
+		"insidePipeDiameter": {
+			"type": "number",
+			"minimum": 0
+		},
+		"sectionType": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "SQUARE_EDGE",
+				1, "SHARP_EDGE",
+				2, "VENTURI"
+			]
+		},
+		"dischargeCoefficient": {
+			"type": "number",
+			"minimum": 0
+		},
+		"gasHeatingValue": {
+			"type": "number",
+			"minimum": 0
+		},
+		"gasTemperature": {
+			"type": "number",
+			"minimum": 0
+		},
+		"gasPressure": {
+			"type":"number",
+			"minimum": 0
+		},
+		"orificePressureDrop": {
+			"type": "number",
+			"minimum": 0
+		},
+		"operatingTime": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 8760
+		}
+	}
+}

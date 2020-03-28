@@ -12,7 +12,9 @@
   	"line_frequency",
   	"efficiency_class",
   	"efficiency",
-  	"motor_rated_voltage"
+  	"motor_rated_voltage",
+  	"load_factor",
+  	"motor_rated_fla"
   ],
 
 
@@ -31,6 +33,12 @@
 		},
 		"efficiency": {
 			"$ref": "#/definitions/efficiency"
+		},
+		"load_factor": {
+			"$ref": "#/definitions/load_factor"
+		},
+		"motor_rated_fla": {
+			"$ref": "#/definitions/motor_rated_fla"
 		}
     },
 	"definitions":
@@ -68,6 +76,14 @@
 			"type": "number",
 			"minimum": 0,
 			"maximum": 100
+		},
+		"load_factor": {
+			"type": "number",
+			"minimum": 0
+		},
+		"motor_rated_fla": {
+			"type": "number",
+			"minimum": 0
 		}
 	}
 }

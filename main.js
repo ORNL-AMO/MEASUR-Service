@@ -9,14 +9,44 @@ var express = require('express');
 var app = express();
 var port = process.env.port || 8080;
 var psat = require("./node_modules/amo-tools-suite/build/Release/psat.node");
+
 var phast = require("./node_modules/amo-tools-suite/build/Release/phast.node");
+
 var pumpheadtool = require('./src/pump/pumpheadtool.js');
 var pump = require('./src/pump/pump.js');
+var flowAndEnergyUsed = require('./src/furnace/flowAndEnergyUsed.js');
+
+var o2Enrichment = require('./src/furnace/O2Enrichment.js');
+
 var pumpachievableefficiency = require("./src/pump/pumpachievableefficiency.js");
 var energyElectric = require('./src/processHeating/energyEquivalencyElectric.js');
 var humidityRatio = require('./src/processHeating/humidityRatio.js');
 var efficiencyImprovement = require('./src/processHeating/efficiencyImprovement.js');
+var fan = require("./src/fan/fan.js");
+
 var router = express.Router();
+
+var motor = require('./src/motor/motorPerformance.js');
+var motorNEMA = require('./src/motor/motorNEMA.js')
+var motorEstFLA = require('./src/motor/motorEstFLA.js');
+
+
+router.get('/motor/motorEstFLA', function(req, res)
+{
+	motorEstFLA.CalculateMotorEstFLA(req, res);
+});
+
+
+router.get('/furnace/flowAndEnergyUsed', function(req, res)
+{
+	flowAndEnergyUsed.CalculateFlowAndEnergyUsed(req, res);
+});
+
+router.get('/motor/motorNEMA', function(req, res)
+{
+	motorNEMA.CalculateMotorNEMA(req, res);
+});
+
 
 
 router.get('/processHeating/efficiencyImprovement', function(req, res)
@@ -36,6 +66,16 @@ router.get('/energyEquivalencyElectric/energyEquivalencyElectric', function(req,
 });
 
 
+
+router.get('/motor/motorPerformance', function(req, res)
+{
+	motor.CalculateMotorPerformance(req, res);
+});
+
+router.get('/furnace/o2Enrichment', function(req, res)
+{
+	o2Enrichment.Calculateo2Enrichment(req, res);
+});
 
 router.get('/pumpheadtool/suctionGaugeElevation', function(req, res)
 {
@@ -60,6 +100,16 @@ router.get('/pump/assessment', function(req, res)
 router.get('/pump/modifiedAssessment', function(req, res)
 {
 	pump.CalculateModifiedPumpEfficiency(req, res);
+});
+
+router.get('/fan/assessment',function(req,res)
+{
+	fan.CalculateFanExisting(req,res);
+});
+
+router.get('/fan/modifiedAssessment',function(req,res)
+{
+	fan.CalculateFanModified(req,res);
 });
 
 https.createServer(options, app).listen(port);

@@ -1,8 +1,8 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "build_version": "v10.0.1-80-g9fa80308",
-  "title": "Estimate Full Load Amperes",
-  "description": "MEASUR Service Estimate Full Load Amperes Inputs",
+  "title": "Motor NEMA Input",
+  "description": "MEASUR Service Motor NEMA Input Inputs",
   "type": "object",
   "additionalProperties": true,
 
@@ -11,15 +11,11 @@
   	"motor_rated_speed",
   	"line_frequency",
   	"efficiency_class",
-  	"efficiency",
-  	"motor_rated_voltage"
+  	"efficiency"
   ],
 
 
   "properties": {
-		"motor_rated_voltage": {
-			"$ref": "#/definitions/motor_rated_voltage"
-		},
 		"motor_rated_speed": {
 			"$ref": "#/definitions/motor_rated_speed"
 		},
@@ -31,6 +27,9 @@
 		},
 		"efficiency": {
 			"$ref": "#/definitions/efficiency"
+		},
+		"load_factor": {
+			"$ref": "#/definitions/load_factor"
 		}
     },
 	"definitions":
@@ -60,14 +59,14 @@
 				3, "SPECIFIED"
 			]
 		},
-		"motor_rated_voltage": {
-			"type": "number",
-			"minimum": 0
-		},
 		"efficiency": {
 			"type": "number",
 			"minimum": 0,
 			"maximum": 100
+		},
+		"load_factor": {
+			"type": "number",
+			"minimum": 0
 		}
 	}
 }
