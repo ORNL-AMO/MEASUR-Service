@@ -10,6 +10,7 @@ var app = express();
 var port = process.env.port || 8080;
 var psat = require("./node_modules/amo-tools-suite/build/Release/psat.node");
 
+
 var phast = require("./node_modules/amo-tools-suite/build/Release/phast.node");
 
 var pumpheadtool = require('./src/pump/pumpheadtool.js');
@@ -31,11 +32,17 @@ var motorNEMA = require('./src/motor/motorNEMA.js')
 var motorEstFLA = require('./src/motor/motorEstFLA.js');
 
 
+var processHeating = require('./src/processHeating/processHeatingAssessment.js')
+
 router.get('/motor/motorEstFLA', function(req, res)
 {
 	motorEstFLA.CalculateMotorEstFLA(req, res);
 });
 
+router.get('/processHeating/assessment', function(req, res)
+{
+	processHeating.BaseLineAssessment(req, res);
+});
 
 router.get('/furnace/flowAndEnergyUsed', function(req, res)
 {

@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Auxiliary Power Loss",
+  "description": "MEASUR Service Auxiliary Power Loss Input Data",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "motorPhase",
+    "supplyVoltage",
+    "avgCurrent",
+    "powerFactor",
+    "operatingTime"
+  ],
+
+
+  "properties": {
+		"motorPhase": {
+			"$ref": "#/defintions/motorPhase"
+		},
+	    "supplyVoltage": {
+			"$ref": "#/defintions/supplyVoltage"
+	    },
+	    "avgCurrent": {
+	    	"$ref": "#/defintions/avgCurrent"
+	    },
+	    "powerFactor": {
+	    	"$ref": "#/defintions/powerFactor"
+	    },
+	    "operatingTime": {
+	    	"$ref": "#/defintions/operatingTime"
+	    }
+	},
+	"definitions":
+	{
+		"motorPhase": {
+			"type": "number"
+		},
+	    "supplyVoltage": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 480
+	    },
+	    "avgCurrent": {
+	    	"type": "number"
+	    },
+	    "powerFactor": {
+	    	"type": "number"
+	    },
+	    "operatingTime": {
+	    	"type": "number",
+	    	"description": "Uses the same operating time as the process heating assessment."
+	    }
+	}
+}

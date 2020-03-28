@@ -1,0 +1,110 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Liquid Load Charge Material",
+  "description": "MEASUR Service Liquid Load Charge Material Input Data",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "thermicReactionType",
+    "specificHeatLiquid",
+    "vaporizingTemperature",
+	"latentHeat",
+	"specificHeatVapor",
+	"chargeFeedRate",
+	"initialTemperature",
+	"dischargeTemperature",
+	"percentVaporized",
+	"percentReacted",
+	"reactionHeat",
+	"additionalHeat"
+  ],
+
+
+  "properties": {
+		"thermicReactionType": {
+			"$ref": "#/definitions/thermicReactionType"
+		},
+	    "specificHeatLiquid": {
+	    	"$ref": "#/definitions/specificHeatLiquid"
+	    },
+	    "vaporizingTemperature": {
+	    	"$ref": "#/definitions/vaporizingTemperature"
+	    },
+	    "latentHeat": {
+	    	"$ref": "#/definitions/latentHeat"
+	    },
+	    "speciifcHeatVapor": {
+	    	"$ref": "#/definitions/specificHeatVapor"
+	    },
+	    "chargeFeedRate": {
+	    	"$ref": "#/definitions/chargeFeedRate"
+	    },
+		"initialTemperature": {
+			"$ref": "#/definitions/initialTemperature"
+		},
+		"dischargeTemperature": {
+			"$ref": "#/definitions/dischargeTemperature"
+		},
+		"percentVaporized": {
+			"$ref": "#/definitions/percentVaporized"
+		},
+		"percentReacted": {
+			"$ref": "#/definitions/percentReacted"
+		},
+		"reactionHeat": {
+			"$ref": "#/definitions/reactionHeat"
+		},
+		"additionalHeat": {
+			"$ref": "#/definitions/additionalHeat"
+	    }
+	},
+	"definitions":
+	{
+		"thermicReactionType": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "endothermic",
+				1, "exothermic"
+			]
+		},
+	    "specificHeatLiquid": {
+	    	"type": "number"
+	    },
+	    "vaporizingTemperature": {
+	    	"type": "number"
+	    },
+	    "latentHeat": {
+	    	"type": "number"
+	    },
+	    "specificHeatVapor": {
+			"type": "number"
+		},
+	    "chargeFeedRate": {
+	    	"type": "number"
+	    },
+		"initialTemperature": {
+			"type": "number"
+		},
+		"dischargeTemperature": {
+			"type": "number"
+		},
+		"percentVaporized": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"percentReacted": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"reactionHeat": {
+			"type": "number"
+		},
+		"additionalHeat": {
+			"type": "number"
+		}
+	}
+}
