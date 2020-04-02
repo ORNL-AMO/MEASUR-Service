@@ -17,19 +17,19 @@
 
   "properties": {
 		"motorPhase": {
-			"$ref": "#/defintions/motorPhase"
+			"$ref": "#/definitions/motorPhase"
 		},
 	    "supplyVoltage": {
-			"$ref": "#/defintions/supplyVoltage"
+			"$ref": "#/definitions/supplyVoltage"
 	    },
 	    "avgCurrent": {
-	    	"$ref": "#/defintions/avgCurrent"
+	    	"$ref": "#/definitions/avgCurrent"
 	    },
 	    "powerFactor": {
-	    	"$ref": "#/defintions/powerFactor"
+	    	"$ref": "#/definitions/powerFactor"
 	    },
 	    "operatingTime": {
-	    	"$ref": "#/defintions/operatingTime"
+	    	"$ref": "#/definitions/operatingTime"
 	    }
 	},
 	"definitions":

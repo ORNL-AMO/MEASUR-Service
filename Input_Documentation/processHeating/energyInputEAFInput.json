@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Energy Input EAF",
+  "description": "MEASUR Service Energy Input EAF Input Data",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "naturalGasHeatInput",
+    "coalCarbonInjection",
+	"coalHeatingValue",
+	"electrodeUse",
+	"electrodeHeatingValue",
+	"otherFuels",
+	"electricityInput"
+  ],
+
+
+  "properties": {
+		"naturalGasHeatInput": {
+		  "$ref": "#/definitions/naturalGasHeatInput"
+		},
+		"coalCarbonInjection":{
+			"$ref": "#/definitions/coalCarbonInjection"
+		}, 
+		"coalHeatingValue": {
+		  "$ref": "#/definitions/coalHeatingValue"
+		},
+		"electrodeUse": {
+		  "$ref": "#/definitions/electrodeUse"
+		},
+		"electrodeHeatingValue":{
+			"$ref": "#/definitions/electrodeHeatingValue"
+		}, 
+		"otherFuels": {
+		  "$ref": "#/definitions/otherFuels"
+		},
+		"electricityInput": {
+		  "$ref": "#/definitions/electricityInput"
+		}
+		
+    },
+	"definitions":
+	{
+		"naturalGasHeatInput": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "natural Gas Heat Input",
+			  "examples": [1, 1.5, 2.0]
+		},
+		"coalCarbonInjection": {
+			"type": "number",
+			"minimum": 0,
+			"title": "coal Carbon Injection",
+			"examples": [2100, 2150.3, 4]
+		},
+		"coalHeatingValue": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "coal Heating Value",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"electrodeUse": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "electrode Use",
+			  "examples": [1, 1.5, 2.0]
+		},
+		"electrodeHeatingValue": {
+			"type": "number",
+			"minimum": 0,
+			"title": "electrode Heating Value",
+			"examples": [2100, 2150.3, 4]
+		},
+		"otherFuels": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "other Fuels",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"electricityInput": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "electricity Input",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		}
+		
+	}
+}
