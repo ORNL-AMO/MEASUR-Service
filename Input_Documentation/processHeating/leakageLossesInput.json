@@ -1,0 +1,72 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": " Leakage Losses Input",
+  "description": "MEASUR Leakage Losses Input",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "draftPressure",
+    "openingArea",
+    "leakageGasTemperature",
+    "ambientTemperature",
+    "coefficient",
+    "specificGravity",
+    "correctionFactor"
+  ],
+
+
+  "properties": {
+		"draftPressure": {
+			"$ref": "#/definitions/draftPressure"
+		},
+	    "openingArea": {
+			"$ref": "#/definitions/openingArea"
+	    },
+	    "leakageGasTemperature": {
+	    	"$ref": "#/definitions/leakageGasTemperature"
+	    },
+	    "ambientTemperature": {
+	    	"$ref": "#/definitions/ambientTemperature"
+	    },
+	    "coefficient": {
+	    	"$ref": "#/definitions/coefficient"
+	    }, 
+	    "specificGravity": {
+	    	"$ref": "#/definitions/specificGravity"
+	    }, 
+	    "correctionFactor": {
+	    	"$ref": "#/definitions/correctionFactor"
+	    }
+	},
+	"definitions":
+	{
+		"draftPressure": {
+			"type": "number"
+		},
+	    "openingArea": {
+	    	"type": "number",
+	    	"minimum": 0
+
+	    },
+	    "leakageGasTemperature": {
+	    	"type": "number"
+	    },
+	    "ambientTemperature": {
+	    	"type": "number"
+	    },
+	    "coefficient": {
+	    	"type": "number",
+	    
+	    },
+	    "specificGravity": {
+	    	"type": "number",
+	    
+	    },
+	    "correctionFactor": {
+	    	"type": "number",
+	    
+	    }
+	}
+}

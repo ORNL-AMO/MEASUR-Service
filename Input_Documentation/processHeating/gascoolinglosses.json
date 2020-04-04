@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Gas Cooling Losses",
+  "description": "MEASUR Gas Cooling Losses",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "flowRate",
+    "initialTemperature",
+    "finalTemperature",
+    "specificHeat",
+    "correctionFactor"
+  ],
+
+
+  "properties": {
+		"flowRate": {
+			"$ref": "#/definitions/flowRate"
+		},
+	    "initialTemperature": {
+			"$ref": "#/definitions/initialTemperature"
+	    },
+	    "finalTemperature": {
+	    	"$ref": "#/definitions/finalTemperature"
+	    },
+	    "specificHeat": {
+	    	"$ref": "#/definitions/specificHeat"
+	    },
+	    "correctionFactor": {
+	    	"$ref": "#/definitions/correctionFactor"
+	    }
+	},
+	"definitions":
+	{
+		"flowRate": {
+			"type": "number"
+		},
+	    "initialTemperature": {
+	    	"type": "number",
+	    	"minimum": 0,
+	   
+	    },
+	    "finalTemperature": {
+	    	"type": "number"
+	    },
+	    "specificHeat": {
+	    	"type": "number"
+	    },
+	    "correctionFactor": {
+	    	"type": "number",
+	    	
+	    }
+	}
+}

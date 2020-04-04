@@ -1,0 +1,48 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Water Cooling Losses",
+  "description": "MEASUR Water Cooling Losses ",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "flowRate",
+    "inletTemperature",
+    "outletTemperature",
+    "correctionFactor"
+  ],
+
+
+  "properties": {
+		"flowRate": {
+			"$ref": "#/definitions/flowRate"
+		},
+	    "inletTemperature": {
+			"$ref": "#/definitions/inletTemperature"
+	    },
+	    "outletTemperature": {
+	    	"$ref": "#/definitions/outletTemperature"
+	    },
+	    "correctionFactor": {
+	    	"$ref": "#/definitions/correctionFactor"
+	    },
+	},
+	"definitions":
+	{
+		"flowRate": {
+			"type": "number"
+		},
+	    "inletTemperature": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	
+	    },
+	    "outletTemperature": {
+	    	"type": "number"
+	    },
+	    "correctionFactor": {
+	    	"type": "number"
+	    }
+	}
+}
