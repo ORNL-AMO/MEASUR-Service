@@ -23,40 +23,58 @@
 		"density": {
 			"$ref": "#/definitions/density"
 		},
-	    "inletTemperature": {
+		"inletTemperature": {
 			"$ref": "#/definitions/inletTemperature"
-	    },
-	    "outletTemperature": {
-	    	"$ref": "#/definitions/outletTemperature"
-	    },
-	    "specificHeat":{
-		"$ref": "#/definitions/specificHeat"
 		},
-	    "correctionFactor": {
-	    	"$ref": "#/definitions/correctionFactor"
-	    },
+		"outletTemperature": {
+			"$ref": "#/definitions/outletTemperature"
+		},
+		"specificHeat": {
+			"$ref": "#/definitions/specificHeat"
+		},
+		"correctionFactor": {
+			"$ref": "#/definitions/correctionFactor"
+		}
+
+		
 	},
-	"definitions":
-	{
+
+
+
+	"definitions":{
+
 		"flowRate": {
 			"type": "number"
 		},
 		"density": {
 			"type": "number"
 		},
-	    "inletTemperature": {
-	    	"type": "number",
-	    	"minimum": 0,
-	    	
-	    },
-	    "outletTemperature": {
-	    	"type": "number"
-	    },
-	   "specificHeat": {
-	    	"type": "number"
-	    },
-	    "correctionFactor": {
-	    	"type": "number"
-	    }
+
+		"inletTemperature": {
+			"type": "number"
+		},
+
+		"outletTemperature": {
+			"type": "number"
+		},
+		"specificHeat": {
+			"type": "number"
+		},
+		"correctionFactor": {
+			"type": "number"
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+
 	}
 }

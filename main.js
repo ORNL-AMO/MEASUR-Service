@@ -37,7 +37,9 @@ var atmosphere = require("./src/processHeating/atmosphere.js");
 var gasCoolingLosses = require('./src/processHeating/gasCoolingLosses.js');
 var leakageLosses = require('./src/processHeating/leakageLosses.js');
 var liquidCoolingLosses = require('./src/processHeating/liquidCoolingLosses.js');
-var waterCoolingLosser=require('./src/processHeating/waterCoolingLosser.js');
+var waterCoolingLosses=require('./src/processHeating/waterCoolingLosses.js');
+
+
 
 
 

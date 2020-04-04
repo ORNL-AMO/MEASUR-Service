@@ -9,11 +9,11 @@ exports.CalculateWaterCoolingLosses =function(req, res)
 	var v = new Validator();
 	var schema = JSON.parse(fs.readFileSync(inputDirectory+"/waterCoolingLossesInput.json"));
 
-	var liquidCoolingLosses = {
-	flowRate: parseFloat(req.query.motorPhase),
-	density: parseFloat(req.query.supplyVoltage),
-	outletTemperature: parseFloat(req.query.avgCurrent),
-	correctionFactor: parseFloat(req.query.powerFactor),
+	var waterCoolingLosses = {
+	flowRate: parseFloat(req.query.flowRate),
+	density: parseFloat(req.query.density),
+	outletTemperature: parseFloat(req.query.outletTemperature),
+	correctionFactor: parseFloat(req.query.correctionFactor),
 	};
 	
 	var value = v.validate(waterCoolingLosses, schema);

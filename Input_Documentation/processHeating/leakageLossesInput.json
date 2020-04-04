@@ -18,37 +18,37 @@
 
 
   "properties": {
+
 		"draftPressure": {
 			"$ref": "#/definitions/draftPressure"
 		},
-	    "openingArea": {
+	   	 "openingArea": {
 			"$ref": "#/definitions/openingArea"
-	    },
-	    "leakageGasTemperature": {
-	    	"$ref": "#/definitions/leakageGasTemperature"
-	    },
-	    "ambientTemperature": {
-	    	"$ref": "#/definitions/ambientTemperature"
-	    },
-	    "coefficient": {
-	    	"$ref": "#/definitions/coefficient"
-	    }, 
-	    "specificGravity": {
-	    	"$ref": "#/definitions/specificGravity"
-	    }, 
-	    "correctionFactor": {
-	    	"$ref": "#/definitions/correctionFactor"
-	    }
+	  	},
+	   	 "leakageGasTemperature": {
+	  	  	"$ref": "#/definitions/leakageGasTemperature"
+	   	},
+	    	"ambientTemperature": {
+	    		"$ref": "#/definitions/ambientTemperature"
+	    	},
+	    	"coefficient": {
+	    		"$ref": "#/definitions/coefficient"
+	    	}, 
+	   	 "specificGravity": {
+	    		"$ref": "#/definitions/specificGravity"
+	   	 }, 
+	   	 "correctionFactor": {
+	    		"$ref": "#/definitions/correctionFactor"
+	  	  }
 	},
 	"definitions":
 	{
 		"draftPressure": {
 			"type": "number"
-		},
+			},
 	    "openingArea": {
 	    	"type": "number",
 	    	"minimum": 0
-
 	    },
 	    "leakageGasTemperature": {
 	    	"type": "number"
@@ -57,16 +57,15 @@
 	    	"type": "number"
 	    },
 	    "coefficient": {
-	    	"type": "number",
+	    	"type": "number"
 	    
 	    },
 	    "specificGravity": {
-	    	"type": "number",
+	    	"type": "number"
 	    
 	    },
 	    "correctionFactor": {
-	    	"type": "number",
-	    
+	    	"type": "number"
 	    }
 	}
 }
