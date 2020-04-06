@@ -1,0 +1,98 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Atmosphere",
+  "description": "MEASUR atmosphere ",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "emissivity",
+    "thickness",
+    "ratio",
+    "ambientTemperature",
+    "insideTemperature",
+    "percentTimeOpen",
+    "viewFactor"
+  ],
+
+
+  "properties": {
+	"emissivity": {
+			"$ref": "#/definitions/emissivity"
+		},
+	    "thickness": {
+			"$ref": "#/definitions/thickness"
+	    },
+	    "ratio": {
+	    	"$ref": "#/definitions/ratio"
+	    },
+	    "ambientTemperature": {
+	    	"$ref": "#/definitions/ambientTemperature"
+	    },
+	    "insideTemperature": {
+	    	"$ref": "#/definitions/insideTemperature"
+	    },
+	    "percentTimeOpen":{
+		"$ref": "#/definitions/percentTimeOpen"
+	    },
+	    "viewFactor":{
+		"$ref": "#/definitions/viewFactor"
+	    },
+	    "length":{
+		"$ref": "#/definitions/length"
+	    },
+	    "width":{
+		"$ref": "#/definitions/width"	
+	    },
+	    "diameter":{
+		"$ref": "#/definitions/diameter"
+	    }
+	},
+	"definitions":
+	{
+		"emissivity": {
+			"type": "number"
+		},
+	    "thickness": {
+	    	"type": "number",
+	    	"minimum": 0
+	    	
+	    },
+	    "ratio": {
+	    	"type": "number",
+		"minimum":0,
+		"maximum":1
+	    },
+	    "ambientTemperature": {
+	    	"type": "number",
+		"minimum":"$gte : $insideTemperature"
+	    },
+	    "insideTemperature": {
+	    	"type": "number"
+	    
+	    },
+	     "percentTimeOpen": {
+	    	"type": "number",
+		"minimum":0,
+		"maximum":100
+	    },
+	     "viewFactor": {
+	    	"type": "number",
+		"minimum":0
+	    },
+	     "length": {
+	    	"type": "number",
+		"minimum":0
+	    },
+	     "width": {
+	    	"type": "number",
+		"minimum":0
+	    },
+	    "diameter": {
+	    	"type": "number",
+		"minimum":0
+	    },
+		
+	}
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "WallLosses",
+  "description": "MEASUR wall Losses ",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "surfaceArea",
+    "ambientTemperature",
+    "surfaceTemperature",
+    "windVelocity",
+    "surfaceEmissivity",
+    "conditionFactor",
+    "correctionFactor"
+  ],
+
+
+  "properties": {
+		"surfaceArea": {
+			"$ref": "#/definitions/surfaceArea"
+		},
+	    "ambientTemperature": {
+			"$ref": "#/definitions/ambientTemperature"
+	    },
+	    "surfaceTemperature": {
+	    	"$ref": "#/definitions/surfaceTemperature"
+	    },
+	    "windVelocity": {
+	    	"$ref": "#/definitions/windVelocity"
+	    },
+	    "surfaceEmissivity": {
+	    	"$ref": "#/definitions/surfaceEmissivity"
+	    },
+	    "conditionFactor": {
+	    	"$ref": "#/definitions/conditionFactor"
+	    },
+	    "correctionFactor": {
+	    	"$ref": "#/definitions/correctionFactor"
+	    }
+	},
+	"definitions":
+	{
+		"surfaceArea": {
+			"type": "number",
+		
+		},
+	    "ambientTemperature": {
+	    	"type": "number",
+		"minimum":"$gte: $surfaceTemperature"
+	    	
+	    },
+	    "surfaceTemperature": {
+	    	"type": "number"
+	    },
+	    "windVelocity": {
+	    	"type": "number",
+		"minimum":0
+	    },
+	    "surfaceEmissivity": {
+	    	"type": "number",
+		"maximum":1,
+		"minimum":0
+	    
+	    },
+	    "conditionFactor": {
+	    	"type": "number",
+		"minimum":0
+	    },
+	    "correctionFactor": {
+	    	"type": "number"
+	    }	
+	}
+}

@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Fixture",
+  "description": "MEASUR fixture ",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "specificHeat",
+    "feedRate",
+    "initialTemperature",
+    "finalTemperature",
+    "correctionFactor"
+  ],
+
+
+  "properties": {
+		"specificTemperature": {
+			"$ref": "#/definitions/specificTemperature"
+		},
+	    "feedRate": {
+			"$ref": "#/definitions/feedRate"
+	    },
+	    "initialTemperature": {
+	    	"$ref": "#/definitions/initialTemperature"
+	    },
+	    "finalTemperature": {
+	    	"$ref": "#/definitions/finalTemperature"
+	    },
+	    "correctionFactor": {
+	    	"$ref": "#/definitions/correctionFactor"
+	    }
+	},
+	"definitions":
+	{
+		"specificTemperature": {
+			"type": "number",
+			"minimum":0
+		},
+	    "feedRate": {
+	    	"type": "number",
+	    	"minimum": 0
+	    	
+	    },
+	    "initialTemperature": {
+	    	"type": "number"
+	    },
+	    "finalTemperature": {
+	    	"type": "number"
+	    },
+	    "correctionFactor": {
+	    	"type": "number"
+	    
+	    }
+	}
+}
