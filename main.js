@@ -20,6 +20,7 @@ var o2Enrichment = require('./src/furnace/O2Enrichment.js');
 
 var pumpachievableefficiency = require("./src/pump/pumpachievableefficiency.js");
 var fan = require("./src/fan/fan.js");
+var fan203 = require('./src/fan/fan203.js');
 var router = express.Router();
 
 var motor = require('./src/motor/motorPerformance.js');
@@ -89,6 +90,11 @@ router.get('/fan/assessment',function(req,res)
 router.get('/fan/modifiedAssessment',function(req,res)
 {
 	fan.CalculateFanModified(req,res);
+});
+
+router.get('/fan/CalculateFanTraverseAnalysis', function(req, res)
+{
+	fan203.CalculateFanTraverseAnalysis(req,res);
 });
 
 https.createServer(options, app).listen(port);
