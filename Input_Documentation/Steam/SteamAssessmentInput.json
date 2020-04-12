@@ -1,0 +1,350 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "MEASUR Service Steam Assessment Inputs",
+  "description": "MEASUR Service Steam Assessment Inputs",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+  	"baselinePowerDemand",
+  	"isBaselineCalc",
+  	"operationsInput",
+  	"boilerInput",
+  	"headerInput",
+  	"turbineInput"
+  ],
+
+
+  "properties": {
+  	"baselinePowerDemand": {
+  		"$ref": "#/definitions/baselinePowerDemand"
+  	},
+  	"isBaselineCalc": {
+  		"$ref": "#/definitions/isBaselineCalc"
+  	},
+  	"operationsInput": {
+  		"$ref": "#/definitions/operationsInput"
+  	},
+  	"boilerInput": {
+  		"$ref": "#/definitions/boilerInput"
+  	},
+  	"turbineInput": {
+  		"$ref": "#/definitions/turbineInput"
+  	}
+  	
+   },
+	
+	"definitions": {
+		"baselinePowerDemand": {
+			"type": "number"
+		},
+		"isBaselineCalc": {
+			"type": "boolean"
+		},
+		"operationsInput": 
+		{
+			"type": "object",
+			"properties": {
+				"sitePowerImport": {
+			  		"type": "number"
+			  	},
+			  	"makeUpWaterTemperature": {
+			  		"type": "number",
+			  		"min": 40,
+			  		"max": 160
+			  	},
+			  	"operatingHoursPerYear": {
+			  		"type": "number",
+			  		"min": 0,
+			  		"max": 8760
+			  	},
+			  	"fuelCosts": {
+			  		"type": "number",
+			  		"min": 0
+			  	},
+			  	"electricityCosts": {
+			  		"type": "number",
+			  		"min": 0
+			  	},
+			  	"makeUpWaterCosts": {
+			  		"type": "number",
+			  		"min": 0
+			  	}
+			}
+		},
+		
+	  	"boilerInput": 
+	  	{
+	  		"type": "object",
+	  		"properties": {
+				  	"fuelType": {
+				  		"type": "number",
+				  		"min": 0
+				  	},
+				  	"fuel": {
+				  		"type": "number",
+				  		"min": 0
+				  	},
+				  	"combustionEfficiency": {
+				  		"type": "number",
+				  		"min": 50,
+				  		"max": 100
+				  	},
+				  	"blowdownRate": {
+				  		"type": "number",
+				  		"min": 0,
+				  		"max": 25
+				  	},
+				  	"blowdownFlashed": {
+				  		"type": "boolean"
+				  	},
+				  	"preheatMakeupWater": {
+				  		"type": "boolean"
+				  	},
+				  	"steamTemperature": {
+				  		"type": "number"
+
+				  	},
+				  	"daeratorVentRate": {
+				  		"type": "number",
+				  		"min": 0,
+				  		"max": 10
+				  	},
+				  	"daeratorPressure": {
+				  		"type": "number",
+				  		"max": 3170
+				  	},
+				  	"approachTemperature": {
+				  		"type": "number"
+				  	}
+				  }
+		},
+		 "headerInput": {
+		 	"type": "object",
+		 	"properties": {
+		 		"highPressureHeader": {
+		 			"type": "object",
+		 			"properties": 
+		 			{
+			 			"pressure": {
+			 				"type": "number"
+			 			},
+				  		"processSteamUsage": {
+				  			"type": "number",
+				  			"min": 0
+				  		},
+				  		"condensationRecoveryRate": {
+				  			"type": "number"
+				  		},
+				  		"heatLoss": {
+				  			"type": "number"
+				  		},
+				  		"condensateReturnTemperature": {
+				  			"type": "number"
+				  		},
+				  		"flashCondensateReturn": {
+				  			"type": "boolean"
+				  		}
+				  	}
+			  	},
+			  	"mediumPressureHeader": {
+			  		"type": "object",
+			  		"properties": 
+			  		{
+				  		"pressure": {
+			 				"type": "number"
+			 			},
+				  		"processSteamUsage": {
+				  			"type": "number",
+				  			"min": 0
+				  		},
+				  		"condensationRecoveryRate": {
+				  			"type": "number"
+				  		},
+				  		"heatLoss": {
+				  			"type": "number"
+				  		},
+				  		"condensateReturnTemperature": {
+				  			"type": "number"
+				  		},
+				  		"flashCondensateReturn": {
+				  			"type": "boolean"
+				  		},
+				  		"desuperheatSteamTheNextHighest": {
+				  			"type": "number"
+				  		},
+			  			"desuperheatSteamTemperature": {
+			  				"type": "number"
+			  			}
+			  		}
+			  	},
+			  	"lowPressureHeader": {
+			  		"type": "object",
+			  		"properties": 
+			  		{
+				  		"pressure": {
+			 				"type": "number"
+			 			},
+				  		"processSteamUsage": {
+				  			"type": "number",
+				  			"min": 0
+				  		},
+				  		"condensationRecoveryRate": {
+				  			"type": "number"
+				  		},
+				  		"heatLoss": {
+				  			"type": "number"
+				  		},
+				  		"condensateReturnTemperature": {
+				  			"type": "number"
+				  		},
+				  		"flashCondensateReturn": {
+				  			"type": "boolean"
+				  		},
+				  		"desuperheatSteamTheNextHighest": {
+				  			"type": "number"
+				  		},
+			  			"desuperheatSteamTemperature": {
+			  				"type": "number"
+			  			}
+			  		}
+			  	}
+		 	}
+		 },
+	  	"turbineInput": {
+	  		"type": "object",
+	  		"properties": {
+		  		"highToLowTurbine": { 
+					"type": "object",
+					"properties": {
+						"isentropicEfficiency": {
+							"type": "number",
+							"min": 0,
+							"max": 100
+						},
+				  		"generationEfficiency": {
+				  			"type": "number",
+							"min": 0,
+							"max": 100
+				  		},
+				  		"condenserPressure": {
+				  			"type": "number",
+							"min": 0
+				  		},
+				  		"operationType": {
+				  			"type": "integer",
+				  			"min": 0,
+				  			"max": 1
+				  		},
+				  		"operationValue1": {
+				  			"type": "number"
+				  		},
+				  		"operationValue2": {
+				  			"type": "number"
+				  		},
+				  		"useTurbine": {
+				  			"type": "boolean"
+				  		}
+					}
+				},
+	  			"highToMediumTurbine": { 
+					"type": "object",
+					"properties": {
+						"isentropicEfficiency": {
+							"type": "number",
+							"min": 0,
+							"max": 100
+						},
+				  		"generationEfficiency": {
+				  			"type": "number",
+							"min": 0,
+							"max": 100
+				  		},
+				  		"condenserPressure": {
+				  			"type": "number",
+							"min": 0
+				  		},
+				  		"operationType": {
+				  			"type": "integer",
+				  			"min": 0,
+				  			"max": 1
+				  		},
+				  		"operationValue1": {
+				  			"type": "number"
+				  		},
+				  		"operationValue2": {
+				  			"type": "number"
+				  		},
+				  		"useTurbine": {
+				  			"type": "boolean"
+				  		}
+					}
+				},
+	  			"mediumToLowTurbine": { 
+		  			"type": "object",
+					"properties": {
+						"isentropicEfficiency": {
+							"type": "number",
+							"min": 0,
+							"max": 100
+						},
+				  		"generationEfficiency": {
+				  			"type": "number",
+							"min": 0,
+							"max": 100
+				  		},
+				  		"condenserPressure": {
+				  			"type": "number",
+							"min": 0
+				  		},
+				  		"operationType": {
+				  			"type": "integer",
+				  			"min": 0,
+				  			"max": 1
+				  		},
+				  		"operationValue1": {
+				  			"type": "number"
+				  		},
+				  		"operationValue2": {
+				  			"type": "number"
+				  		},
+				  		"useTurbine": {
+				  			"type": "boolean"
+				  		}
+		  			}
+		  		},
+		  		"condensingTurbine": {
+		  			"type": "object",
+					"properties": {
+						"isentropicEfficiency": {
+							"type": "number",
+							"min": 0,
+							"max": 100
+						},
+				  		"generationEfficiency": {
+				  			"type": "number",
+							"min": 0,
+							"max": 100
+				  		},
+				  		"condenserPressure": {
+				  			"type": "number",
+							"min": 0
+				  		},
+				  		"operationType": {
+				  			"type": "integer",
+				  			"min": 0,
+				  			"max": 1
+				  		},
+				  		"operationValue": {
+				  			"type": "number"
+				  		},
+				  		"useTurbine": {
+				  			"type": "boolean"
+				  		}
+		  			}
+		  		}
+	  		}
+		}
+	}
+}

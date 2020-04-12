@@ -22,6 +22,7 @@ var pumpachievableefficiency = require("./src/pump/pumpachievableefficiency.js")
 var fan = require("./src/fan/fan.js");
 var fan203 = require('./src/fan/fan203.js');
 var router = express.Router();
+var steam = require('./src/steam/SteamAssessment.js')
 
 var motor = require('./src/motor/motorPerformance.js');
 var motorNEMA = require('./src/motor/motorNEMA.js')
@@ -31,6 +32,10 @@ var motorEstFLA = require('./src/motor/motorEstFLA.js');
 router.get('/motor/motorEstFLA', function(req, res)
 {
 	motorEstFLA.CalculateMotorEstFLA(req, res);
+});
+router.get('/steam/SteamAssessment', function(req, res)
+{
+	steam.SteamBaseline(req, res);
 });
 
 
