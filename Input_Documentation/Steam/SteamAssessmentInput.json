@@ -121,7 +121,12 @@
 				  }
 		},
 		 "headerInput": {
-		 	"type": "object",
+			 "type": "object",
+			 "required": [
+				 "highPressureHeader",
+				 "mediumPressureHeader",
+				 "lowPressureHeader"
+			 ],
 		 	"properties": {
 		 		"highPressureHeader": {
 		 			"type": "object",
@@ -213,7 +218,13 @@
 		 	}
 		 },
 	  	"turbineInput": {
-	  		"type": "object",
+			"type": "object",
+			"required": [
+				"highToLowTurbine",
+				"highToMediumTurbine",
+				"mediumToLowTurbine",
+				"condensingTurbine"
+			], 
 	  		"properties": {
 		  		"highToLowTurbine": { 
 					"type": "object",
