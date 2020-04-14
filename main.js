@@ -1,13 +1,30 @@
+const http = require('http'); // for redirect only
 const https = require('https');
 const fs = require('fs');
 const options ={
 	key: fs.readFileSync('key.pem'),
 	cert: fs.readFileSync('cert.pem')
 };
-var express = require('express');
+var forceSSL = require('express-force-ssl');
 
+var express = require('express');
 var app = express();
 var port = process.env.port || 8080;
+
+var httpPort = process.env.httpport || 80
+
+var server = http.createServer(app);
+app.set('forceSSLOptions', {
+	enable301Redirects: true,
+	trustXFPHeader: false,
+	httpsPort: 8080,
+	sslRequiredMessage: 'SSL Required.'
+  });
+
+var unsecureServer = http.createServer(app);
+var secureServer = https.createServer(options, app);
+
+
 var psat = require("./node_modules/amo-tools-suite/build/Release/psat.node");
 
 var phast = require("./node_modules/amo-tools-suite/build/Release/phast.node");
@@ -43,9 +60,6 @@ router.get('/motor/motorNEMA', function(req, res)
 {
 	motorNEMA.CalculateMotorNEMA(req, res);
 });
-
-
-
 
 router.get('/motor/motorPerformance', function(req, res)
 {
@@ -96,7 +110,9 @@ router.get('/fan/CalculateFanTraverseAnalysis', function(req, res)
 {
 	fan203.CalculateFanTraverseAnalysis(req,res);
 });
-
-https.createServer(options, app).listen(port);
+app.use(forceSSL);
+secureServer.listen(port);
+server.listen(httpPort);
 app.use('/', router);
+
 console.log("Listening on port number: " + port +"!");
