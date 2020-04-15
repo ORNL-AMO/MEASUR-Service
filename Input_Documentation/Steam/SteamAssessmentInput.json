@@ -219,12 +219,6 @@
 		 },
 	  	"turbineInput": {
 			"type": "object",
-			"required": [
-				"highToLowTurbine",
-				"highToMediumTurbine",
-				"mediumToLowTurbine",
-				"condensingTurbine"
-			], 
 	  		"properties": {
 		  		"highToLowTurbine": { 
 					"type": "object",
