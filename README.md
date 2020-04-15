@@ -14,3 +14,5 @@ finally type in the terminal "node main.js" and that will run the server.
 To run the unit tests run "node main.js" and while the node server is running in another terminal run "npm test". 
 
 At the current moment with a self-signed certificate this will fail due to not accepting self-signed certificates. The code that needs to be added to the top of the unit tests.js file to prevent this is listed below but has not been committed due to not being as secure as the development team would like. The code is: "process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;"
+
+The set-up.sh shell script is set up to run the approved code to generate the openssl key and npm install to help set up the initial steps for the project.
