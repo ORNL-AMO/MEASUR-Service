@@ -1,0 +1,56 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Atmosphere",
+  "description": "MEASUR atmosphere ",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "inletTemperature",
+    "outletTemperature",
+    "flowRate",
+    "correctionFactor",
+    "specificHeat"
+  ],
+
+
+  "properties": {
+		"inletTemperature": {
+			"$ref": "#/definitions/inletTemperature"
+		},
+	    "outletTemperature": {
+			"$ref": "#/definitions/outletTemperature"
+	    },
+	    "flowRate": {
+	    	"$ref": "#/definitions/flowRate"
+	    },
+	    "correctionFactor": {
+	    	"$ref": "#/definitions/correctionFactor"
+	    },
+	    "specificHeat": {
+	    	"$ref": "#/definitions/specificHeat"
+	    }
+	},
+	"definitions":
+	{
+		"inletTemperature": {
+			"type": "number"
+		},
+	    "outletTemperature": {
+	    	"type": "number",
+	    	"minimum": 0
+	    	
+	    },
+	    "flowRate": {
+	    	"type": "number"
+	    },
+	    "correctionFactor": {
+	    	"type": "number"
+	    },
+	    "specificHeat": {
+	    	"type": "number"
+	    
+	    }
+	}
+}

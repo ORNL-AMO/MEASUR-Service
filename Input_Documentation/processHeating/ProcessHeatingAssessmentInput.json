@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Process Heating Assessment",
+  "description": "MEASUR Service Process Heating Assessment Input Data",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+  	"chargeMaterials",
+  	"flueGas",
+  	"operatingHours",
+  	"fuelCosts",
+  	"steamCosts",
+  	"electricityCosts"
+  ],
+
+
+  "properties": {
+		"chargeMaterials": {
+			"$ref": "#/definitions/chargeMaterials"
+		},
+  		"flueGas": {
+  			"$ref": "#/definitions/flueGas"
+  		},
+	  	"operatingHours": {
+	  		"$ref": "#/definitions/operatingHours"
+	  	},
+	  	"fuelCosts": {
+	  		"$ref": "#/definitions/fuelCosts"
+	  	},
+	  	"steamCosts": {
+	  		"$ref": "#/definitions/steamCosts"
+	  	},
+	  	"electricityCosts": {
+	  		"$ref": "#/definitions/electricityCosts"
+	  	}
+	},
+	"definitions":
+	{
+		"chargeMaterials": {
+			"type": "array",
+			"description": "contains a list of charge materials where the type is specified as the first parameter and the other parameters follow the same order as the listed input from the chargematerial"
+		},
+  		"flueGas": {
+  			"type": "array",
+  			"description": "contains a single list of flue gas data for either solid or gas. Type is declared first and then followed by the parameters listed in the input schema for that type of flue gas loss."
+  		},
+	  	"operatingHours": {
+	  		"type": "number",
+	  		"minimum": 0,
+	  		"maximum": 8760
+	  	},
+	  	"fuelCosts": {
+	  		"type": "number",
+	  		"minimum": 0
+	  	},
+	  	"steamCosts": {
+	  		"type": "number",
+	  		"minimum": 0
+	  	},
+	  	"electricityCosts": {
+	  		"type": "number",
+	  		"minimum": 0
+	  	}
+	}
+}

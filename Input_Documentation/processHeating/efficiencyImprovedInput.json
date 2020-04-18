@@ -1,0 +1,90 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Energy Equivalency Electric ",
+  "description": "MEASUR Service Efficiency Improved",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "currentFlueGasOxygen",
+    	"newFlueGasOxygen",
+	"currentFlueGasTemp",
+	"newFlueGasTemp",
+	"currentCombustionAirTemp",
+    	"newCombustionAirTemp",
+	"currentEnergyInput"
+  ],
+
+
+  "properties": {
+		"currentFlueGasOxygen": {
+		  "$ref": "#/definitions/currentFlueGasOxygen"
+		},
+		"newFlueGasOxygen":{
+			"$ref": "#/definitions/newFlueGasOxygen"
+		}, 
+		"currentFlueGasTemp": {
+		  "$ref": "#/definitions/currentFlueGasTemp"
+		},
+		"newFlueGasTemp": {
+		  "$ref": "#/definitions/newFlueGasTemp"
+		},
+		"currentCombustionAirTemp": {
+		  "$ref": "#/definitions/currentCombustionAirTemp"
+		},
+		"newCombustionAirTemp": {
+		  "$ref": "#/definitions/newCombustionAirTemp"
+		},
+		"currentEnergyInput": {
+		  "$ref": "#/definitions/currentEnergyInput"
+		}
+		
+    },
+	"definitions":
+	{
+		"currentFlueGasOxygen": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Current Flue Gas Oxygen",
+			  "examples": [1, 1.5, 2.0]
+		},
+		"newFlueGasOxygen": {
+			"type": "number",
+			"minimum": 0,
+			"title": "New Flue Gas Oxygen",
+			"examples": [2100, 2150.3, 4]
+		},
+		"currentFlueGasTemp": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Current Flue Gas Temp",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"newFlueGasTemp": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "New Flue Gas Temp",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"currentCombustionAirTemp": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Current Combustion Air Temp",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"newCombustionAirTemp": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "New Combustion Air Temp",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		},
+		"currentEnergyInput": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Current Energy Input",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		}
+		
+	}
+}
