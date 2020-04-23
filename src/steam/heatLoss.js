@@ -22,7 +22,7 @@ exports.CalculateHeatLoss =function(req, res)
 		res.json([value.errors]);
 		return;
 	}
-	var heat = ssmt.atmosphere(atmosphere);
+	var heat = ssmt.heatLoss(heatLoss);
 	res.json([heat]);
 }
 
