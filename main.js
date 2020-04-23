@@ -1,3 +1,4 @@
+//http redirect port was not able to be changed dynamically so if the port is changed for the https server will need to be changed in the code as listed below
 const http = require('http'); // for redirect only
 const https = require('https');
 const fs = require('fs');
@@ -11,13 +12,13 @@ var express = require('express');
 var app = express();
 var port = process.env.port || 8080;
 
-var httpPort = process.env.httpport || 80
+var httpPort = process.env.httpPort || 80
 
 var server = http.createServer(app);
 app.set('forceSSLOptions', {
 	enable301Redirects: true,
 	trustXFPHeader: false,
-	httpsPort: 8080,
+	httpsPort: 8080,//requires a change if the port run is not 8080
 	sslRequiredMessage: 'SSL Required.'
   });
 
@@ -115,4 +116,4 @@ secureServer.listen(port);
 server.listen(httpPort);
 app.use('/', router);
 
-console.log("Listening on port number: " + port +"!");
+console.log("Listening on port number: " + port +" for the https server and listening to " + httpPort+ " for the HTTP redirect server");
