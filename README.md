@@ -4,7 +4,7 @@ This API is a webservice to use for the AMO Tool Suite.  Dependencies for the su
 
     https://github.com/ORNL-AMO/AMO-Tools-Suite
 
-In order to run the service, use:
+In order to run the service, run:
 
     set-up.sh
 
