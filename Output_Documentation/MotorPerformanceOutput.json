@@ -1,0 +1,50 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"build_version": "v10.0.1-80-g9fa80308",
+	"title": "Estimate Full Load Amperes",
+	"description": "MEASUR Service Estimate Full Load Amperes Outputs",
+	"type": "object",
+	"additionalProperties": true,
+
+	"required": [
+		"efficiency",
+		"motor_current",
+		"motor_power_factor"
+	],
+
+
+	"properties": {
+	
+		"efficiency": {
+			"$ref": "#/definitions/efficiency"
+		},
+		
+		"motor_current": {
+			"$ref": "#/definitions/motor_current"
+		},
+		
+		"motor_power_factor": {
+			"$ref": "#/definitions/motor_power_factor"
+		}
+    },
+	
+	
+	"definitions":
+	{
+	
+		"efficiency": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"motor_current": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"motor_power_factor": {
+			"type": "number",
+			"minimum": 0
+		}
+	}
+}

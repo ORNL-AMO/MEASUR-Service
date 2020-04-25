@@ -1,0 +1,80 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"build_version": "v10.0.1-80-g9fa80308",
+	"title": "Pump Head Tool Suction Gauge Elevation",
+	"description": "MEASUR Service Pump Head Tool Suction Gauge Elevation Output Data",
+	"type": "object",
+	"additionalProperties": true,
+
+	"required": [
+	
+		"differentialElevationHead",
+		"differentialPressureHead",
+		"differentialVelocityHead",
+		"estimatedDischargeFrictionHead",
+		"estimatedSuctionFrictionHead",
+		"pumpHead"
+	],
+
+
+	"properties": {
+	
+		"differentialElevationHead": {
+		  "$ref": "#/definitions/differentialElevationHead"
+		},
+		
+		"differentialPressureHead": {
+		  "$ref": "#/definitions/differentialPressureHead"
+		},
+		
+		"differentialVelocityHead": {
+		  "$ref": "#/definitions/differentialVelocityHead"
+		},
+		
+		"estimatedDischargeFrictionHead": {
+		  "$ref": "#/definitions/estimatedDischargeFrictionHead"
+		},
+		
+		"estimatedSuctionFrictionHead": {
+		  "$ref": "#/definitions/estimatedSuctionFrictionHead"
+		},
+		
+		"pumpHead": {
+		  "$ref": "#/definitions/pumpHead"
+		}
+    },
+	
+	
+	"definitions": {
+	
+		"differentialElevationHead": {
+			"type": "number",
+			"minimum": 0,
+		},
+			
+		"differentialPressureHead": {
+			"type": "number",
+			"minimum": 0,
+		},
+			
+		"differentialVelocityHead": {
+			"type": "number",
+			"minimum": 0,
+		},
+			
+		"estimatedDischargeFrictionHead": {
+			"type": "number",
+			"minimum": 0,
+		},
+			
+		"estimatedSuctionFrictionHead": {
+			"type": "number",
+			"minimum": 0,
+		},
+			
+		"pumpHead": {
+			"type": "number",
+			"minimum": 0,
+		}
+	}
+}

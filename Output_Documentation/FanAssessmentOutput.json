@@ -1,0 +1,142 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"build_version": "v10.0.1-80-g9fa80308",
+	"title": "Fan Assessment Baseline",
+	"description": "MEASUR Service Fan Assessment Baseline Outputs",
+	"type": "object",
+	"additionalProperties": true,
+
+	"required": [
+	
+		"annualCost",
+		"annualEnergy",
+		"estimatedFLA",
+		"fanEfficiency",
+		"fanEnergyIndex",
+		"fanShaftPower",
+		"motorCurrent",
+		"motorEfficiency",
+		"motorRatedPower",
+		"motorShaftPower",
+		"motorPower",
+		"motorPowerFactor"
+	],
+
+
+	"properties": {
+	
+		"annualCost": {
+		  "$ref": "#/definitions/annualCost"
+		},
+		
+		"annualEnergy": {
+		  "$ref": "#/definitions/annualEnergy"
+		},
+		
+		"estimatedFLA": {
+		  "$ref": "#/definitions/estimatedFLA"
+		},
+		
+		"fanEfficiency": {
+		  "$ref": "#/definitions/fanEfficiency"
+		},
+		
+		"fanEnergyIndex": {
+		  "$ref": "#/definitions/fanEnergyIndex"
+		},
+		
+		"fanShaftPower": {
+		  "$ref": "#/definitions/fanShaftPower"
+		},
+		
+		"motorCurrent": {
+		  "$ref": "#/definitions/motorCurrent"
+		},
+		
+		"motorEfficiency": {
+		  "$ref": "#/definitions/motorEfficiency"
+		},
+		
+		"motorRatedPower": {
+		  "$ref": "#/definitions/motorRatedPower"
+		},
+		
+		"motorShaftPower": {
+		  "$ref": "#/definitions/motorShaftPower"
+		},
+		
+		"motorPower": {
+		  "$ref": "#/definitions/motorPower"
+		},
+		
+		"motorPowerFactor": {
+		  "$ref": "#/definitions/motorPowerFactor"
+		}
+    },
+	
+	
+	"definitions": {
+	
+		"annualCost": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Annual cost of service"
+		},
+		
+		"annualEnergy": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Annual energy of service"
+		},
+		
+		"estimatedFLA": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"fanEfficiency": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"fanEnergyIndex": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"fanShaftPower": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motorCurrent": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motorEfficiency": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motorRatedPower": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motorShaftPower": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motorPower": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motorPowerFactor": {
+			"type": "number",
+			"minimum": 0,
+		}
+	}
+}

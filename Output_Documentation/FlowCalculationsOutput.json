@@ -1,0 +1,49 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"build_version": "v10.0.1-80-g9fa80308",
+	"title": "MEASUR Service Flow Calcualtions Outputs",
+	"description": "MEASUR Service Flow Calculations Outputs",
+	"type": "object",
+	"additionalProperties": true,
+
+	"required": [
+		"flow",
+		"heatInput",
+		"totalFlow"
+	],
+
+
+	"properties": {
+	
+		"flow": {
+			"$ref": "#/definitions/flow"
+		},
+		
+		"heatInput": {
+			"$ref": "#/definitions/heatInput"
+		},
+		
+		"totalFlow": {
+			"$ref": "#/definitions/totalFlow"
+		}
+	},
+	
+	
+	"definitions": {
+	
+		"flow": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"heatInput": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"totalFlow": {
+			"type": "number",
+			"minimum": 0
+		}
+	}
+}
