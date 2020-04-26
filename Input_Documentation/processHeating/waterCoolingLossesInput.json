@@ -8,7 +8,7 @@
 
   "required": [
     "flowRate",
-    "inletTemperature",
+    "initialTemperature",
     "outletTemperature",
     "correctionFactor"
   ],
@@ -18,8 +18,8 @@
 		"flowRate": {
 			"$ref": "#/definitions/flowRate"
 		},
-	    "inletTemperature": {
-			"$ref": "#/definitions/inletTemperature"
+	    "initialTemperature": {
+			"$ref": "#/definitions/initialTemperature"
 	    },
 	    "outletTemperature": {
 	    	"$ref": "#/definitions/outletTemperature"
@@ -33,7 +33,7 @@
 		"flowRate": {
 			"type": "number"
 		},
-	    "inletTemperature": {
+	    "initialTemperature": {
 	    	"type": "number",
 	    	"minimum": 0
 	    	

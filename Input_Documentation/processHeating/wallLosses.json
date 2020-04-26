@@ -40,15 +40,14 @@
 	    	"$ref": "#/definitions/correctionFactor"
 	    }
 	},
-	"definitions":
+"definitions":
 	{
 		"surfaceArea": {
-			"type": "number",
+			"type": "number"
 		
 		},
 	    "ambientTemperature": {
-	    	"type": "number",
-		"minimum":"$gte: $surfaceTemperature"
+	    	"type": "number"
 	    	
 	    },
 	    "surfaceTemperature": {
@@ -56,20 +55,21 @@
 	    },
 	    "windVelocity": {
 	    	"type": "number",
-		"minimum":0
+            "minimum":0
 	    },
 	    "surfaceEmissivity": {
 	    	"type": "number",
-		"maximum":1,
-		"minimum":0
+            "maximum":1,
+            "minimum":0
 	    
 	    },
 	    "conditionFactor": {
 	    	"type": "number",
-		"minimum":0
+            "minimum":0
 	    },
 	    "correctionFactor": {
 	    	"type": "number"
 	    }	
 	}
+
 }

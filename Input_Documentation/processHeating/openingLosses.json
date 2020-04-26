@@ -61,12 +61,10 @@
 	    },
 	    "ratio": {
 	    	"type": "number",
-		"minimum":0,
-		"maximum":1
+		"minimum":0
 	    },
 	    "ambientTemperature": {
-	    	"type": "number",
-		"minimum":"$gte : $insideTemperature"
+	    	"type": "number"
 	    },
 	    "insideTemperature": {
 	    	"type": "number"
@@ -92,7 +90,7 @@
 	    "diameter": {
 	    	"type": "number",
 		"minimum":0
-	    },
+	    }
 		
 	}
 }

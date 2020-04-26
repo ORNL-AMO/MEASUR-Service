@@ -39,8 +39,7 @@
 		},
 	    "supplyVoltage": {
 	    	"type": "number",
-	    	"minimum": 0,
-	    	"maximum": 480
+	    	"minimum": 0
 	    },
 	    "avgCurrent": {
 	    	"type": "number"

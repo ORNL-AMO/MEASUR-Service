@@ -10,11 +10,11 @@ exports.CalculateAtmosphere =function(req, res)
 	var schema = JSON.parse(fs.readFileSync(inputDirectory+"/atmosphereInput.json"));
 
 	var atmosphere = {
-	inletTemperature: parseFloat(req.query.motorPhase),
-	outletTemperature: parseFloat(req.query.supplyVoltage),
-	flowRate: parseFloat(req.query.avgCurrent),
-	correctionFactor: parseFloat(req.query.powerFactor),
-	specificHeat: parseFloat(req.query.operatingTime),
+		inletTemperature: parseFloat(req.query.inletTemperature),
+		outletTemperature: parseFloat(req.query.outletTemperature),
+		flowRate: parseFloat(req.query.flowRate),
+		correctionFactor: parseFloat(req.query.correctionFactor),
+		specificHeat: parseFloat(req.query.specificHeat)
 	};
 	
 	var value = v.validate(atmosphere, schema);
