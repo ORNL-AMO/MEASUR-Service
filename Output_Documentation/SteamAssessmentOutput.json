@@ -7,52 +7,111 @@
 	"additionalProperties": true,
 
 	"required": [
-		"boilerOutput",
-		"deaeratorOutput",
-		"highPressureSteamHeatLoss",
-		"operationsOutput"
+		"results"
+	],
 
 
 	"properties": {
-	
-		"boilerOutput": {
-			"$ref": "#/definitions/boilerOutput"
-		},
-		
-		"deaeratorOutput": {
-			"$ref": "#/definitions/deaeratorOutput"
-		},
-		
-		"highPressureSteamHeatLoss": {
-			"$ref": "#/definitions/highPressureSteamHeatLoss"
-		},
-		
-		"operationsOutput": {
-			"$ref": "#/definitions/operationsOutput"
+		"results" :{
+			"$ref": "#/definitions/results"
 		}
 	},
 	
 	
 	"definitions": {
-	
-		"boilerOutput": {
-			"type": "number",
-			"minimum": 0
-		},
-		
-		"deaeratorOutput": {
-			"type": "number",
-			"minimum": 0
-		},
-		
-		"highPressureSteamHeatLoss": {
-			"type": "number",
-			"minimum": 0
-		},
-		
-		"operationsOutput": {
-			"type": "number",
-			"minimum": 0
+		"results": {
+			"type": "object",
+			"properties":
+			{
+				"boilerOutput": {
+				"type": "object",
+				},
+			
+				"deaeratorOutput": {
+					"type": "object"
+				},
+			
+				"highPressureSteamHeatLoss": {
+					"type": "object"
+				},
+				"highPressureCondensate": {
+					"type": "object"
+				},
+				"highPressureHeaderSteam": {
+					"type": "object"
+				},
+				"combinedCondensate": {
+					"type": "object"
+				},
+				"returnCondensate": {
+					"type": "object"
+				},
+				"makeupWater": {
+					"type": "object"
+				},
+				"heatExchanger": {
+					"type": "object"
+				},
+				"makeupWaterAndCondensate": {
+					"type": "object"
+				},
+				"highPressureProcessSteamUsage": {
+					"type": "object"
+				},
+				"mediumPressureProcessSteamUsage": {
+					"type": "object"
+				},
+				"lowPressureProcessSteamUsage": {
+					"type": "object"
+				},
+				"condensingTurbine": {
+					"type": "object"
+				},
+				"condensingTurbineIdeal": {
+					"type": "object"
+				},
+				"highPressureToMediumPressureTurbine": {
+					"type": "object"
+				},
+				"highPressureToMediumPressureTurbineIdeal": {
+					"type": "object"
+				},
+				"highPressureToLowPressureTurbine": {
+					"type": "object"
+				},
+				"highPressureToLowPressureTurbineIdeal": {
+					"type": "object"
+				},
+				"mediumPressureHeaderSteam": {
+					"type": "object"
+				},
+				"mediumPressureSteamHeatLoss": {
+					"type": "object"
+				},
+				"mediumPressureCondensate": {
+					"type": "object"
+				},
+				"mediumPressureToLowPressureTurbine": {
+					"type": "object"
+				},
+				"mediumPressureToLowPressureTurbineIdeal": {
+					"type": "object"
+				},
+				"highPressureToMediumPressurePrv": {
+					"type": "object"
+				},
+				"blowdownFlashTank": {
+					"type": "object"
+				},
+				"condensateFlashTank": {
+					"type": "object"
+				},
+				"operationsOutput": {
+					"type": "object"
+				}
+
+			}
 		}
+		
 	}
 }
