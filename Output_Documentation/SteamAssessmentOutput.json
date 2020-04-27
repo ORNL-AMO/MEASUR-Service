@@ -1,0 +1,58 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"build_version": "v10.0.1-80-g9fa80308",
+	"title": "Steam Assessment Outputs",
+	"description": "MEASUR Service Steam Assessment Outputs",
+	"type": "object",
+	"additionalProperties": true,
+
+	"required": [
+		"boilerOutput",
+		"deaeratorOutput",
+		"highPressureSteamHeatLoss",
+		"operationsOutput"
+
+
+	"properties": {
+	
+		"boilerOutput": {
+			"$ref": "#/definitions/boilerOutput"
+		},
+		
+		"deaeratorOutput": {
+			"$ref": "#/definitions/deaeratorOutput"
+		},
+		
+		"highPressureSteamHeatLoss": {
+			"$ref": "#/definitions/highPressureSteamHeatLoss"
+		},
+		
+		"operationsOutput": {
+			"$ref": "#/definitions/operationsOutput"
+		}
+	},
+	
+	
+	"definitions": {
+	
+		"boilerOutput": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"deaeratorOutput": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"highPressureSteamHeatLoss": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"operationsOutput": {
+			"type": "number",
+			"minimum": 0
+		}
+	}
+}
