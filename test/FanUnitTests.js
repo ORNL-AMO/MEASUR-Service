@@ -2,7 +2,7 @@
 var expect = require('chai').expect;
 var request = require('request');
 
-process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+
 
 it('Baseline Fan Assessment', function(done)
 {

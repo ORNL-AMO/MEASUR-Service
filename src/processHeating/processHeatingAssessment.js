@@ -4,6 +4,9 @@ var fs = require('fs');
 var inputDirectory = './Input_Documentation/processHeating';
 var Validator = require('jsonschema').Validator;
 
+var globalErrors = [];
+
+
 exports.BaseLineAssessment =function(req, res)
 {
 	var v = new Validator();
@@ -33,18 +36,16 @@ exports.BaseLineAssessment =function(req, res)
 		return;
 	}
 	var output = {
-		//EnergyUsed: 0,
         ChargeMaterials: 0,
 		HeatingValue: 0,
-		//FuelUsed: 0,
 		EnergyIntensityforChargeMaterials: 0,
-        atmosphereLosses: Atmosphere(req, res),
-        auxilaryPowerLosses: AuxiliaryPowerLoss(req, res),
-        leakageLosses: LeakageLoss(req, res),
-        fixtureLosses: FixtureLoss(req, res),
-        wallLosses: WallLoss(req, res),
-        openingLosses: OpeningLoss(req, res),
-        coolingLosses: CoolingLoss(req, res),
+        atmosphereLosses: Atmosphere(req),
+        auxiliaryPowerLosses: AuxiliaryPowerLoss(req),
+        leakageLosses: LeakageLoss(req),
+        fixtureLosses: FixtureLoss(req),
+        wallLosses: WallLoss(req),
+        openingLosses: OpeningLoss(req),
+        coolingLosses: CoolingLoss(req),
         flueGasLosses: 0,
         totalLosses: 0,
         grossHeatInput: 0
@@ -134,13 +135,18 @@ exports.BaseLineAssessment =function(req, res)
     
     
     
-    output.totalLosses = output.ChargeMaterials + output.atmosphereLosses + output.auxilaryPowerLosses + output.leakageLosses + output.fixtureLosses;
+    output.totalLosses = output.ChargeMaterials + output.atmosphereLosses + output.auxiliaryPowerLosses + output.leakageLosses + output.fixtureLosses;
     
     output.grossHeatInput = output.totalLosses + output.flueGasLosses;
     
     //console.log(output.totalLosses);
     
-	res.json([output]);
+    if(globalErrors != "")
+        res.json(globalErrors);
+    else  
+        res.json([output]);
+    
+    globalErrors = [];
 }
 
 
@@ -196,24 +202,26 @@ function TestJSON(value)
 
 
 //***************************************************************************
-function Atmosphere (req, res)
+function Atmosphere(req)
 {   
+    
+    if(req.query.atmosphereLossObject == undefined)
+        return 0;
+    else if(!TestJSON(req.query.atmosphereLossObject))
+    {
+        globalErrors.push("The atmosphereLossObject was not passed in as a JSON object.");
+        return 0;
+    }
+    
     var v = new Validator();
 	var schema = JSON.parse(fs.readFileSync(inputDirectory+"/atmosphereInput.json"));
+	var atmosphere = JSON.parse(req.query.atmosphereLossObject);
 
-	var atmosphere = {
-        inletTemperature: parseFloat(req.query.inletTemperature),
-        outletTemperature: parseFloat(req.query.outletTemperature),
-        flowRate: parseFloat(req.query.flowRate),
-        correctionFactor: parseFloat(req.query.correctionFactor),
-        specificHeat: parseFloat(req.query.specificHeat)
-	};
-	
 	var value = v.validate(atmosphere, schema);
 	if(value.errors != "")
 	{
-		res.json([value.errors]);
-		return;
+		globalErrors.push(value.errors);
+		return 0;
 	}
 	var atmosphereLosses = phast.atmosphere(atmosphere);
     
@@ -227,57 +235,42 @@ function Atmosphere (req, res)
 
 //***************************************************************************
 //input [[motorPhase, supplyVoltage, avgCurrent, powerFactor, operatingTime]]
-function AuxiliaryPowerLoss(req, res)
+function AuxiliaryPowerLoss(req)
 {
+    
+    if(req.query.auxiliaryPowerLossArray == undefined)
+        return 0;
+    else if(!TestJSON(req.query.auxiliaryPowerLossArray))
+    {
+        globalErrors.push("The auxiliaryPowerLossArray was not passed in as a JSON object array.");
+        return 0;
+    }
+    
     var v = new Validator();
 	var auxiliaryPowerLossArray = JSON.parse(req.query.auxiliaryPowerLossArray);
     var auxiliaryPowerLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/auxiliaryPowerLossInput.json"));
     
-    var totalAuxilaryPowerLoss = 0;
+    var totalAuxiliaryPowerLoss = 0;
 
     
     for(let x = 0; x < auxiliaryPowerLossArray.length; x++)
     {
-        //currentArray = auxiliaryPowerLossArray[x];
+
         auxiliaryPowerLoss = auxiliaryPowerLossArray[x];
-        /*
-        if(currentArray.length < 5)
-        {
-            res.send("Not enough values passed into element " + x + "of the auxiliaryPowerLossArray");
-            return;
-        }
-        else if(currentArray.length > 5)
-        {
-            res.send("Too many values passed into element " + x + "of the auxiliaryPowerLossArray");
-            return;
-        }
-        
-        
-        var auxiliaryPowerLoss = 
-        {
-            motorPhase: currentArray[0],
-            supplyVoltage: currentArray[1],
-            avgCurrent: currentArray[2],
-            powerFactor: currentArray[3],
-            operatingTime: currentArray[4]
-        };
-        
-        */
         var auxiliaryPowerLossValidate = v.validate(auxiliaryPowerLoss,auxiliaryPowerLossSchema);
         
         
         if(auxiliaryPowerLossValidate.errors != "")
         {
-            res.json([auxiliaryPowerLossValidate.errors]);
-            return;
+            globalErrors.push(auxiliaryPowerLossValidate.errors);
+            return 0;
         }
         
-        totalAuxilaryPowerLoss += phast.auxiliaryPowerLoss(auxiliaryPowerLoss);
-        //console.log(phast.auxiliaryPowerLoss(auxiliaryPowerLoss));
+        totalAuxiliaryPowerLoss += phast.auxiliaryPowerLoss(auxiliaryPowerLoss);
     }
     
-    //console.log(totalAuxilaryPowerLoss);
-    return totalAuxilaryPowerLoss;
+    //console.log(totalAuxiliaryPowerLoss);
+    return totalAuxiliaryPowerLoss;
 }
 
 
@@ -285,8 +278,16 @@ function AuxiliaryPowerLoss(req, res)
 
 //**************************************************************************
 //input [[draftPressure, openingArea, leakageGasTemperature, ambientTemperature, coefficient, specificGravity, correctionFactor]]
-function LeakageLoss(req, res)
+function LeakageLoss(req)
 {
+    if(req.query.leakageLossArray == undefined)
+        return 0;
+    else if(!TestJSON(req.query.leakageLossArray))
+    {
+        globalErrors.push("The leakageLossArray was not passed in as a JSON object array.");
+        return 0;
+    }
+    
     var v = new Validator();
     var leakageLossArray = JSON.parse(req.query.leakageLossArray);
     var leakageLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/leakageLossesInput.json"));
@@ -296,39 +297,14 @@ function LeakageLoss(req, res)
     for(let x = 0; x < leakageLossArray.length; x++)
     {
         leakageLosses = leakageLossArray[x];
-        /*currentArray = leakageLossArray[x];
-        
-        if(currentArray.length < 7)
-        {
-            res.send("Not enough values passed into element " + x + "of the leakageLossArray");
-            return;
-        }
-        else if(currentArray.length > 7)
-        {
-            res.send("Too many values passed into element " + x + "of the leakageLossArray");
-            return;
-        }
-        
-        
-        var leakageLosses = 
-        {
-            draftPressure: currentArray[0],
-            openingArea: currentArray[1],
-            leakageGasTemperature: currentArray[2],
-            ambientTemperature: currentArray[3],
-            coefficient: currentArray[4],
-            specificGravity: currentArray[5],
-            correctionFactor: currentArray[6]
-        };
-        */
-        
+
         var leakageLossValidate = v.validate(leakageLosses,leakageLossSchema);
         
         
         if(leakageLossValidate.errors != "")
         {
-            res.json([leakageLossValidate.errors]);
-            return;
+            globalErrors.push(leakageLossValidate.errors);
+            return 0;
         }
         
         totalLeakageLoss += phast.leakageLosses(leakageLosses);
@@ -339,8 +315,16 @@ function LeakageLoss(req, res)
 
 //**************************************************************************
 // input [[specificHeat, feedRate, initialTemperature, finalTemperature, correctionFactor]]
-function FixtureLoss(req, res)
+function FixtureLoss(req)
 {
+    if(req.query.fixtureLossArray == undefined)
+        return 0;
+    else if(!TestJSON(req.query.fixtureLossArray))
+    {
+        globalErrors.push("The auxiliaryPowerLossArray was not passed in as a JSON object array.");
+        return 0;
+    }
+    
     var v = new Validator();
     var fixtureLossArray = JSON.parse(req.query.fixtureLossArray);
     var fixtureLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/fixtureLosses.json"));
@@ -350,37 +334,15 @@ function FixtureLoss(req, res)
     for(let x = 0; x < fixtureLossArray.length; x++)
     {
         fixtureLosses = fixtureLossArray[x];
-        /*currentArray = fixtureLossArray[x];
-        
-        if(currentArray.length < 5)
-        {
-            res.send("Not enough values passed into element " + x + "of the fixtureLossArray");
-            return;
-        }
-        else if(currentArray.length > 5)
-        {
-            res.send("Too many values passed into element " + x + "of the fixtureLossArray");
-            return;
-        }
-        
-        
-        var fixtureLosses = 
-        {
-            specificHeat: currentArray[0],
-            feedRate: currentArray[1],
-            initialTemperature: currentArray[2],
-            finalTemperature: currentArray[3],
-            correctionFactor: currentArray[4]
-        };
-        */
+
         
         var fixtureLossValidate = v.validate(fixtureLosses,fixtureLossSchema);
         
         
         if(fixtureLossValidate.errors != "")
         {
-            res.json([fixtureLossValidate.errors]);
-            return;
+            globalErrors.push(fixtureLossValidate.errors);
+            return 0;
         }
         
         totalFixtureLoss += phast.fixtureLosses(fixtureLosses);
@@ -389,64 +351,17 @@ function FixtureLoss(req, res)
     return totalFixtureLoss;
 }
 
-//*******************************************************************************************************
-//TODO change to both circular and quad change viewFactor calculation to use the bindings add to total ambientTemperature insideTemperature check
-//input [[emissivity, diameter, thickness, ratio, ambientTemperature, insideTemperature, percentTimeOpen, viewFactor]]
-function OpeningLoss(req, res)
+function WallLoss(req)
 {
-    var v = new Validator();
-    var openingLossArray = JSON.parse(req.query.openingLossArray);
-    var openingLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/openingLosses.json"));
     
-    var totalOpeningLoss = 0;
-    
-    for(let x = 0; x < openingLossArray.length; x++)
+    if(req.query.wallLossArray == undefined)
+        return 0;
+    else if(!TestJSON(req.query.wallLossArray))
     {
-        openingLosses = openingLossArray[x];
-        /*currentArray = openingLossArray[x];
-        
-        if(currentArray.length < 8)
-        {
-            res.send("Not enough values passed into element " + x + "of the openingLossArray");
-            return;
-        }
-        else if(currentArray.length > 8)
-        {
-            res.send("Too many values passed into element " + x + "of the openingLossArray");
-            return;
-        }
-        
-        
-        var openingLosses = 
-        {
-            emissivity: currentArray[0],
-            diameter: currentArray[1],
-            thickness: currentArray[2],
-            ratio: currentArray[3],
-            ambientTemperature: currentArray[4],
-            insideTemperature: currentArray[5],
-            percentTimeOpen: currentArray[6],
-            viewFactor: currentArray[7]
-        };*/
-        
-        
-        var openingLossValidate = v.validate(openingLosses, openingLossSchema);
-        
-        
-        if(openingLossValidate.errors != "")
-        {
-            res.json([openingLossValidate.errors]);
-            return;
-        }
-        
-        totalOpeningLoss += phast.openingLossesCircular(openingLosses);
+        globalErrors.push("The wallLossArray was not passed in as a JSON object array.");
+        return 0;
     }
     
-    return totalOpeningLoss;
-}
-
-function WallLoss(req, res)
-{
     var v = new Validator();
     var wallLossArray = JSON.parse(req.query.wallLossArray);
     var wallLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/wallLosses.json"));
@@ -456,43 +371,18 @@ function WallLoss(req, res)
     for(let x = 0; x < wallLossArray.length; x++)
     {
         wallLosses = wallLossArray[x];
-        /*currentArray = wallLossArray[x];
-        
-        if(currentArray.length < 7)
-        {
-            res.send("Not enough values passed into element " + x + "of the wallLossArray");
-            return;
-        }
-        else if(currentArray.length > 7)
-        {
-            res.send("Too many values passed into element " + x + "of the wallLossArray");
-            return;
-        }
-        
-        
-        var wallLosses = 
-        {
-            surfaceArea: currentArray[0],
-            ambientTemperature: currentArray[1],
-            surfaceTemperature: currentArray[2],
-            windVelocity: currentArray[3],
-            surfaceEmissivity: currentArray[4],
-            conditionFactor: currentArray[5],
-            correctionFactor: currentArray[6]
-        };
-        
-        */
+
         var wallLossValidate = v.validate(wallLosses, wallLossSchema);
         
         if(wallLosses.surfaceTemperature < wallLosses.ambientTemperature)
         {
-            res.json(["error"]);
-            return;
+            globalErrors.push("ERROR: surfaceTemperature is greater than ambientTemperature in element " + x + "of the wallLossArray.");
+            return 0;
         }
         if(wallLossValidate.errors != "")
         {
-            res.json([wallLossValidate.errors]);
-            return;
+            globalErrors.push(wallLossValidate.errors);
+            return 0;
         }
         
         totalWallLoss += phast.wallLosses(wallLosses);
@@ -500,35 +390,153 @@ function WallLoss(req, res)
     
     return totalWallLoss;
 }
-//TODO extended surface and cooling
-function CoolingLoss(req, res)
+
+//*******************************************************************************************************
+//input [[emissivity, diameter, thickness, ratio, ambientTemperature, insideTemperature, percentTimeOpen, viewFactor]]
+function OpeningLoss(req)
 {
+    if(req.query.openingLossArray == undefined)
+        return 0;
+    else if(!TestJSON(req.query.openingLossArray))
+    {
+        globalErrors.push("The openingLossArray was not passed in as a JSON object array.");
+        return 0;
+    }
+    
+    var v = new Validator();
+    var openingLossArray = JSON.parse(req.query.openingLossArray);
+    var openingLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/openingLosses.json"));
+    
+    var totalOpeningLoss = 0;
+    
+    for(let x = 0; x < openingLossArray.length; x++)
+    {
+        openingLosses = openingLossArray[x];
+
+        var openingLossValidate = v.validate(openingLosses, openingLossSchema);
+
+        if(openingLosses.ambientTemperature > openingLosses.insideTemperature)
+        {
+            globalErrors.push("ERROR: ambientTemperature is greater than insideTemperature in element " + x + "of the openingLossArray.");
+            return 0;
+        }
+        if(openingLossValidate.errors != "")
+        {
+            globalErrors.push(openingLossValidate.errors);
+            return 0;
+        }
+        
+        if(openingLosses.diameter != undefined)
+        {
+            if(openingLosses.width != undefined || openingLosses.length != undefined)
+            {
+                globalErrors.push("ERROR: both diameter and length or both diameter and width are defined for element " + x + "of the openingLossArray, please only pass in diameter or length and width.");
+                return 0;
+            }
+            
+            totalOpeningLoss += phast.openingLossesCircular(openingLosses);
+        }
+        else if(openingLosses.width != undefined && openingLosses.length != undefined)
+        {
+            if(openingLosses.diameter != undefined)
+            {
+                globalErrors.push("ERROR: both diameter and length or both diameter and width are defined for element " + x + "of the openingLossArray, please only pass in diameter or length and width.");
+                return 0;
+            }
+            
+            totalOpeningLoss += phast.openingLossesQuad(openingLosses);
+        }
+    }
+    
+    return totalOpeningLoss;
+}
+
+
+function CoolingLoss(req)
+{
+    if(req.query.coolingLossArray == undefined)
+        return 0;
+    else if(!TestJSON(req.query.coolingLossArray))
+    {
+        globalErrors.push("The coolingLossArray was not passed in as a JSON object array.");
+        return 0;
+    }
+    
     var v = new Validator();
     var coolingLossArray = JSON.parse(req.query.coolingLossArray);
-    var coolingLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/waterCoolingLossesInput.json"));
+    
+    var waterCoolingLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/waterCoolingLossesInput.json"));
+    var liquidCoolingLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/liquidCoolingLossesInput.json"));
+    var gasCoolingLossSchema = JSON.parse(fs.readFileSync(inputDirectory+"/gasCoolingLossesInput.json"));
     
     var totalCoolingLoss = 0;
     
     for(let x = 0; x < coolingLossArray.length; x++)
     {
         coolingLosses = coolingLossArray[x];
-
-        var coolingLossValidate = v.validate(coolingLosses, coolingLossSchema);
         
-        
-        if(coolingLossValidate.errors != "")
+        if(coolingLosses.type == "water")
         {
-            res.json([coolingLossValidate.errors]);
-            return;
+            //console.log("water");
+            var waterCoolingLossValidate = v.validate(coolingLosses, waterCoolingLossSchema);
+            
+            if(waterCoolingLossValidate.errors != "")
+            {
+                globalErrors.push(waterCoolingLossValidate.errors);
+                return 0;
+            }
+            
+            totalCoolingLoss += phast.waterCoolingLosses(coolingLosses);
+            //console.log("water " + totalCoolingLoss);
         }
-        
-        totalCoolingLoss += phast.waterCoolingLosses(coolingLosses);
+        else if(coolingLosses.type == "liquid")
+        {
+            //console.log("liquid");
+            var liquidCoolingLossValidate = v.validate(coolingLosses, liquidCoolingLossSchema);
+            
+            if(liquidCoolingLossValidate.errors != "")
+            {
+                globalErrors.push(liquidCoolingLossValidate.errors);
+                return 0;
+            }
+            
+            totalCoolingLoss += phast.liquidCoolingLosses(coolingLosses);
+            //console.log("liquid " + totalCoolingLoss);
+        }
+        else if(coolingLosses.type == "gas")
+        {
+            //console.log("gas");
+            var gasCoolingLossValidate = v.validate(coolingLosses, gasCoolingLossSchema);
+            
+            if(gasCoolingLossValidate.errors != "")
+            {
+                globalErrors.push(gasCoolingLossValidate.errors);
+                return 0;
+            }
+            
+            totalCoolingLoss += phast.gasCoolingLosses(coolingLosses);
+            //console.log("gas " + totalCoolingLoss);
+        }
+        else
+        {
+            globalErrors.push("ERROR: Invalid type supplied for element " + x + " of the coolingLossArray");
+            return 0;
+        }
+
     }
     
     return totalCoolingLoss;
 }
 
 
-//https://localhost:8080/processheating/assessment?operatingHours=8760&fuelCosts=3.99&steamCosts=4.69&electricityCosts=.066&chargeMaterials={"one":{"type":"Gas","thermicReactionType":0,"specificHeatType":200,"feedRate":100,"percentVapor":50,"initialTemperature":150,"dischargeTemperature":200,"specificHeatVapor":250,"specificHeatGas":250,"percentReacted":25,"reactionHeat":175,"additionalHeat":0}, "two": {"type":"Solid","thermicReactionType":0,"specificHeatSolid":100, "latentHeat":170,"specificHeatLiquid":200,"meltingPoint":1210,"chargeFeedRate":150,"waterContentCharged":25,"waterContentDischarged":10,"initialTemperature":100,"dischargeTemperature":200,"waterVaporDischargeTemperature":180,"chargeMelted":0,"chargeReacted":5,"reactionHeat":250,"additionalHeat":0},"three": {"type":"Liquid","thermicReactionType": 0, "specificHeatLiquid":200,"vaporizingTemperature":500,"latentHeat":180,"specificHeatVapor":200,"chargeFeedRate":100,"initialTemperature":400,"dischargeTemperature":1200,"percentVaporized":10,"percentReacted":5,"reactionHeat":400,"additionalHeat":0}}&flueGas={"type":"Gas","flueGasTemperature":200,"excessAirPercentage":10,"combustionAirTemperature":150,"fuelTemperature":400,"CH4": 10, "C2H6":10, "N2":10, "H2":10, "C3H8":10,"C4H10_CnH2n":10,"H2O":10,"CO":10, "CO2":10,"SO2":0,"O2":10}
+//amo test input
+//https://localhost:8080/processheating/assessment?operatingHours=8760&fuelCosts=3.99&steamCosts=4.69&electricityCosts=.066&chargeMaterials={"one":{"type":"Gas","thermicReactionType":0,"specificHeatType":0.5,"feedRate":1000,"percentVapor":15,"initialTemperature":80,"dischargeTemperature":1150,"specificHeatVapor":0.5,"specificHeatGas":0.24,"percentReacted":100,"reactionHeat":80,"additionalHeat":5000}, "two": {"type":"Solid","thermicReactionType":0,"specificHeatSolid":0.15, "latentHeat":60,"specificHeatLiquid":0.481,"meltingPoint":2900,"chargeFeedRate":10000,"waterContentCharged":0.1,"waterContentDischarged":0,"initialTemperature":70,"dischargeTemperature":2200,"waterVaporDischargeTemperature":500,"chargeMelted":0,"chargeReacted":1,"reactionHeat":100,"additionalHeat":0},"three": {"type":"Liquid","thermicReactionType": 0, "specificHeatLiquid":0.48,"vaporizingTemperature":240,"latentHeat":250,"specificHeatVapor":0.25,"chargeFeedRate":1000,"initialTemperature":70,"dischargeTemperature":320,"percentVaporized":100,"percentReacted":25,"reactionHeat":50,"additionalHeat":0}}&flueGas={"type":"Solid","flueGasTemperature":700,"excessAirPercentage": 9.0,"combustionAirTemperature":125, "fuelTemperature":70, "moistureInAirComposition": 1.0,"ashDischargeTemperature": 100,"unburnedCarbonInAsh": 1.5,"carbon": 75.0,"hydrogen": 5.0,"sulphur":1.0,"inertAsh": 9.0,"o2":7.0,"moisture": 0.0,"nitrogen": 1.5}&atmosphereLossObject= {"inletTemperature":100.0, "outletTemperature":1400.0, "flowRate":1200.0, "correctionFactor":1.0, "specificHeat":0.02}&auxiliaryPowerLossArray=[{"motorPhase":3, "supplyVoltage":460, "avgCurrent":19, "powerFactor":0.85, "operatingTime":100},{"motorPhase":3, "supplyVoltage":510, "avgCurrent":19, "powerFactor":0.85, "operatingTime":100},{"motorPhase":3, "supplyVoltage":510, "avgCurrent":25, "powerFactor":0.85, "operatingTime":100},{"motorPhase":3, "supplyVoltage":510, "avgCurrent":25, "powerFactor":0.55, "operatingTime":100},{"motorPhase":3, "supplyVoltage":510, "avgCurrent":25, "powerFactor":0.55, "operatingTime":75}]&wallLossArray=[{"surfaceArea":500, "ambientTemperature":80, "surfaceTemperature":225, "windVelocity":10, "surfaceEmissivity":0.9, "conditionFactor":1.394, "correctionFactor":1}]&openingLossArray=[{"emissivity": 0.95, "diameter": 12, "thickness": 9, "ratio": 1.33, "ambientTemperature": 75,"insideTemperature": 1600, "percentTimeOpen": 100, "viewFactor": 0.70}, {"emissivity": 0.95, "length": 48, "width": 15, "thickness": 9, "ratio": 1.67, "ambientTemperature": 75,"insideTemperature": 1600, "percentTimeOpen": 20, "viewFactor": 0.64}]&coolingLossArray=[{"type":"water", "flowRate": 100, "initialTemperature": 80, "outletTemperature": 120, "correctionFactor": 1},{ "type":"liquid",       "flowRate": 100, "density": 9.35, "initialTemperature": 80, "outletTemperature": 210,"specificHeat": 0.52, "correctionFactor": 1.0}, {"type":"gas","flowRate": 2500, "initialTemperature": 80, "finalTemperature": 280, "specificHeat": 0.02, "correctionFactor": 1.0,"gasDensity": 1}]&leakageLossArray=[{"draftPressure":0.1,"openingArea":3,"leakageGasTemperature":1600,"ambientTemperature":80,"coefficient":0.8052,"specificGravity":1.02,"correctionFactor":1.0}]&fixtureLossArray=[{"specificHeat":0.122,"feedRate":1250.0, "initialTemperature":300, "finalTemperature":1800.0,"correctionFactor":1.0}]
 
-//https://localhost:8080/processheating/assessment?operatingHours=8760&fuelCosts=3.99&steamCosts=4.69&electricityCosts=.066&chargeMaterials={"one":{"type":"Gas","thermicReactionType":0,"specificHeatType":200,"feedRate":100,"percentVapor":50,"initialTemperature":150,"dischargeTemperature":200,"specificHeatVapor":250,"specificHeatGas":250,"percentReacted":25,"reactionHeat":175,"additionalHeat":0}, "two": {"type":"Solid","thermicReactionType":0,"specificHeatSolid":100, "latentHeat":170,"specificHeatLiquid":200,"meltingPoint":1210,"chargeFeedRate":150,"waterContentCharged":25,"waterContentDischarged":10,"initialTemperature":100,"dischargeTemperature":200,"waterVaporDischargeTemperature":180,"chargeMelted":0,"chargeReacted":5,"reactionHeat":250,"additionalHeat":0},"three": {"type":"Liquid","thermicReactionType": 0, "specificHeatLiquid":200,"vaporizingTemperature":500,"latentHeat":180,"specificHeatVapor":200,"chargeFeedRate":100,"initialTemperature":400,"dischargeTemperature":1200,"percentVaporized":10,"percentReacted":5,"reactionHeat":400,"additionalHeat":0}}&flueGas={"type":"Solid","flueGasTemperature":200,"excessAirPercentage": 10,"combustionAirTemperature":600, "fuelTemperature":400, "moistureInAirComposition": 10,"ashDischargeTemperature": 300,"unburnedCarbonInAsh": 20,"carbon": 10,"hydrogen": 10,"sulphur":10,"inertAsh": 10,"o2":10,"moisture": 10,"nitrogen": 10}
+//broken input to test jsonTest
+//https://localhost:8080/processheating/assessment?operatingHours=8760&fuelCosts=3.99&steamCosts=4.69&electricityCosts=.066&chargeMaterials={"one":{"type":"Gas","thermicReactionType":0,"specificHeatType":0.5,"feedRate":1000,"percentVapor":15,"initialTemperature":80,"dischargeTemperature":1150,"specificHeatVapor":0.5,"specificHeatGas":0.24,"percentReacted":100,"reactionHeat":80,"additionalHeat":5000}, "two": {"type":"Solid","thermicReactionType":0,"specificHeatSolid":0.15, "latentHeat":60,"specificHeatLiquid":0.481,"meltingPoint":2900,"chargeFeedRate":10000,"waterContentCharged":0.1,"waterContentDischarged":0,"initialTemperature":70,"dischargeTemperature":2200,"waterVaporDischargeTemperature":500,"chargeMelted":0,"chargeReacted":1,"reactionHeat":100,"additionalHeat":0},"three": {"type":"Liquid","thermicReactionType": 0, "specificHeatLiquid":0.48,"vaporizingTemperature":240,"latentHeat":250,"specificHeatVapor":0.25,"chargeFeedRate":1000,"initialTemperature":70,"dischargeTemperature":320,"percentVaporized":100,"percentReacted":25,"reactionHeat":50,"additionalHeat":0}}&flueGas={"type":"Solid","flueGasTemperature":700,"excessAirPercentage": 9.0,"combustionAirTemperature":125, "fuelTemperature":70, "moistureInAirComposition": 1.0,"ashDischargeTemperature": 100,"unburnedCarbonInAsh": 1.5,"carbon": 75.0,"hydrogen": 5.0,"sulphur":1.0,"inertAsh": 9.0,"o2":7.0,"moisture": 0.0,"nitrogen": 1.5}&atmosphereLossObject= {"inletTemperature":100.0, "outletTemperature":1400.0, "flowRate":1200.0, "correctionFactor":1.0, "specificHeat":0.02&auxiliaryPowerLossArray=[{"motorPhase":3, "supplyVoltage":460, "avgCurrent":19, "powerFactor":0.85, "operatingTime":100},{"motorPhase":3, "supplyVoltage":510, "avgCurrent":19, "powerFactor":0.85, "operatingTime":100},{"motorPhase":3, "supplyVoltage":510, "avgCurrent":25, "powerFactor":0.85, "operatingTime":100},{"motorPhase":3, "supplyVoltage":510, "avgCurrent":25, "powerFactor":0.55, "operatingTime":100},{"motorPhase":3, "supplyVoltage":510, "avgCurrent":25, "powerFactor":0.55, "operatingTime":75}&wallLossArray=[{"surfaceArea":500, "ambientTemperature":80, "surfaceTemperature":225, "windVelocity":10, "surfaceEmissivity":0.9, "conditionFactor":1.394, "correctionFactor":1}&openingLossArray=[{"emissivity": 0.95, "diameter": 12, "thickness": 9, "ratio": 1.33, "ambientTemperature": 75,"insideTemperature": 1600, "percentTimeOpen": 100, "viewFactor": 0.70}&coolingLossArray=[{"flowRate": 100, "initialTemperature": 80, "outletTemperature": 120, "correctionFactor": 1}&leakageLossArray=[{"draftPressure":0.1,"openingArea":3,"leakageGasTemperature":1600,"ambientTemperature":80,"coefficient":0.8052,"specificGravity":1.02,"correctionFactor":1.0}&fixtureLossArray=[{"specificHeat":0.122,"feedRate":1250.0, "initialTemperature":300, "finalTemperature":1800.0,"correctionFactor":1.0}
+
+//input to test optional parameters
+//https://localhost:8080/processheating/assessment?operatingHours=8760&fuelCosts=3.99&steamCosts=4.69&electricityCosts=.066
+
+//error for flue gas missing
+//https://localhost:8080/processheating/assessment?operatingHours=8760&fuelCosts=3.99&steamCosts=4.69&electricityCosts=.066&chargeMaterials={"one":{"type":"Gas","thermicReactionType":0,"specificHeatType":0.5,"feedRate":1000,"percentVapor":15,"initialTemperature":80,"dischargeTemperature":1150,"specificHeatVapor":0.5,"specificHeatGas":0.24,"percentReacted":100,"reactionHeat":80,"additionalHeat":5000}, "two": {"type":"Solid","thermicReactionType":0,"specificHeatSolid":0.15, "latentHeat":60,"specificHeatLiquid":0.481,"meltingPoint":2900,"chargeFeedRate":10000,"waterContentCharged":0.1,"waterContentDischarged":0,"initialTemperature":70,"dischargeTemperature":2200,"waterVaporDischargeTemperature":500,"chargeMelted":0,"chargeReacted":1,"reactionHeat":100,"additionalHeat":0},"three": {"type":"Liquid","thermicReactionType": 0, "specificHeatLiquid":0.48,"vaporizingTemperature":240,"latentHeat":250,"specificHeatVapor":0.25,"chargeFeedRate":1000,"initialTemperature":70,"dischargeTemperature":320,"percentVaporized":100,"percentReacted":25,"reactionHeat":50,"additionalHeat":0}}
