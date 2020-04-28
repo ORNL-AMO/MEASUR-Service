@@ -7,7 +7,7 @@ describe("O2 Enrichment Unit Tests", function()
 
 	it('o2 Enrichment Calculator',function(done)
 		{
-			request('https://localhost:8080/furnace/o2Enrichment/?o2CombAir=21&o2CombAirEnriched=100&flueGasTemp=1800&flueGasTempEnriched=1900&o2FlueGas=5&o2FlueGasEnriched=1&combAirTemp=900&fuelConsumption=10&combAirTempEnriched=80',function(error,response,body)
+			request('https://localhost:8080/processHeating/o2Enrichment/?o2CombAir=21&o2CombAirEnriched=100&flueGasTemp=1800&flueGasTempEnriched=1900&o2FlueGas=5&o2FlueGasEnriched=1&combAirTemp=900&fuelConsumption=10&combAirTempEnriched=80',function(error,response,body)
 	{
 	var output = JSON.parse(body)[0];
 	expect((output.availableHeatInput.toFixed(14))).to.equal('61.97028577716948');
@@ -21,7 +21,7 @@ describe("O2 Enrichment Unit Tests", function()
 
 	it('o2 Enrichment Unit Test 2', function(done)
 	{
-		request('https://localhost:8080/furnace/o2Enrichment?o2CombAir=21&o2CombAirEnriched=100&flueGasTemp=2200&flueGasTempEnriched=2300&o2FlueGas=5&o2FlueGasEnriched=1&combAirTemp=900&fuelConsumption=10&combAirTempEnriched=80', function(error,response,body)
+		request('https://localhost:8080/processHeating/o2Enrichment?o2CombAir=21&o2CombAirEnriched=100&flueGasTemp=2200&flueGasTempEnriched=2300&o2FlueGas=5&o2FlueGasEnriched=1&combAirTemp=900&fuelConsumption=10&combAirTempEnriched=80', function(error,response,body)
 		{
 			var output= JSON.parse(body)[0];
 			expect((output.availableHeatInput.toFixed(10))).to.equal('49.7183629149');
@@ -34,7 +34,7 @@ describe("O2 Enrichment Unit Tests", function()
 
 	it('o2 Enrichment Unit Test 3', function(done)
 	{
-		request('https://localhost:8080/furnace/o2Enrichment?o2CombAir=21&o2CombAirEnriched=100&flueGasTemp=2200&flueGasTempEnriched=2300&o2FlueGas=8&o2FlueGasEnriched=3&combAirTemp=900&fuelConsumption=10&combAirTempEnriched=80', function(error,response,body)
+		request('https://localhost:8080/processheating/o2Enrichment?o2CombAir=21&o2CombAirEnriched=100&flueGasTemp=2200&flueGasTempEnriched=2300&o2FlueGas=8&o2FlueGasEnriched=3&combAirTemp=900&fuelConsumption=10&combAirTempEnriched=80', function(error,response,body)
 		{
 			var output= JSON.parse(body)[0];
 			expect((output.availableHeatInput.toFixed(10))).to.equal('42.6248055296');
@@ -47,7 +47,7 @@ describe("O2 Enrichment Unit Tests", function()
 
 	it('o2 Enrichment Unit Test 4', function(done)
 	{
-		request('https://localhost:8080/furnace/o2Enrichment?o2CombAir=21&o2CombAirEnriched=100&flueGasTemp=2200&flueGasTempEnriched=2300&o2FlueGas=8&o2FlueGasEnriched=3&combAirTemp=1100&fuelConsumption=10&combAirTempEnriched=110', function(error,response,body)
+		request('https://localhost:8080/processheating/o2Enrichment?o2CombAir=21&o2CombAirEnriched=100&flueGasTemp=2200&flueGasTempEnriched=2300&o2FlueGas=8&o2FlueGasEnriched=3&combAirTemp=1100&fuelConsumption=10&combAirTempEnriched=110', function(error,response,body)
 		{
 			var output= JSON.parse(body)[0];
 			expect((output.availableHeatInput.toFixed(10))).to.equal('49.1204784776');
