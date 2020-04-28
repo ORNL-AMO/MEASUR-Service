@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Atmosphere",
+  "description": "Heat Loss ",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "inletPressure",
+    "quantityValue",
+    "inletMassFlow",
+    "percentHeatLoss"
+  ],
+
+
+  "properties": {
+		"inletPressure": {
+			"$ref": "#/definitions/inletPressure"
+		},
+	    "quantityValue": {
+			"$ref": "#/definitions/quantityValue"
+	    },
+	    "inletMassFlow": {
+	    	"$ref": "#/definitions/inletMassFlow"
+	    },
+	    "percentHeatLoss": {
+	    	"$ref": "#/definitions/percentHeatLoss"
+	    }
+	},
+	"definitions":
+	{
+	    "inletPressure": {
+	    	"type": "number",
+	    	"minimum": 0
+	    	
+	    },
+	    "quantityValue": {
+	    	"type": "number"
+	    },
+	    "inletMassFlow": {
+	    	"type": "number"
+	    },
+	    "percentHeatLoss": {
+	    	"type": "number"
+	    
+	    }
+	}
+}

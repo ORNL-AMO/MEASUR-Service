@@ -1,15 +1,14 @@
-# ORNL Team 7 Project
+# MEASUR Service Web API
 
-Pump Head Tool Service.  Currently, there are two services created for this project:  the pump head tool service for Suction Guage Elevation and the Suction Tank Elevation.
+This API is a webservice to use for the AMO Tool Suite.  Dependencies for the suite can be found here:
 
-To access PumpHeadTool service for the SuctionGaugeElevation, using a local browser type in the url 'localhost:8080/pumpheadtool/suctionGaugeElevation? Parameters' (local host due to not having it linked to a url at the current moment), replacing "Parameters" with the parameters being passed in.  Parameters are given names based on what they are from the bindings in the ORNL Tool Suite Bindings.  There is one extra parameter added for helping test the API known as "testingAPI".  If this value is set to true the API will return error messages for which parameters were not read in and also units required to send in and returned values units.
+    https://github.com/ORNL-AMO/AMO-Tools-Suite
 
-To access PumpHeadTool service for the SuctionTankElevation, using a local browser type in the url 'localhost:8080/pumpheadtool/suctionTankElevation? Parameters', replacing "Parameters" with the parameters being passed in.  Parameters are also given names based on what they have bindings in the ORNL Tool Suite Bindings.  There is no extra parameter for testing this API and this will probably be discussed with the team and the client about whether or not this is a good choice for these services.
+In order to run the service, run:
 
-For initial setup to run the project, make sure to call "npm install" so that the dependencies are installed.
+    set-up.sh
 
-Afterwards, run "openssl genrsa -out key.pem" and "openssl req -new -key key.pem -out csr.pem" and "openssl x509 -req -days 9999 -in csr.pem -signkey key.pem -out cert.pem" and " rm csr.pem"
-finally type in the terminal "node main.js" and that will run the server.
+The shell script is set up to run the approved code in order to generate the openssl key as well as npm install.  This helps set up the initial steps for the project.
 
 To run the unit tests run "node main.js" and while the node server is running in another terminal run "npm test". 
 

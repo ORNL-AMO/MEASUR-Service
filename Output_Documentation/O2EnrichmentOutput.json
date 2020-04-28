@@ -1,0 +1,59 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"build_version": "v10.0.1-80-g9fa80308",
+	"title": "MEASUR Service O2 Enrichment Calcualtions Inputs",
+	"description": "MEASUR Service O2 Enrichment Inputs",
+	"type": "object",
+	"additionalProperties": true,
+
+	"required": [
+		"availableHeatInput",
+		"availableHeatEnriched",
+		"fuelConsumptionEnriched",
+		"fuelSavingsEnriched"
+	],
+
+
+	"properties": {
+	
+		"availableHeatInput": {
+			"$ref": "#/definitions/availableHeatInput"
+		},
+		
+		"availableHeatEnriched": {
+			"$ref": "#/definitions/availableHeatEnriched"
+		},
+		
+		"fuelConsumptionEnriched": {
+			"$ref": "#/definitions/fuelConsumptionEnriched"
+		},
+		
+		"fuelSavingsEnriched": {
+			"$ref": "#/definitions/fuelSavingsEnriched"
+		}
+	},
+	
+	
+	"definitions": {
+	
+		"availableHeatInput": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"availableHeatEnriched": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"fuelConsumptionEnriched": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"fuelSavingsEnriched": {
+			"type": "number",
+			"minimum": 0
+		}
+	}
+}

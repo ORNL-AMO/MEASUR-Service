@@ -3,7 +3,6 @@ var expect = require('chai').expect;
 var request = require('request');
 
 
-
 it('Baseline Fan Assessment', function(done)
 {
 	request('https://localhost:8080/fan/assessment?fanSpeed=1180&airDensity=1.02&drive=0&lineFrequency=0&motorRatedPower=600&motorRpm=1180&efficiencyClass=1&specifiedEfficiency=100&motorRatedVoltage=460&fullLoadAmps=683.2505707137&sizeMargin=1&measuredVoltage=460&measuredAmps=460&measuredPower=460&flowRate=129691&inletPressure=-16.36&outletPressure=1.1&compressibilityFactor=.988&loadEstimationMethod=0&operatingHours=8760&costKwHour=.06', function (error, response, body){

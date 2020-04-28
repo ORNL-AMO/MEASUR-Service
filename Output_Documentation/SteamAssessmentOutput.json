@@ -1,0 +1,117 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"build_version": "v10.0.1-80-g9fa80308",
+	"title": "Steam Assessment Outputs",
+	"description": "MEASUR Service Steam Assessment Outputs",
+	"type": "object",
+	"additionalProperties": true,
+
+	"required": [
+		"results"
+	],
+
+
+	"properties": {
+		"results" :{
+			"$ref": "#/definitions/results"
+		}
+	},
+	
+	
+	"definitions": {
+		"results": {
+			"type": "object",
+			"properties":
+			{
+				"boilerOutput": {
+				"type": "object",
+				},
+			
+				"deaeratorOutput": {
+					"type": "object"
+				},
+			
+				"highPressureSteamHeatLoss": {
+					"type": "object"
+				},
+				"highPressureCondensate": {
+					"type": "object"
+				},
+				"highPressureHeaderSteam": {
+					"type": "object"
+				},
+				"combinedCondensate": {
+					"type": "object"
+				},
+				"returnCondensate": {
+					"type": "object"
+				},
+				"makeupWater": {
+					"type": "object"
+				},
+				"heatExchanger": {
+					"type": "object"
+				},
+				"makeupWaterAndCondensate": {
+					"type": "object"
+				},
+				"highPressureProcessSteamUsage": {
+					"type": "object"
+				},
+				"mediumPressureProcessSteamUsage": {
+					"type": "object"
+				},
+				"lowPressureProcessSteamUsage": {
+					"type": "object"
+				},
+				"condensingTurbine": {
+					"type": "object"
+				},
+				"condensingTurbineIdeal": {
+					"type": "object"
+				},
+				"highPressureToMediumPressureTurbine": {
+					"type": "object"
+				},
+				"highPressureToMediumPressureTurbineIdeal": {
+					"type": "object"
+				},
+				"highPressureToLowPressureTurbine": {
+					"type": "object"
+				},
+				"highPressureToLowPressureTurbineIdeal": {
+					"type": "object"
+				},
+				"mediumPressureHeaderSteam": {
+					"type": "object"
+				},
+				"mediumPressureSteamHeatLoss": {
+					"type": "object"
+				},
+				"mediumPressureCondensate": {
+					"type": "object"
+				},
+				"mediumPressureToLowPressureTurbine": {
+					"type": "object"
+				},
+				"mediumPressureToLowPressureTurbineIdeal": {
+					"type": "object"
+				},
+				"highPressureToMediumPressurePrv": {
+					"type": "object"
+				},
+				"blowdownFlashTank": {
+					"type": "object"
+				},
+				"condensateFlashTank": {
+					"type": "object"
+				},
+				"operationsOutput": {
+					"type": "object"
+				}
+
+			}
+		}
+		
+	}
+}

@@ -1,0 +1,49 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Atmosphere",
+  "description": "Flash Tank",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "inletWaterPressure",
+    "quantityValue",
+    "inletWaterMassFlow",
+    "tankPressure"
+  ],
+
+
+  "properties": {
+		"inletWaterPressure": {
+			"$ref": "#/definitions/inletWaterPressure"
+		},
+	    "quantityValue": {
+			"$ref": "#/definitions/quantityValue"
+	    },
+	    "inletWaterMassFlow": {
+	    	"$ref": "#/definitions/inletWaterMassFlow"
+	    },
+	    "tankPressure": {
+	    	"$ref": "#/definitions/tankPressure"
+	    }
+	},
+	"definitions":
+	{
+	    "inletWaterPressure": {
+	    	"type": "number",
+	    	"minimum": 0
+	    	
+	    },
+	    "quantityValue": {
+	    	"type": "number"
+	    },
+	    "inletWaterMassFlow": {
+	    	"type": "number"
+	    },
+	    "tankPressure": {
+	    	"type": "number"
+	    
+	    }
+	}
+}
