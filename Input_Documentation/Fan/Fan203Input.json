@@ -1,0 +1,361 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Calculate Traverse Analysis",
+  "description": "MEASUR Service Calculate Traverse Analysis",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "fanSpeed",
+  	"motorSpeed",
+  	"fanSpeedCorrected",
+  	"densityCorrected",
+  	"pressureBarometricCorrected",
+  	"fanInletFlangeArea",
+  	"fanInletFlangeLength",
+  	"fanInletFlangeDryBulbTemp",
+  	"fanInletFlangeBarometricPressure",
+  	"fanEvaseOrOutletFlangeArea",
+  	"fanEvaseOrOutletFlangeDryBulbTemp",
+  	"fanEvaseOrOutletFlangeBarometricPressure",
+  	"inletMstPlaneArea",
+  	"inletMstPlaneDryBulbTemp",
+  	"inletMstPlaneBarometricPressure",
+  	"inletMstPlaneStaticPressure",
+  	"outletMstPlaneArea",
+  	"outletMstPlaneDryBulbTemp",
+  	"outletMstPlaneBarometricPressure",
+  	"outletMstPlaneStaticPressure",
+  	"fanShaftPowerMotorShaftPower",
+  	"fanShaftPowerEfficiencyMotor",
+    "fanShaftPowerEfficiencyVFD",
+    "fanShaftPowerEfficiencyBelt",
+    "fanShaftPowerSumSEF",
+    "planeDataPlane5upstreamOfPlane2",
+    "planeDataTotalPressureLossBtwnPlanes1and4",
+    "planeDataTotalPressureLossBtwnPlanes2and5",
+    "flowTraverseArea",
+    "flowTraverseDryBulbTemp",
+    "flowTraverseBarometricPressure",
+    "flowTraverseStaticPressure",
+    "flowTraversePitotTubeCoefficient",
+    "flowTraverseTraverseData",
+    "addlTraversePlanesArea",
+    "addlTraversePlanesDryBulbTemp",
+    "addlTraversePlanesBarometricPressure",
+    "addlTraversePlanesStaticPressure",
+    "addlTraversePlanesPitotTubeCoefficient",
+    "addlTraversePlanesTraverseData",
+    "baseGasDensityDryBulbTemp",
+    "baseGasDensityBarometricPressure",
+    "baseGasDensityStaticPressure",
+    "baseGasDensityGasDensity",
+    "baseGasDensityGasType"
+    ],
+
+
+  "properties": {
+    "fanSpeed": {"$ref": "#/definitions/fanSpeed"},
+    "motorSpeed": {"$ref": "#/definitions/motorSpeed"},
+  	"fanSpeedCorrected": {"$ref": "#/definitions/fanSpeedCorrected"},
+  	"densityCorrected": {"$ref": "#/definitions/densityCorrected"},
+  	"pressureBarometricCorrected": {"$ref": "#/definitions/pressureBarometricCorrected"},
+  	"fanInletFlangeArea": {"$ref": "#/definitions/fanInletFlangeArea"},
+  	"fanInletFlangeLength": {"$ref": "#/definitions/fanInletFlangeLength"},
+  	"fanInletFlangeDryBulbTemp": {"$ref": "#/definitions/fanInletFlangeDryBulbTemp"},
+  	"fanInletFlangeBarometricPressure": {"$ref": "#/definitions/fanInletFlangeBarometricPressure"},
+  	"fanEvaseOrOutletFlangeArea": {"$ref": "#/definitions/fanEvaseOrOutletFlangeArea"},
+  	"fanEvaseOrOutletFlangeDryBulbTemp": {"$ref": "#/definitions/fanEvaseOrOutletFlangeDryBulbTemp"},
+  	"fanEvaseOrOutletFlangeBarometricPressure": {"$ref": "#/definitions/fanEvaseOrOutletFlangeBarometricPressure"},
+  	"inletMstPlaneArea": {"$ref": "#/definitions/inletMstPlaneArea"},
+  	"inletMstPlaneDryBulbTemp": {"$ref": "#/definitions/inletMstPlaneDryBulbTemp"},
+  	"inletMstPlaneBarometricPressure": {"$ref": "#/definitions/inletMstPlaneBarometricPressure"},
+  	"inletMstPlaneStaticPressure": {"$ref": "#/definitions/inletMstPlaneStaticPressure"},
+  	"outletMstPlaneArea": {"$ref": "#/definitions/outletMstPlaneArea"},
+  	"outletMstPlaneDryBulbTemp": {"$ref": "#/definitions/outletMstPlaneDryBulbTemp"},
+  	"outletMstPlaneBarometricPressure": {"$ref": "#/definitions/outletMstPlaneBarometricPressure"},
+  	"outletMstPlaneStaticPressure": {"$ref": "#/definitions/outletMstPlaneStaticPressure"},
+  	"fanShaftPowerMotorShaftPower": {"$ref": "#/definitions/fanShaftPowerMotorShaftPower"},
+  	"fanShaftPowerEfficiencyMotor": {"$ref": "#/definitions/fanShaftPowerEfficiencyMotor"},
+    "fanShaftPowerEfficiencyVFD": {"$ref": "#/definitions/fanShaftPowerEfficiencyVFD"},
+    "fanShaftPowerEfficiencyBelt": {"$ref": "#/definitions/fanShaftPowerEfficiencyBelt"},
+    "fanShaftPowerSumSEF": {"$ref": "#/definitions/fanShaftPowerSumSEF"},
+    "planeDataPlane5upstreamOfPlane2": {"$ref": "#/definitions/planeDataPlane5upstreamOfPlane2"},
+    "planeDataTotalPressureLossBtwnPlanes1and4": {"$ref": "#/definitions/planeDataTotalPressureLossBtwnPlanes1and4"},
+    "planeDataTotalPressureLossBtwnPlanes2and5": {"$ref": "#/definitions/planeDataTotalPressureLossBtwnPlanes2and5"},
+    "flowTraverseArea": {"$ref": "#/definitions/flowTraverseArea"},
+    "flowTraverseDryBulbTemp": {"$ref": "#/definitions/flowTraverseDryBulbTemp"},
+    "flowTraverseBarometricPressure": {"$ref": "#/definitions/flowTraverseBarometricPressure"},
+    "flowTraverseStaticPressure": {"$ref": "#/definitions/flowTraverseStaticPressure"},
+    "flowTraversePitotTubeCoefficient": {"$ref": "#/definitions/flowTraversePitotTubeCoefficient"},
+    "flowTraverseTraverseData": {"$ref": "#/definitions/flowTraverseTraverseData"},
+    "addlTraversePlanesArea": {"$ref": "#/definitions/addlTraversePlanesArea"},
+    "addlTraversePlanesDryBulbTemp": {"$ref": "#/definitions/addlTraversePlanesDryBulbTemp"},
+    "addlTraversePlanesBarometricPressure": {"$ref": "#/definitions/addlTraversePlanesBarometricPressure"},
+    "addlTraversePlanesStaticPressure": {"$ref": "#/definitions/addlTraversePlanesStaticPressure"},
+    "addlTraversePlanesPitotTubeCoefficient": {"$ref": "#/definitions/addlTraversePlanesPitotTubeCoefficient"},
+    "addlTraversePlanesTraverseData": {"$ref": "#/definitions/addlTraversePlanesTraverseData"},
+    "baseGasDensityDryBulbTemp": {"$ref": "#/definitions/baseGasDensityDryBulbTemp"},
+    "baseGasDensityBarometricPressure": {"$ref": "#/definitions/baseGasDensityBarometricPressure"},
+    "baseGasDensityStaticPressure": {"$ref": "#/definitions/baseGasDensityStaticPressure"},
+    "baseGasDensityGasDensity": {"$ref": "#/definitions/baseGasDensityGasDensity"},
+    "baseGasDensityGasType" : {"$ref": "#/definitions/baseGasDensityGasType"}
+   },
+   
+   "definitions": {
+	
+    "fanSpeed":
+    {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 5000
+    },
+  	"motorSpeed":
+  	{
+        "type": "number",
+        "minimum": 0,
+        "maximum": 3600
+  	},
+  	"fanSpeedCorrected":
+  	{
+        "type": "number",
+        "minimum":0,
+        "maximum":5000
+  	},
+  	"densityCorrected":
+  	{
+        "type": "number"
+  	},
+  	"pressureBarometricCorrected":
+  	{
+        "type": "number",
+        "minimum": 10,
+        "maximum": 60
+  	},
+  	"fanInletFlangeArea":
+  	{
+        "type": "number",
+        "minimum": 0
+  	},
+  	"fanInletFlangeLength":
+  	{
+        "type": "number",
+        "minimum": 0
+    },
+  	"fanInletFlangeDryBulbTemp":
+  	{
+        "type": "number",
+        "minimum": -100,
+        "maximum": 1000
+  	},
+  	"fanInletFlangeBarometricPressure":
+  	{
+        "type": "number",
+        "minimum":10,
+        "maximum": 60
+  	},
+  	"fanEvaseOrOutletFlangeArea":
+  	{
+        "type": "number",
+        "minimum": 0
+  	},
+  	"fanEvaseOrOutletFlangeDryBulbTemp":
+  	{
+        "type": "number",
+        "minimum": -100,
+        "maximum": 1000
+  	},
+  	"fanEvaseOrOutletFlangeBarometricPressure":
+  	{
+        "type": "number",
+        "minimum": 10,
+        "maximum": 60
+  	},
+  	"inletMstPlaneArea":
+  	{
+        "type": "number",
+        "minimum": 0
+  	},
+  	"inletMstPlaneDryBulbTemp":
+  	{
+        "type": "number",
+        "minimum": -100,
+        "maximum": 1000
+  	},
+  	"inletMstPlaneBarometricPressure":
+  	{
+        "type": "number",
+        "minimum": 10,
+        "maximum": 60
+    },
+  	"inletMstPlaneStaticPressure":
+  	{
+        "type": "number",
+        "minimum": -400,
+        "maximum": 400
+    },
+  	"outletMstPlaneArea":
+  	{
+        "type": "number",
+        "minimum": 0
+    },
+  	"outletMstPlaneDryBulbTemp":
+  	{
+        "type": "number",
+        "minimum": -100,
+        "maximum": 1000
+    },
+  	"outletMstPlaneBarometricPressure":
+  	{
+        "type": "number",
+        "minimum": 10,
+        "maximum": 60
+    },
+  	"outletMstPlaneStaticPressure":
+  	{
+        "type": "number",
+        "minimum": -400,
+        "maximum": 400
+    },
+  	"fanShaftPowerMotorShaftPower":
+  	{
+        "type": "number"
+    },
+  	"fanShaftPowerEfficiencyMotor":
+  	{
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+    },
+    "fanShaftPowerEfficiencyVFD":
+    {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+    },
+    "fanShaftPowerEfficiencyBelt":
+    {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 100
+    },
+    "fanShaftPowerSumSEF":
+    {
+        "type": "number"
+    },
+    "planeDataPlane5upstreamOfPlane2":
+    {
+        "type":["integer","string"],
+        "enum":[
+            0,"false",
+            1,"true"
+        ]
+    },
+    "planeDataTotalPressureLossBtwnPlanes1and4":
+    {
+        "type": "number",
+        "minimum":0
+    },
+    "planeDataTotalPressureLossBtwnPlanes2and5":
+    {
+        "type": "number",
+        "minimum":0
+    },
+    "flowTraverseArea":
+    {
+        "type": "number",
+        "minimum":0
+    },
+    "flowTraverseDryBulbTemp":
+    {
+        "type": "number",
+        "minimum": -100,
+        "maximum": 1000
+    },
+    "flowTraverseBarometricPressure":
+    {
+        "type": "number",
+        "minimum": 10,
+        "maximum":60
+    },
+    "flowTraverseStaticPressure":
+    {
+        "type": "number",
+        "minimum": -400,
+        "maximum": 400
+    },
+    "flowTraversePitotTubeCoefficient":
+    {
+        "type": "number",
+        "maximum":1
+    },
+    "flowTraverseTraverseData":
+    {
+        "type": "array"
+    },
+    "addlTraversePlanesArea":
+    {
+        "type": "number",
+        "minimum": 0
+    },
+    "addlTraversePlanesDryBulbTemp":
+    {
+        "type": "number",
+        "minimum": -100,
+        "maximum": 1000
+    },
+    "addlTraversePlanesBarometricPressure":
+    {
+        "type": "number",
+        "minimum": 10,
+        "maximum":60
+    },
+    "addlTraversePlanesStaticPressure":
+    {
+        "type": "number",
+        "minimum": -400,
+        "maximum": 400
+    },
+    "addlTraversePlanesPitotTubeCoefficient":
+    {
+        "type": "number",
+        "maximum":1
+    },
+    "addlTraversePlanesTraverseData":
+    {
+        "type": "array"
+    },
+    "baseGasDensityDryBulbTemp":
+    {
+        "type": "number",
+        "minimum": -100,
+        "maximum": 1000
+    },
+    "baseGasDensityBarometricPressure":
+    {
+        "type": "number",
+        "minimum": 10,
+        "maximum": 60
+    },
+    "baseGasDensityStaticPressure":
+    {
+        "type": "number",
+        "minimum":-400,
+        "maximum": 400
+    },
+    "baseGasDensityGasDensity":
+    {
+        "type": "number"
+    },
+    "baseGasDensityGasType":
+    {
+        "type": ["integer", "string"],
+        "enum": [
+            0, "AIR",
+            1, "STANDARDAIR",
+            2, "OTHERGAS"
+        ]
+    }
+   }
+}
