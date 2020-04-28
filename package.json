@@ -4,6 +4,7 @@
 	"dependencies": {
 		"amo-tools-suite": "^0.6.2",
 		"express": "^4.17.1",
+		"express-force-ssl": "^0.3.2",
 		"jsonschema": ""
 	},
 	"devDependencies": {
