@@ -39,11 +39,11 @@
 	"definitions":
 	{
 		"chargeMaterials": {
-			"type": "array",
+			"type": "object",
 			"description": "contains a list of charge materials where the type is specified as the first parameter and the other parameters follow the same order as the listed input from the chargematerial"
 		},
   		"flueGas": {
-  			"type": "array",
+  			"type": "object",
   			"description": "contains a single list of flue gas data for either solid or gas. Type is declared first and then followed by the parameters listed in the input schema for that type of flue gas loss."
   		},
 	  	"operatingHours": {

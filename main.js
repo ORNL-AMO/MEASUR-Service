@@ -45,13 +45,13 @@ var auxiliaryPowerLoss=require('./src/processHeating/auxiliaryPowerLoss.js');
 var energyInputEAF=require('./src/processHeating/energyInputEAF.js');
 var fan = require("./src/fan/fan.js");
 
+var fan203 = require('./src/fan/fan203.js');
+
 var atmosphere = require("./src/processHeating/atmosphere.js");
 var gasCoolingLosses = require('./src/processHeating/gasCoolingLosses.js');
 var leakageLosses = require('./src/processHeating/leakageLosses.js');
 var liquidCoolingLosses = require('./src/processHeating/liquidCoolingLosses.js');
 var waterCoolingLosses=require('./src/processHeating/waterCoolingLosses.js');
-
-var fan203 = require('./src/fan/fan203.js');
 
 var router = express.Router();
 var steam = require('./src/steam/SteamAssessment.js')
@@ -125,8 +125,6 @@ router.get('/motor/motorNEMA', function(req, res)
 	motorNEMA.CalculateMotorNEMA(req, res);
 });
 
-
-
 router.get('/processHeating/efficiencyImprovement', function(req, res)
 {
 	efficiencyImprovement.CalculateEfficiencyImprovement(req, res);
@@ -148,12 +146,10 @@ router.get('/energyEquivalencyElectric/energyEquivalencyElectric', function(req,
 });
 
 
-
 router.get('/motor/motorPerformance', function(req, res)
 {
 	motor.CalculateMotorPerformance(req, res);
 });
-
 
 router.get('/pumpheadtool/suctionGaugeElevation', function(req, res)
 {

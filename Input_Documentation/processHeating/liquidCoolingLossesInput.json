@@ -9,7 +9,7 @@
   "required": [
     "flowRate",
     "density",
-    "inletTemperature",
+    "initialTemperature",
     "outletTemperature",
     "specificHeat",
     "correctionFactor"
@@ -23,8 +23,8 @@
 		"density": {
 			"$ref": "#/definitions/density"
 		},
-		"inletTemperature": {
-			"$ref": "#/definitions/inletTemperature"
+		"initialTemperature": {
+			"$ref": "#/definitions/initialTemperature"
 		},
 		"outletTemperature": {
 			"$ref": "#/definitions/outletTemperature"
@@ -50,7 +50,7 @@
 			"type": "number"
 		},
 
-		"inletTemperature": {
+		"initialTemperature": {
 			"type": "number"
 		},
 

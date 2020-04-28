@@ -1,28 +1,32 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema",
   "build_version": "v10.0.1-80-g9fa80308",
-  "title": "Water Cooling Losses",
-  "description": "MEASUR Water Cooling Losses ",
+  "title": "Fixture",
+  "description": "MEASUR fixture ",
   "type": "object",
   "additionalProperties": true,
 
   "required": [
-    "flowRate",
+    "specificHeat",
+    "feedRate",
     "initialTemperature",
-    "outletTemperature",
+    "finalTemperature",
     "correctionFactor"
   ],
 
 
   "properties": {
-		"flowRate": {
-			"$ref": "#/definitions/flowRate"
+		"specificTemperature": {
+			"$ref": "#/definitions/specificTemperature"
 		},
-	    "initialTemperature": {
-			"$ref": "#/definitions/initialTemperature"
+	    "feedRate": {
+			"$ref": "#/definitions/feedRate"
 	    },
-	    "outletTemperature": {
-	    	"$ref": "#/definitions/outletTemperature"
+	    "initialTemperature": {
+	    	"$ref": "#/definitions/initialTemperature"
+	    },
+	    "finalTemperature": {
+	    	"$ref": "#/definitions/finalTemperature"
 	    },
 	    "correctionFactor": {
 	    	"$ref": "#/definitions/correctionFactor"
@@ -30,19 +34,24 @@
 	},
 	"definitions":
 	{
-		"flowRate": {
-			"type": "number"
+		"specificTemperature": {
+			"type": "number",
+			"minimum":0
 		},
-	    "initialTemperature": {
+	    "feedRate": {
 	    	"type": "number",
 	    	"minimum": 0
 	    	
 	    },
-	    "outletTemperature": {
+	    "initialTemperature": {
+	    	"type": "number"
+	    },
+	    "finalTemperature": {
 	    	"type": "number"
 	    },
 	    "correctionFactor": {
 	    	"type": "number"
+	    
 	    }
 	}
 }
