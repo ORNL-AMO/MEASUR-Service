@@ -1,0 +1,169 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"build_version": "v10.0.1-80-g9fa80308",
+	"title": "Fan Traverse Analysis Calculator Outputs",
+	"description": "MEASUR Service Fan Traverse Analysis Calculator Outputs",
+	"type": "object",
+	"additionalProperties": true,
+
+	"required": [
+		"fanEfficiencyTotalPressure",
+		"fanEfficiencyStaticPressure",
+		"fanEfficiencyStaticPressureRise",
+		"flow",
+		"flowCorrected",
+		"kpc",
+		"kpcCorrected",
+		"power",
+		"powerCorrected",
+		"pressureStatic",
+		"pressureStaticCorrected",
+		"pressureTotal",
+		"pressureTotalCorrected",
+		"staticPressureRise",
+		"staticPressureRiseCorrected"
+	],
+
+
+	"properties": {
+	
+		"fanEfficiencyTotalPressure": {
+			"$ref": "#/definitions/fanEfficiencyTotalPressure"
+		},
+		
+		"fanEfficiencyStaticPressure": {
+			"$ref": "#/definitions/fanEfficiencyStaticPressure"
+		},
+		
+		"fanEfficiencyStaticPressureRise": {
+			"$ref": "#/definitions/fanEfficiencyStaticPressureRise"
+		},
+		
+		"flow": {
+			"$ref": "#/definitions/flow"
+		},
+		
+		"flowCorrected": {
+			"$ref": "#/definitions/flowCorrected"
+		},
+		
+		"kpc": {
+			"$ref": "#/definitions/kpc"
+		},
+		
+		"kpcCorrected": {
+			"$ref": "#/definitions/kpcCorrected"
+		},
+		
+		"power": {
+			"$ref": "#/definitions/power"
+		},
+		
+		"powerCorrected": {
+			"$ref": "#/definitions/powerCorrected"
+		},
+		
+		"pressureStatic": {
+			"$ref": "#/definitions/pressureStatic"
+		},
+		
+		"pressureStaticCorrected": {
+			"$ref": "#/definitions/pressureStaticCorrected"
+		},
+		
+		"pressureTotal": {
+			"$ref": "#/definitions/pressureTotal"
+		},
+		
+		"pressureTotalCorrected": {
+			"$ref": "#/definitions/pressureTotalCorrected"
+		},
+		
+		"staticPressureRise": {
+			"$ref": "#/definitions/staticPressureRise"
+		},
+		
+		"staticPressureRiseCorrected": {
+			"$ref": "#/definitions/staticPressureRiseCorrected"
+		}
+	},
+	
+	
+	"definitions": {
+	
+		"fanEfficiencyTotalPressure": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"fanEfficiencyStaticPressure": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"fanEfficiencyStaticPressureRise": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"flow": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"flowCorrected": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"kpc": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"kpcCorrected": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"power": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"powerCorrected": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"pressureStatic": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"pressureStaticCorrected": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"pressureTotal": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"pressureTotalCorrected": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"staticPressureRise": {
+			"type": "number",
+			"minimum": 0
+		},
+		
+		"staticPressureRiseCorrected": {
+			"type": "number",
+			"minimum": 0
+		}
+	}
+}

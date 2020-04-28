@@ -1,0 +1,123 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema",
+	"build_version": "v10.0.1-80-g9fa80308",
+	"title": "Pump Assessment",
+	"description": "MEASUR Service Pump Pump Assessment Outputs",
+	"type": "object",
+	"additionalProperties": true,
+
+	"required": [
+	
+		"annual_cost",
+		"annual_energy",
+		"motor_current",
+		"motor_efficiency",
+		"motor_power",
+		"motor_power_factor",
+		"motor_rated_power",
+		"motor_shaft_power",
+		"pump_shaft_power",
+		"pump_efficiency"
+		
+	],
+
+
+	"properties": {
+	
+		"annual_cost": {
+		  "$ref": "#/definitions/annual_cost"
+		},
+		
+		"annual_energy": {
+		  "$ref": "#/definitions/annual_energy"
+		},
+		
+		"motor_current": {
+		  "$ref": "#/definitions/motor_current"
+		},
+		
+		"motor_efficiency": {
+		  "$ref": "#/definitions/motor_efficiency"
+		},
+		
+		"motor_power": {
+		  "$ref": "#/definitions/motor_power"
+		},
+		
+		"motor_power_factor": {
+		  "$ref": "#/definitions/motor_power_factor"
+		},
+		
+		"motor_rated_power": {
+		  "$ref": "#/definitions/motor_rated_power"
+		},
+		
+		"motor_shaft_power": {
+		  "$ref": "#/definitions/motor_shaft_power"
+		},
+		
+		"pump_shaft_power": {
+		  "$ref": "#/definitions/pump_shaft_power"
+		},
+		
+		"pump_efficiency": {
+		  "$ref": "#/definitions/pump_efficiency"
+		}
+    },
+	
+	
+	"definitions": {
+	
+		"annual_cost": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Annual cost of service"
+		},
+		
+		"annual_energy": {
+			"type": "number",
+			"minimum": 0,
+			"title": "Annual energy of service"
+		},
+		
+		"motor_current": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motor_efficiency": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motor_power": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motor_power_factor": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motor_rated_power": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"motor_shaft_power": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"pump_shaft_power": {
+			"type": "number",
+			"minimum": 0,
+		},
+		
+		"pump_efficiency": {
+			"type": "number",
+			"minimum": 0,
+		}
+	}
+}
