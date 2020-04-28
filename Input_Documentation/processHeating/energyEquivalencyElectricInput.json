@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Energy Equivalency Electric ",
+  "description": "MEASUR Service Energy Electric Equivalency  Input Data",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "fuelFiredEfficiency",
+    "electricallyHeatedEfficiency",
+	"fuelFiredHeatInput"
+  ],
+
+
+  "properties": {
+		"fuelFiredEfficiency": {
+		  "$ref": "#/definitions/fuelFiredEfficiency"
+		},
+		"electricallyHeatedEfficiency":{
+			"$ref": "#/definitions/electricallyHeatedEfficiency"
+		}, 
+		"fuelFiredHeatInput": {
+		  "$ref": "#/definitions/fuelFiredHeatInput"
+		}
+		
+    },
+	"definitions":
+	{
+		"fuelFiredEfficiency": {
+			  "type": "number",
+			  "minimum": 0,
+			  "title": "Fuel Fired Efficiency",
+			  "examples": [1, 1.5, 2.0]
+		},
+		"electricallyHeatedEfficiency": {
+			"type": "number",
+			"minimum": 0,
+			"maximum":100,
+			"title": "Electrically Heated Efficiency",
+			"examples": [2100, 2150.3, 4]
+		},
+		"fuelFiredHeatInput": {
+			  "type": "number",
+			  "minimum": 0,
+			  "maximum":100,
+			  "title": "Fuel Fired Heat Input",
+			  "examples": [1, 1.5, 2.0, 14.3]
+		}
+		
+	}
+}

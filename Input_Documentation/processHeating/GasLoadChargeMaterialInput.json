@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Gas Load Charge Material",
+  "description": "MEASUR Service Gas Load Charge Material Input Data",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "thermicReactionType",
+    "specificHeatGas",
+    "feedRate",
+	"percentVapor",
+	"initialTemperature",
+	"dischargeTemperature",
+	"specificHeatVapor",
+	"percentReacted",
+	"reactionHeat",
+	"additionalHeat"
+  ],
+
+
+  "properties": {
+		"thermicReactionType": {
+			"$ref": "#/definitions/thermicReactionType"
+		},
+	    "specificHeatGas": {
+	    	"$ref": "#/definitions/specificHeatGas"
+	    },
+	    "feedRate": {
+	    	"$ref": "#/definitions/feedRate"
+	    },
+		"percentVapor": {
+			"$ref": "#/definitions/percentVapor"
+		},
+		"initialTemperature": {
+			"$ref": "#/definitions/initialTemperature"
+		},
+		"dischargeTemperature": {
+			"$ref": "#/definitions/dischargeTemperature"
+		},
+		"specificHeatVapor": {
+			"$ref": "#/definitions/specificHeatVapor"
+		},
+		"percentReacted": {
+			"$ref": "#/definitions/percentReacted"
+		},
+		"reactionHeat": {
+			"$ref": "#/definitions/reactionHeat"
+		},
+		"additionalHeat": {
+			"$ref": "#/definitions/additionalHeat"
+	    }
+	},
+	"definitions":
+	{
+		"thermicReactionType": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "endothermic",
+				1, "exothermic"
+			]
+		},
+	    "specificHeatGas": {
+	    	"type": "number"
+	    },
+	    "feedRate": {
+	    	"type": "number"
+	    },
+		"percentVapor": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"initialTemperature": {
+			"type": "number"
+		},
+		"dischargeTemperature": {
+			"type": "number"
+		},
+		"specificHeatVapor": {
+			"type": "number"
+		},
+		"percentReacted": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"reactionHeat": {
+			"type": "number"
+		},
+		"additionalHeat": {
+			"type": "number"
+		}
+	}
+}

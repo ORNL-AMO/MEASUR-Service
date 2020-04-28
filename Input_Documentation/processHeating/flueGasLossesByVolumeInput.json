@@ -1,0 +1,147 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Flue Gas Losses By Volume",
+  "description": "MEASUR Service Flue Gas Losses By Volume / Gas Input",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "flueGasTemperature",
+    "excessAirPercentage",
+    "combustionAirTemperature",
+    "fuelTemperature",
+    "CH4",
+    "C2H6",
+    "N2",
+    "H2",
+    "C3H8",
+    "C4H10_CnH2n",
+    "H2O",
+    "CO",
+    "CO2",
+    "SO2",
+    "O2"
+  ],
+
+
+  "properties": {
+		"flueGasTemperature": {
+			"$ref": "#/definitions/flueGasTemperature"
+		},
+	    "excessAirPercentage": {
+	    	"$ref": "#/definitions/excessAirPercentage"
+	    },
+	    "combustionAirTemperature": {
+	    	"$ref": "#/definitions/combustionAirTemperature"
+	    },
+	    "fuelTemperature": {
+	    	"$ref": "#/definitions/fuelTemperature"
+	    },
+	    "CH4": {
+	    	"$ref": "#/definitions/CH4"
+	    },
+	    "C2H6": {
+	    	"$ref": "#/definitions/C2H6"
+	    },
+	    "N2": {
+	    	"$ref": "#/definitions/N2"
+	    },
+	    "H2": {
+	    	"$ref": "#/definitions/H2"
+	    },
+	    "C3H8": {
+	    	"$ref": "#/definitions/C3H8"
+	    },
+	    "C4H10_CnH2n": {
+	    	"$ref": "#/definitions/C4H10_CnH2n"
+	    },
+	    "H2O": {
+	    	"$ref": "#/definitions/H2O"
+	    },
+	    "CO": {
+	    	"$ref": "#/definitions/CO"
+	    },
+	    "CO2": {
+	    	"$ref": "#/definitions/CO2"
+	    },
+	    "SO2": {
+	    	"$ref": "#/definitions/SO2"
+	    },
+	    "O2": {
+	    	"$ref": "#/definitions/O2"
+	    }
+	},
+	"definitions":
+	{
+		"flueGasTemperature": {
+			"type": "number"
+		},
+	    "excessAirPercentage": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "combustionAirTemperature": {
+	    	"type": "number"
+	    },
+	    "fuelTemperature": {
+	    	"type": "number"
+	    },
+	    "CH4": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "C2H6": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "N2": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "H2": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "C3H8": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "C4H10_CnH2n": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "H2O": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "CO": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "CO2": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "SO2": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "O2": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    }
+	}
+}

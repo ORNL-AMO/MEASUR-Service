@@ -1,0 +1,135 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Solid Load Charge Material",
+  "description": "MEASUR Service Solid Load Charge Material Input Data",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "thermicReactionType",
+    "specificHeatSolid",
+    "latentHeat",
+	"specificHeatLiquid",
+    "meltingPoint",
+	"chargeFeedRate",
+	"waterContentCharged",
+	"waterContentDischarged",
+	"initialTemperature",
+	"dischargeTemperature",
+	"waterVaporDischargeTemperature",
+	"chargeMelted",
+	"chargeReacted",
+	"reactionHeat",
+	"additionalHeat"
+  ],
+
+
+  "properties": {
+		"thermicReactionType": {
+			"$ref": "#/definitions/thermicReactionType"
+		},
+	    "specificHeatSolid": {
+	    	"$ref": "#/definitions/specificHeatSolid"
+	    },
+	    "latentHeat": {
+	    	"$ref": "#/definitions/latentHeat"
+	    },
+	    "speciifcHeatLiquid": {
+	    	"$ref": "#/definitions/specificHeatLiquid"
+	    },
+	    "meltingPoint": {
+	    	"$ref": "#/definitions/meltingPoint"
+	    },
+	    "chargeFeedRate": {
+	    	"$ref": "#/definitions/chargeFeedRate"
+	    },
+	    "waterContentCharged": {
+	    	"$ref": "#/definitions/waterContentCharged"
+	    },
+	    "waterContentDischarged": {
+	    	"$ref": "#/definitions/waterContentDischarged"
+	    },
+		"initialTemperature": {
+			"$ref": "#/definitions/initialTemperature"
+		},
+		"dischargeTemperature": {
+			"$ref": "#/definitions/dischargeTemperature"
+		},
+		"waterVaporDischargeTemperature": {
+			"$ref": "#/definitions/waterVaporDischargeTemperature"
+		},
+		"chargeMelted": {
+			"$ref": "#/definitions/chargeMelted"
+		},
+		"chargeReacted": {
+			"$ref": "#/definitions/chargeReacted"
+		},
+		"reactionHeat": {
+			"$ref": "#/definitions/reactionHeat"
+		},
+		"additionalHeat": {
+			"$ref": "#/definitions/additionalHeat"
+	    }
+	},
+	"definitions":
+	{
+		"thermicReactionType": {
+			"type": ["integer", "string"],
+			"enum": [
+				0, "endothermic",
+				1, "exothermic"
+			]
+		},
+	    "specificHeatSolid": {
+	    	"type": "number"
+	    },
+	     "latentHeat": {
+	    	"type": "number"
+	    },
+	    "specificHeatLiquid": {
+			"type": "number"
+		},
+	    "meltingPoint": {
+	    	"type": "number"
+	    },
+	    "chargeFeedRate": {
+	    	"type": "number"
+	    },
+	    "waterContentCharged": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "waterContentDischarged": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+		"initialTemperature": {
+			"type": "number"
+		},
+		"dischargeTemperature": {
+			"type": "number"
+		},
+		"waterVaporDischargeTemperature": {
+			"type": "number"
+		},
+		"chargeMelted": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"chargeReacted": {
+			"type": "number",
+			"minimum": 0,
+			"maximum": 100
+		},
+		"reactionHeat": {
+			"type": "number"
+		},
+		"additionalHeat": {
+			"type": "number"
+		}
+	}
+}

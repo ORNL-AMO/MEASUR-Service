@@ -1,0 +1,156 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "build_version": "v10.0.1-80-g9fa80308",
+  "title": "Flue Gas Losses By Mass",
+  "description": "MEASUR Service Flue Gas Losses By Mass / Solid Input",
+  "type": "object",
+  "additionalProperties": true,
+
+  "required": [
+    "flueGasTemperature",
+    "excessAirPercentage",
+    "combustionAirTemperature",
+    "fuelTemperature",
+    "moistureInAirComposition",
+    "ashDischargeTemperature",
+    "unburnedCarbonInAsh",
+    "carbon",
+    "hydrogen",
+    "sulphur",
+    "inertAsh",
+    "o2",
+    "moisture",
+    "nitrogen"
+  ],
+
+
+  "properties": {
+		"flueGasTemperature": {
+			"$ref": "#/definitions/flueGasTemperature"
+		},
+	    "excessAirPercentage": {
+	    	"$ref": "#/definitions/excessAirPercentage"
+	    },
+	    "combustionAirTemperature": {
+	    	"$ref": "#/definitions/combustionAirTemperature"
+	    },
+	    "fuelTemperature": {
+	    	"$ref": "#/definitions/fuelTemperature"
+	    },
+	    "moistureInAirComposition": {
+	    	"$ref": "#/definitions/moistureInAirComposition"  	
+	    },
+	    "ashDischargeTemperature":{
+	    	"$ref": "#/definitions/ashDischargeTemperature"
+	    },
+	    "unburnedCarbonInAsh": {
+	    	"$ref": "#/definitions/unburnedCarbonInAsh"
+	    },
+	    "carbon": {
+	    	"$ref": "#/definitions/carbon"
+	    },
+	    "hydrogen": {
+	    	"$ref": "#/definitions/hydrogen"
+	    },
+	    "sulphur": {
+	    	"$ref": "#/definitions/sulphur"
+	    },
+	    "inertAsh": {
+	    	"$ref": "#/definitions/inertAsh"
+	    },
+	    "o2": {
+	    	"$ref": "#/definitions/o2"
+	    },
+	    "moisture": {
+	    	"$ref": "#/definitions/moisture"
+	    },
+	    "nitrogen": {
+	    	"$ref": "#/definitions/nitrogen"
+	    }
+	},
+	"definitions":
+	{
+		"flueGasTemperature": {
+			"type": "number"
+		},
+	    "excessAirPercentage": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "combustionAirTemperature": {
+	    	"type": "number"
+	    },
+	    "fuelTemperature": {
+	    	"type": "number"
+	    },
+    	"moistureInAirComposition": {
+    		"type": "number",
+    		"minimum": 0,
+    		"maximum": 100
+    	},
+	    "ashDischargeTemperature": {
+	    	"type": "number"
+	    },
+	    "unburnedCarbonInAsh": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "carbon": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "hydrogen": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "sulphur": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "inertAsh": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "moisture": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "nitrogen": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "H2O": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "CO": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "Co2": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "So2": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    },
+	    "o2": {
+	    	"type": "number",
+	    	"minimum": 0,
+	    	"maximum": 100
+	    }
+	}
+}

@@ -1,7 +1,7 @@
 var phast = require("../../node_modules/amo-tools-suite/build/Release/phast.node");
 var express = require('express');
 
-var inputDirectory = './Input_Documentation/furnace';
+var inputDirectory = './Input_Documentation/processHeating';
 var Validator = require('jsonschema').Validator;
 var fs = require('fs');
 
