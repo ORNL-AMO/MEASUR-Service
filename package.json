@@ -3,7 +3,7 @@
 	"main": "pumpheadtool.js",
 	"dependencies": {
 		"amo-tools-suite": "^0.6.2",
-		"express": "^4.17.1",
+		"express": "^4.17.3",
 		"express-force-ssl": "^0.3.2",
 		"jsonschema": ""
 	},
